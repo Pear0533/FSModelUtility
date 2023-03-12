@@ -46,13 +46,14 @@ public partial class FSModelUtility : Form
 
     private static string GetModelName(string str, bool upperCase = false)
     {
-        string modelName = str.Split('.', str.Count(i => i == '.')).ElementAtOrDefault(0) ?? "TEXT HERE";
+        string modelName = str.Split('.', str.Count(i => i == '.')).ElementAtOrDefault(0) ?? "";
         modelName = Path.GetFileNameWithoutExtension(modelName);
         return upperCase ? modelName.ToUpper() : modelName;
     }
 
     private static string GetModelNamePrefix(string modelName)
     {
+        if (modelName == "") return "";
         int startIndex = modelName.LastIndexOf('(') + 1;
         if (startIndex == -1) startIndex = 0;
         int endIndex = modelName.IndexOf('_') + 2;
