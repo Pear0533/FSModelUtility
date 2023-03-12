@@ -22,3 +22,27 @@ C:\Users\Isaac Fisher\Downloads\Syncthing Shared\Game Mods & Tools\Tools\FromSof
 C:\Users\Isaac Fisher\Downloads\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\obj\Debug\net6.0-windows\FSModelUtility.pdb
 C:\Users\Isaac Fisher\Downloads\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\obj\Debug\net6.0-windows\FSModelUtility.genruntimeconfig.cache
 C:\Users\Isaac Fisher\Downloads\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\obj\Debug\net6.0-windows\ref\FSModelUtility.dll
+D:\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\bin\Debug\net6.0-windows\FSModelUtility.exe
+D:\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\bin\Debug\net6.0-windows\modelnames.csv
+D:\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\bin\Debug\net6.0-windows\FSModelUtility.deps.json
+D:\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\bin\Debug\net6.0-windows\FSModelUtility.runtimeconfig.json
+D:\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\bin\Debug\net6.0-windows\FSModelUtility.dll
+D:\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\bin\Debug\net6.0-windows\FSModelUtility.pdb
+D:\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
+D:\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\bin\Debug\net6.0-windows\Newtonsoft.Json.Bson.dll
+D:\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\bin\Debug\net6.0-windows\SharpCompress.dll
+D:\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\bin\Debug\net6.0-windows\System.Text.Encoding.CodePages.dll
+D:\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll
+D:\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\obj\Debug\net6.0-windows\FSModelUtility.csproj.AssemblyReference.cache
+D:\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\obj\Debug\net6.0-windows\FSModelUtility.FSModelUtility.resources
+D:\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\obj\Debug\net6.0-windows\FSModelUtility.csproj.GenerateResource.cache
+D:\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\obj\Debug\net6.0-windows\FSModelUtility.GeneratedMSBuildEditorConfig.editorconfig
+D:\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\obj\Debug\net6.0-windows\FSModelUtility.AssemblyInfoInputs.cache
+D:\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\obj\Debug\net6.0-windows\FSModelUtility.AssemblyInfo.cs
+D:\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\obj\Debug\net6.0-windows\FSModelUtility.csproj.CoreCompileInputs.cache
+D:\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\obj\Debug\net6.0-windows\FSModelUtility.csproj.CopyComplete
+D:\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\obj\Debug\net6.0-windows\FSModelUtility.dll
+D:\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\obj\Debug\net6.0-windows\refint\FSModelUtility.dll
+D:\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\obj\Debug\net6.0-windows\FSModelUtility.pdb
+D:\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\obj\Debug\net6.0-windows\FSModelUtility.genruntimeconfig.cache
+D:\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\obj\Debug\net6.0-windows\ref\FSModelUtility.dll

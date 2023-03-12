@@ -28,283 +28,267 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FSModelUtility));
-            this.copyrightInfoLabel = new System.Windows.Forms.Label();
-            this.modelArchivesFolderGroupBox = new System.Windows.Forms.GroupBox();
-            this.modelArchivesFolderButton = new System.Windows.Forms.Button();
-            this.modelArchivesFolderPathLabel = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.modelsFolderGroupBox = new System.Windows.Forms.GroupBox();
-            this.modelsFolderButton = new System.Windows.Forms.Button();
-            this.modelsFolderPathLabel = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.mainSplitContainer = new System.Windows.Forms.SplitContainer();
-            this.modelArchivesGroupBox = new System.Windows.Forms.GroupBox();
-            this.modelArchivesView = new System.Windows.Forms.TreeView();
-            this.modelReplaceGroupBox = new System.Windows.Forms.GroupBox();
-            this.modelReplaceView = new System.Windows.Forms.TreeView();
-            this.modelReplaceButton = new System.Windows.Forms.Button();
-            this.statusLabel = new System.Windows.Forms.Label();
-            this.modelReplaceRightClickMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.modelArchivesFolderGroupBox.SuspendLayout();
-            this.modelsFolderGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).BeginInit();
-            this.mainSplitContainer.Panel1.SuspendLayout();
-            this.mainSplitContainer.Panel2.SuspendLayout();
-            this.mainSplitContainer.SuspendLayout();
-            this.modelArchivesGroupBox.SuspendLayout();
-            this.modelReplaceGroupBox.SuspendLayout();
-            this.modelReplaceRightClickMenu.SuspendLayout();
-            this.SuspendLayout();
+            copyrightInfoLabel = new Label();
+            modelArchivesFolderGroupBox = new GroupBox();
+            modelArchivesFolderButton = new Button();
+            modelArchivesFolderPathLabel = new Label();
+            label2 = new Label();
+            modelsFolderGroupBox = new GroupBox();
+            modelsFolderButton = new Button();
+            modelsFolderPathLabel = new Label();
+            label6 = new Label();
+            mainSplitContainer = new SplitContainer();
+            modelArchivesGroupBox = new GroupBox();
+            modelArchivesView = new TreeView();
+            modelReplaceGroupBox = new GroupBox();
+            modelReplaceView = new TreeView();
+            modelReplaceButton = new Button();
+            statusLabel = new Label();
+            nodeRightClickMenu = new ContextMenuStrip(components);
+            copyToolStripMenuItem = new ToolStripMenuItem();
+            modelArchivesFolderGroupBox.SuspendLayout();
+            modelsFolderGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)mainSplitContainer).BeginInit();
+            mainSplitContainer.Panel1.SuspendLayout();
+            mainSplitContainer.Panel2.SuspendLayout();
+            mainSplitContainer.SuspendLayout();
+            modelArchivesGroupBox.SuspendLayout();
+            modelReplaceGroupBox.SuspendLayout();
+            nodeRightClickMenu.SuspendLayout();
+            SuspendLayout();
             // 
             // copyrightInfoLabel
             // 
-            this.copyrightInfoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.copyrightInfoLabel.AutoSize = true;
-            this.copyrightInfoLabel.ForeColor = System.Drawing.Color.DimGray;
-            this.copyrightInfoLabel.Location = new System.Drawing.Point(614, 6);
-            this.copyrightInfoLabel.Name = "copyrightInfoLabel";
-            this.copyrightInfoLabel.Size = new System.Drawing.Size(174, 15);
-            this.copyrightInfoLabel.TabIndex = 3;
-            this.copyrightInfoLabel.Text = "© Pear, 2023 All rights reserved.";
+            copyrightInfoLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            copyrightInfoLabel.AutoSize = true;
+            copyrightInfoLabel.ForeColor = Color.DimGray;
+            copyrightInfoLabel.Location = new Point(614, 6);
+            copyrightInfoLabel.Name = "copyrightInfoLabel";
+            copyrightInfoLabel.Size = new Size(174, 15);
+            copyrightInfoLabel.TabIndex = 3;
+            copyrightInfoLabel.Text = "© Pear, 2023 All rights reserved.";
             // 
             // modelArchivesFolderGroupBox
             // 
-            this.modelArchivesFolderGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.modelArchivesFolderGroupBox.Controls.Add(this.modelArchivesFolderButton);
-            this.modelArchivesFolderGroupBox.Controls.Add(this.modelArchivesFolderPathLabel);
-            this.modelArchivesFolderGroupBox.Controls.Add(this.label2);
-            this.modelArchivesFolderGroupBox.Enabled = false;
-            this.modelArchivesFolderGroupBox.Location = new System.Drawing.Point(4, 99);
-            this.modelArchivesFolderGroupBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.modelArchivesFolderGroupBox.Name = "modelArchivesFolderGroupBox";
-            this.modelArchivesFolderGroupBox.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.modelArchivesFolderGroupBox.Size = new System.Drawing.Size(784, 73);
-            this.modelArchivesFolderGroupBox.TabIndex = 13;
-            this.modelArchivesFolderGroupBox.TabStop = false;
-            this.modelArchivesFolderGroupBox.Text = "Model Archives Folder";
+            modelArchivesFolderGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            modelArchivesFolderGroupBox.Controls.Add(modelArchivesFolderButton);
+            modelArchivesFolderGroupBox.Controls.Add(modelArchivesFolderPathLabel);
+            modelArchivesFolderGroupBox.Controls.Add(label2);
+            modelArchivesFolderGroupBox.Enabled = false;
+            modelArchivesFolderGroupBox.Location = new Point(4, 99);
+            modelArchivesFolderGroupBox.Margin = new Padding(4, 5, 4, 5);
+            modelArchivesFolderGroupBox.Name = "modelArchivesFolderGroupBox";
+            modelArchivesFolderGroupBox.Padding = new Padding(4, 5, 4, 5);
+            modelArchivesFolderGroupBox.Size = new Size(784, 73);
+            modelArchivesFolderGroupBox.TabIndex = 13;
+            modelArchivesFolderGroupBox.TabStop = false;
+            modelArchivesFolderGroupBox.Text = "Model Archives Folder";
             // 
             // modelArchivesFolderButton
             // 
-            this.modelArchivesFolderButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.modelArchivesFolderButton.Location = new System.Drawing.Point(9, 23);
-            this.modelArchivesFolderButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.modelArchivesFolderButton.Name = "modelArchivesFolderButton";
-            this.modelArchivesFolderButton.Size = new System.Drawing.Size(766, 26);
-            this.modelArchivesFolderButton.TabIndex = 5;
-            this.modelArchivesFolderButton.Text = "Browse";
-            this.modelArchivesFolderButton.UseVisualStyleBackColor = true;
-            this.modelArchivesFolderButton.Click += new System.EventHandler(this.BrowseModelArchivesButton_Click);
+            modelArchivesFolderButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            modelArchivesFolderButton.Location = new Point(9, 23);
+            modelArchivesFolderButton.Margin = new Padding(4, 5, 4, 5);
+            modelArchivesFolderButton.Name = "modelArchivesFolderButton";
+            modelArchivesFolderButton.Size = new Size(766, 26);
+            modelArchivesFolderButton.TabIndex = 5;
+            modelArchivesFolderButton.Text = "Browse";
+            modelArchivesFolderButton.UseVisualStyleBackColor = true;
+            modelArchivesFolderButton.Click += BrowseModelArchivesButton_Click;
             // 
             // modelArchivesFolderPathLabel
             // 
-            this.modelArchivesFolderPathLabel.AutoSize = true;
-            this.modelArchivesFolderPathLabel.Location = new System.Drawing.Point(40, 52);
-            this.modelArchivesFolderPathLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.modelArchivesFolderPathLabel.Name = "modelArchivesFolderPathLabel";
-            this.modelArchivesFolderPathLabel.Size = new System.Drawing.Size(29, 15);
-            this.modelArchivesFolderPathLabel.TabIndex = 9;
-            this.modelArchivesFolderPathLabel.Text = "N/A";
+            modelArchivesFolderPathLabel.AutoSize = true;
+            modelArchivesFolderPathLabel.Location = new Point(40, 52);
+            modelArchivesFolderPathLabel.Margin = new Padding(4, 0, 4, 0);
+            modelArchivesFolderPathLabel.Name = "modelArchivesFolderPathLabel";
+            modelArchivesFolderPathLabel.Size = new Size(29, 15);
+            modelArchivesFolderPathLabel.TabIndex = 9;
+            modelArchivesFolderPathLabel.Text = "N/A";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 52);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(34, 15);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Path:";
+            label2.AutoSize = true;
+            label2.Location = new Point(7, 52);
+            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(34, 15);
+            label2.TabIndex = 8;
+            label2.Text = "Path:";
             // 
             // modelsFolderGroupBox
             // 
-            this.modelsFolderGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.modelsFolderGroupBox.Controls.Add(this.modelsFolderButton);
-            this.modelsFolderGroupBox.Controls.Add(this.modelsFolderPathLabel);
-            this.modelsFolderGroupBox.Controls.Add(this.label6);
-            this.modelsFolderGroupBox.Location = new System.Drawing.Point(4, 20);
-            this.modelsFolderGroupBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.modelsFolderGroupBox.Name = "modelsFolderGroupBox";
-            this.modelsFolderGroupBox.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.modelsFolderGroupBox.Size = new System.Drawing.Size(784, 73);
-            this.modelsFolderGroupBox.TabIndex = 12;
-            this.modelsFolderGroupBox.TabStop = false;
-            this.modelsFolderGroupBox.Text = "Models Folder (parts, chr, etc.)";
+            modelsFolderGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            modelsFolderGroupBox.Controls.Add(modelsFolderButton);
+            modelsFolderGroupBox.Controls.Add(modelsFolderPathLabel);
+            modelsFolderGroupBox.Controls.Add(label6);
+            modelsFolderGroupBox.Location = new Point(4, 20);
+            modelsFolderGroupBox.Margin = new Padding(4, 5, 4, 5);
+            modelsFolderGroupBox.Name = "modelsFolderGroupBox";
+            modelsFolderGroupBox.Padding = new Padding(4, 5, 4, 5);
+            modelsFolderGroupBox.Size = new Size(784, 73);
+            modelsFolderGroupBox.TabIndex = 12;
+            modelsFolderGroupBox.TabStop = false;
+            modelsFolderGroupBox.Text = "Models Folder (parts, chr, etc.)";
             // 
             // modelsFolderButton
             // 
-            this.modelsFolderButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.modelsFolderButton.Location = new System.Drawing.Point(9, 22);
-            this.modelsFolderButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.modelsFolderButton.Name = "modelsFolderButton";
-            this.modelsFolderButton.Size = new System.Drawing.Size(766, 26);
-            this.modelsFolderButton.TabIndex = 5;
-            this.modelsFolderButton.Text = "Browse";
-            this.modelsFolderButton.UseVisualStyleBackColor = true;
-            this.modelsFolderButton.Click += new System.EventHandler(this.BrowseModelsFolderButton_Click);
+            modelsFolderButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            modelsFolderButton.Location = new Point(9, 22);
+            modelsFolderButton.Margin = new Padding(4, 5, 4, 5);
+            modelsFolderButton.Name = "modelsFolderButton";
+            modelsFolderButton.Size = new Size(766, 26);
+            modelsFolderButton.TabIndex = 5;
+            modelsFolderButton.Text = "Browse";
+            modelsFolderButton.UseVisualStyleBackColor = true;
+            modelsFolderButton.Click += BrowseModelsFolderButton_Click;
             // 
             // modelsFolderPathLabel
             // 
-            this.modelsFolderPathLabel.AutoSize = true;
-            this.modelsFolderPathLabel.Location = new System.Drawing.Point(40, 50);
-            this.modelsFolderPathLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.modelsFolderPathLabel.Name = "modelsFolderPathLabel";
-            this.modelsFolderPathLabel.Size = new System.Drawing.Size(29, 15);
-            this.modelsFolderPathLabel.TabIndex = 9;
-            this.modelsFolderPathLabel.Text = "N/A";
+            modelsFolderPathLabel.AutoSize = true;
+            modelsFolderPathLabel.Location = new Point(40, 50);
+            modelsFolderPathLabel.Margin = new Padding(4, 0, 4, 0);
+            modelsFolderPathLabel.Name = "modelsFolderPathLabel";
+            modelsFolderPathLabel.Size = new Size(29, 15);
+            modelsFolderPathLabel.TabIndex = 9;
+            modelsFolderPathLabel.Text = "N/A";
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 50);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(34, 15);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "Path:";
+            label6.AutoSize = true;
+            label6.Location = new Point(7, 50);
+            label6.Margin = new Padding(4, 0, 4, 0);
+            label6.Name = "label6";
+            label6.Size = new Size(34, 15);
+            label6.TabIndex = 8;
+            label6.Text = "Path:";
             // 
             // mainSplitContainer
             // 
-            this.mainSplitContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.mainSplitContainer.Enabled = false;
-            this.mainSplitContainer.Location = new System.Drawing.Point(4, 176);
-            this.mainSplitContainer.Name = "mainSplitContainer";
+            mainSplitContainer.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            mainSplitContainer.Enabled = false;
+            mainSplitContainer.Location = new Point(4, 176);
+            mainSplitContainer.Name = "mainSplitContainer";
             // 
             // mainSplitContainer.Panel1
             // 
-            this.mainSplitContainer.Panel1.Controls.Add(this.modelArchivesGroupBox);
+            mainSplitContainer.Panel1.Controls.Add(modelArchivesGroupBox);
             // 
             // mainSplitContainer.Panel2
             // 
-            this.mainSplitContainer.Panel2.Controls.Add(this.modelReplaceGroupBox);
-            this.mainSplitContainer.Size = new System.Drawing.Size(784, 276);
-            this.mainSplitContainer.SplitterDistance = 379;
-            this.mainSplitContainer.TabIndex = 15;
+            mainSplitContainer.Panel2.Controls.Add(modelReplaceGroupBox);
+            mainSplitContainer.Size = new Size(784, 276);
+            mainSplitContainer.SplitterDistance = 379;
+            mainSplitContainer.TabIndex = 15;
             // 
             // modelArchivesGroupBox
             // 
-            this.modelArchivesGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.modelArchivesGroupBox.Controls.Add(this.modelArchivesView);
-            this.modelArchivesGroupBox.Location = new System.Drawing.Point(3, 3);
-            this.modelArchivesGroupBox.Name = "modelArchivesGroupBox";
-            this.modelArchivesGroupBox.Size = new System.Drawing.Size(373, 270);
-            this.modelArchivesGroupBox.TabIndex = 16;
-            this.modelArchivesGroupBox.TabStop = false;
-            this.modelArchivesGroupBox.Text = "Model Archives";
+            modelArchivesGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            modelArchivesGroupBox.Controls.Add(modelArchivesView);
+            modelArchivesGroupBox.Location = new Point(3, 3);
+            modelArchivesGroupBox.Name = "modelArchivesGroupBox";
+            modelArchivesGroupBox.Size = new Size(373, 270);
+            modelArchivesGroupBox.TabIndex = 16;
+            modelArchivesGroupBox.TabStop = false;
+            modelArchivesGroupBox.Text = "Model Archives";
             // 
             // modelArchivesView
             // 
-            this.modelArchivesView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.modelArchivesView.HideSelection = false;
-            this.modelArchivesView.Location = new System.Drawing.Point(5, 20);
-            this.modelArchivesView.Name = "modelArchivesView";
-            this.modelArchivesView.Size = new System.Drawing.Size(362, 244);
-            this.modelArchivesView.TabIndex = 0;
-            this.modelArchivesView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.ModelArchivesView_AfterSelect);
+            modelArchivesView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            modelArchivesView.HideSelection = false;
+            modelArchivesView.Location = new Point(5, 20);
+            modelArchivesView.Name = "modelArchivesView";
+            modelArchivesView.Size = new Size(362, 244);
+            modelArchivesView.TabIndex = 0;
+            modelArchivesView.AfterSelect += ModelArchivesView_AfterSelect;
+            modelArchivesView.MouseDown += NodeRightClick;
             // 
             // modelReplaceGroupBox
             // 
-            this.modelReplaceGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.modelReplaceGroupBox.Controls.Add(this.modelReplaceView);
-            this.modelReplaceGroupBox.Controls.Add(this.modelReplaceButton);
-            this.modelReplaceGroupBox.Location = new System.Drawing.Point(3, 3);
-            this.modelReplaceGroupBox.Name = "modelReplaceGroupBox";
-            this.modelReplaceGroupBox.Size = new System.Drawing.Size(395, 270);
-            this.modelReplaceGroupBox.TabIndex = 15;
-            this.modelReplaceGroupBox.TabStop = false;
-            this.modelReplaceGroupBox.Text = "Model Replacement";
+            modelReplaceGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            modelReplaceGroupBox.Controls.Add(modelReplaceView);
+            modelReplaceGroupBox.Controls.Add(modelReplaceButton);
+            modelReplaceGroupBox.Location = new Point(3, 3);
+            modelReplaceGroupBox.Name = "modelReplaceGroupBox";
+            modelReplaceGroupBox.Size = new Size(395, 270);
+            modelReplaceGroupBox.TabIndex = 15;
+            modelReplaceGroupBox.TabStop = false;
+            modelReplaceGroupBox.Text = "Model Replacement";
             // 
             // modelReplaceView
             // 
-            this.modelReplaceView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.modelReplaceView.Location = new System.Drawing.Point(6, 22);
-            this.modelReplaceView.Name = "modelReplaceView";
-            this.modelReplaceView.Size = new System.Drawing.Size(383, 205);
-            this.modelReplaceView.TabIndex = 1;
-            this.modelReplaceView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.ModelReplaceView_AfterSelect);
-            this.modelReplaceView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ModelReplaceView_MouseDown);
+            modelReplaceView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            modelReplaceView.Location = new Point(6, 22);
+            modelReplaceView.Name = "modelReplaceView";
+            modelReplaceView.Size = new Size(383, 205);
+            modelReplaceView.TabIndex = 1;
+            modelReplaceView.AfterSelect += ModelReplaceView_AfterSelect;
+            modelReplaceView.MouseDown += NodeRightClick;
             // 
             // modelReplaceButton
             // 
-            this.modelReplaceButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.modelReplaceButton.Location = new System.Drawing.Point(5, 231);
-            this.modelReplaceButton.Name = "modelReplaceButton";
-            this.modelReplaceButton.Size = new System.Drawing.Size(385, 34);
-            this.modelReplaceButton.TabIndex = 0;
-            this.modelReplaceButton.Text = "Replace!";
-            this.modelReplaceButton.UseVisualStyleBackColor = true;
-            this.modelReplaceButton.Click += new System.EventHandler(this.ModelReplaceButton_Click);
+            modelReplaceButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            modelReplaceButton.Location = new Point(5, 231);
+            modelReplaceButton.Name = "modelReplaceButton";
+            modelReplaceButton.Size = new Size(385, 34);
+            modelReplaceButton.TabIndex = 0;
+            modelReplaceButton.Text = "Replace!";
+            modelReplaceButton.UseVisualStyleBackColor = true;
+            modelReplaceButton.Click += ModelReplaceButton_Click;
             // 
             // statusLabel
             // 
-            this.statusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.statusLabel.AutoSize = true;
-            this.statusLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.statusLabel.Location = new System.Drawing.Point(3, 3);
-            this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(21, 15);
-            this.statusLabel.TabIndex = 16;
-            this.statusLabel.Text = "{0}";
-            this.statusLabel.Visible = false;
+            statusLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            statusLabel.AutoSize = true;
+            statusLabel.ForeColor = SystemColors.ControlText;
+            statusLabel.Location = new Point(3, 3);
+            statusLabel.Name = "statusLabel";
+            statusLabel.Size = new Size(21, 15);
+            statusLabel.TabIndex = 16;
+            statusLabel.Text = "{0}";
+            statusLabel.Visible = false;
             // 
-            // modelReplaceRightClickMenu
+            // nodeRightClickMenu
             // 
-            this.modelReplaceRightClickMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.copyToolStripMenuItem});
-            this.modelReplaceRightClickMenu.Name = "modelReplaceRightClickMenu";
-            this.modelReplaceRightClickMenu.Size = new System.Drawing.Size(103, 26);
+            nodeRightClickMenu.Items.AddRange(new ToolStripItem[] { copyToolStripMenuItem });
+            nodeRightClickMenu.Name = "nodeRightClickMenu";
+            nodeRightClickMenu.Size = new Size(103, 26);
             // 
             // copyToolStripMenuItem
             // 
-            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
-            this.copyToolStripMenuItem.Text = "Copy";
+            copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            copyToolStripMenuItem.Size = new Size(102, 22);
+            copyToolStripMenuItem.Text = "Copy";
             // 
             // FSModelUtility
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(792, 457);
-            this.Controls.Add(this.statusLabel);
-            this.Controls.Add(this.copyrightInfoLabel);
-            this.Controls.Add(this.mainSplitContainer);
-            this.Controls.Add(this.modelArchivesFolderGroupBox);
-            this.Controls.Add(this.modelsFolderGroupBox);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(600, 450);
-            this.Name = "FSModelUtility";
-            this.Text = "FromSoft Model Utility";
-            this.modelArchivesFolderGroupBox.ResumeLayout(false);
-            this.modelArchivesFolderGroupBox.PerformLayout();
-            this.modelsFolderGroupBox.ResumeLayout(false);
-            this.modelsFolderGroupBox.PerformLayout();
-            this.mainSplitContainer.Panel1.ResumeLayout(false);
-            this.mainSplitContainer.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).EndInit();
-            this.mainSplitContainer.ResumeLayout(false);
-            this.modelArchivesGroupBox.ResumeLayout(false);
-            this.modelReplaceGroupBox.ResumeLayout(false);
-            this.modelReplaceRightClickMenu.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(792, 457);
+            Controls.Add(statusLabel);
+            Controls.Add(copyrightInfoLabel);
+            Controls.Add(mainSplitContainer);
+            Controls.Add(modelArchivesFolderGroupBox);
+            Controls.Add(modelsFolderGroupBox);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MinimumSize = new Size(600, 450);
+            Name = "FSModelUtility";
+            Text = "FromSoft Model Utility";
+            modelArchivesFolderGroupBox.ResumeLayout(false);
+            modelArchivesFolderGroupBox.PerformLayout();
+            modelsFolderGroupBox.ResumeLayout(false);
+            modelsFolderGroupBox.PerformLayout();
+            mainSplitContainer.Panel1.ResumeLayout(false);
+            mainSplitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)mainSplitContainer).EndInit();
+            mainSplitContainer.ResumeLayout(false);
+            modelArchivesGroupBox.ResumeLayout(false);
+            modelReplaceGroupBox.ResumeLayout(false);
+            nodeRightClickMenu.ResumeLayout(false);
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -324,7 +308,7 @@
         private TreeView modelReplaceView;
         private Button modelReplaceButton;
         private Label statusLabel;
-        private ContextMenuStrip modelReplaceRightClickMenu;
+        private ContextMenuStrip nodeRightClickMenu;
         private ToolStripMenuItem copyToolStripMenuItem;
     }
 }

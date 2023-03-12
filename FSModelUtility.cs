@@ -190,20 +190,29 @@ public partial class FSModelUtility : Form
     {
         modelReplaceButton.Enabled = false;
         modelReplaceView.Nodes.Clear();
-        if (e.Node is not { Level: 1 })
+        switch (e.Node)
         {
-            modelReplaceView.Nodes.Add(new TreeNode("Select a model part to view available parts to replace."));
-            return;
+            case { Level: 0 }:
+                modelReplaceButton.Enabled = true;
+                modelReplaceView.Nodes.Add(new TreeNode("Click the Replace button to use the selected set for replacement."));
+                break;
+            case { Level: 1 }:
+            {
+                string archiveModelPrefix = GetModelNamePrefix(e.Node.Text);
+                List<Model> matchingModels = models.Where(i => i.Prefix == archiveModelPrefix).ToList();
+                if (matchingModels.Count == 0)
+                {
+                    modelReplaceView.Nodes.Add(new TreeNode($"There are no model parts which match the prefix {archiveModelPrefix}."));
+                    return;
+                }
+                foreach (Model model in matchingModels)
+                    modelReplaceView.Nodes.Add(new TreeNode { Name = model.Name, Text = model.DispName });
+                break;
+            }
+            default:
+                modelReplaceView.Nodes.Add(new TreeNode("Select a model part to view available parts to replace."));
+                break;
         }
-        string archiveModelPrefix = GetModelNamePrefix(e.Node.Text);
-        List<Model> matchingModels = models.Where(i => i.Prefix == archiveModelPrefix).ToList();
-        if (matchingModels.Count == 0)
-        {
-            modelReplaceView.Nodes.Add(new TreeNode($"There are no model parts which match the prefix {archiveModelPrefix}."));
-            return;
-        }
-        foreach (Model model in matchingModels)
-            modelReplaceView.Nodes.Add(new TreeNode { Name = model.Name, Text = model.DispName });
     }
 
     private static bool IsMatch(string sourceStr, string targetStr)
@@ -211,32 +220,87 @@ public partial class FSModelUtility : Form
         return sourceStr.Contains(targetStr, StringComparison.OrdinalIgnoreCase);
     }
 
-    private async void ModelReplaceButton_Click(object sender, EventArgs e)
+    private static string ShowInputDialog(string text, string caption)
+    {
+        var prompt = new Form
+        {
+            Width = 340,
+            Height = 125,
+            FormBorderStyle = FormBorderStyle.FixedDialog,
+            Text = caption,
+            StartPosition = FormStartPosition.CenterScreen,
+            MaximizeBox = false
+        };
+        var textLabel = new Label { Left = 8, Top = 8, Width = 300, Text = text };
+        var textBox = new TextBox { Left = 10, Top = 28, Width = 300 };
+        var cancelButton = new Button { Text = @"Cancel", Left = 9, Width = 150, Top = 55, DialogResult = DialogResult.Cancel };
+        cancelButton.Click += (_, _) => { prompt.Close(); };
+        var confirmation = new Button { Text = @"OK", Left = 160, Width = 150, Top = 55, DialogResult = DialogResult.OK };
+        confirmation.Click += (_, _) => { prompt.Close(); };
+        prompt.Controls.Add(textBox);
+        prompt.Controls.Add(cancelButton);
+        prompt.Controls.Add(confirmation);
+        prompt.Controls.Add(textLabel);
+        prompt.AcceptButton = confirmation;
+        return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : "";
+    }
+
+    private async Task ReplaceModel(ModelArchive modelArchive, string archiveModelName, string replaceModelName, bool shouldDelay = false)
     {
         modelReplaceButton.Enabled = false;
-        TreeNode archiveModelNode = modelArchivesView.SelectedNode;
-        TreeNode modelArchiveNode = modelArchivesView.SelectedNode.Parent;
-        TreeNode replaceModelNode = modelReplaceView.SelectedNode;
-        ModelArchive modelArchive = modelArchives.FirstOrDefault(i => i.Name == modelArchiveNode.Text) ?? new ModelArchive();
-        if (modelArchive.Name == "") return;
-        Model archiveModel = modelArchive.Entries.FirstOrDefault(i => IsMatch(i.Name, archiveModelNode.Name)) ?? new Model();
+        Model archiveModel = modelArchive.Entries.FirstOrDefault(i => IsMatch(i.Name, archiveModelName)) ?? new Model();
         if (archiveModel.Name == "") return;
         IArchiveEntry? archiveMdEntry = modelArchive.Archive?.Entries.FirstOrDefault(i => IsMatch(i.Key, archiveModel.Name));
         Stream? archiveMdStream = archiveMdEntry?.OpenEntryStream();
         if (archiveMdStream == null) return;
-        Model replaceModel = models.FirstOrDefault(i => replaceModelNode.Name.Contains(i.Name)) ?? new Model();
+        Model replaceModel = models.FirstOrDefault(i => replaceModelName.Contains(i.Name)) ?? new Model();
         var replaceModelBakFilePath = $"{replaceModel.FilePath}.bak";
         if (!File.Exists(replaceModelBakFilePath)) File.Copy(replaceModel.FilePath, $"{replaceModel.FilePath}.bak", true);
         var replaceModelStream = new FileStream(replaceModel.FilePath, FileMode.Create, FileAccess.Write);
         statusLabel.Visible = true;
         statusLabel.Text = @$"Replacing {replaceModel.DispName} with modified {archiveModel.DispName}...";
-        await Task.Delay(2000);
+        if (shouldDelay) await Task.Delay(2000);
         await archiveMdStream.CopyToAsync(replaceModelStream);
         replaceModelStream.Close();
         statusLabel.Text = @"Replacement completed!";
-        await Task.Delay(2000);
+        if (shouldDelay) await Task.Delay(2000);
         statusLabel.Visible = false;
         modelReplaceButton.Enabled = true;
+    }
+
+    private async Task ReplaceSet(ModelArchive modelArchive)
+    {
+        string replaceSetId = ShowInputDialog("Enter the ID of an in-game set to replace:", "Set ID");
+        if (replaceSetId == "") return;
+        if (int.TryParse(replaceSetId, out int _))
+        {
+            List<Model> replaceSet = models.Where(i => i.Name.Contains(replaceSetId)).ToList();
+            if (replaceSet.Count == 0) ShowInformationDialog("An in-game set matching the specified ID could not be found.");
+            else
+            {
+                var modelReplacements = "";
+                foreach (Model model in replaceSet)
+                {
+                    Model archiveModel = modelArchive.Entries.FirstOrDefault(i => i.Prefix == model.Prefix) ?? new Model();
+                    if (archiveModel.Name == "") continue;
+                    await ReplaceModel(modelArchive, archiveModel.Name, model.Name);
+                    modelReplacements += $"{archiveModel.DispName} -> {model.DispName}\n\n";
+                }
+                ShowInformationDialog($"The in-game set with ID {replaceSetId} was successfully replaced with the following:\n\n{modelReplacements}");
+            }
+        }
+        else ShowInformationDialog("The specified set ID is invalid.");
+    }
+
+    private async void ModelReplaceButton_Click(object sender, EventArgs e)
+    {
+        TreeNode archiveModelNode = modelArchivesView.SelectedNode;
+        TreeNode modelArchiveNode = modelArchivesView.SelectedNode.Parent ?? archiveModelNode;
+        TreeNode replaceModelNode = modelReplaceView.SelectedNode;
+        ModelArchive modelArchive = modelArchives.FirstOrDefault(i => i.Name == modelArchiveNode.Text) ?? new ModelArchive();
+        if (modelArchive.Name == "") return;
+        if (modelArchivesView.SelectedNode.Parent == null) await ReplaceSet(modelArchive);
+        else await ReplaceModel(modelArchive, archiveModelNode.Name, replaceModelNode.Name, true);
     }
 
     private void ModelReplaceView_AfterSelect(object sender, TreeViewEventArgs e)
@@ -245,15 +309,16 @@ public partial class FSModelUtility : Form
         modelReplaceButton.Enabled = true;
     }
 
-    private void ModelReplaceView_MouseDown(object sender, MouseEventArgs e)
+    private void NodeRightClick(object sender, MouseEventArgs e)
     {
         if (e.Button != MouseButtons.Right) return;
-        modelReplaceRightClickMenu.ItemClicked += (_, clickEventArgs) =>
+        var treeView = (TreeView)sender;
+        nodeRightClickMenu.ItemClicked += (_, _) =>
         {
-            if (modelReplaceRightClickMenu.Items.IndexOf(clickEventArgs.ClickedItem) == 0)
-                Clipboard.SetText(modelReplaceView.SelectedNode.Name);
+            string nodeName = treeView.SelectedNode.Name;
+            Clipboard.SetText(nodeName == "" ? treeView.SelectedNode.Text : nodeName);
         };
-        modelReplaceRightClickMenu.Show(modelReplaceView, e.X, e.Y);
+        nodeRightClickMenu.Show(treeView, e.X, e.Y);
     }
 
     private class Model
