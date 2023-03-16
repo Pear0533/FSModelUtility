@@ -303,7 +303,7 @@
         private Label label6;
         private SplitContainer mainSplitContainer;
         private GroupBox modelArchivesGroupBox;
-        private TreeView modelArchivesView;
+        private static TreeView modelArchivesView;
         private GroupBox modelReplaceGroupBox;
         private TreeView modelReplaceView;
         private Button modelReplaceButton;

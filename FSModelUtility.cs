@@ -1,4 +1,6 @@
 using Microsoft.VisualBasic.FileIO;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using SharpCompress.Archives;
 using SharpCompress.Archives.Rar;
 using SharpCompress.Archives.Zip;
@@ -8,6 +10,9 @@ namespace FSModelUtility;
 
 public partial class FSModelUtility : Form
 {
+    private const string archiveModelPartKey = "Archive Model Part";
+    private const string replaceModelPartKey = "Replace Model Part";
+    private const string replaceStatusKey = "Status";
     private static string modelsFolderPath = "";
     private static string modelArchivesFolderPath = "";
     private static string[] modelArchiveFilePaths = Array.Empty<string>();
@@ -15,11 +20,31 @@ public partial class FSModelUtility : Form
     private static readonly List<ModelArchive> modelArchives = new();
     private static readonly List<Model> models = new();
     private static readonly string appRootPath = Path.GetDirectoryName(Application.ExecutablePath) ?? "";
+    private static readonly string modelReplaceLogPath = $"{appRootPath}\\model_replace_log.json";
+    private static JObject modelReplaceLog = new();
 
     public FSModelUtility()
     {
         InitializeComponent();
         CenterToScreen();
+    }
+
+    private static void ReadModelReplaceLog()
+    {
+        try
+        {
+            modelReplaceLog = JObject.Parse(File.ReadAllText(modelReplaceLogPath));
+        }
+        catch
+        {
+            modelReplaceLog = new JObject();
+        }
+    }
+
+    private static void WriteModelReplaceLog()
+    {
+        string modelReplaceLogStr = JsonConvert.SerializeObject(modelReplaceLog, Formatting.Indented);
+        File.WriteAllText(modelReplaceLogPath, modelReplaceLogStr);
     }
 
     private static string BrowseForFolder(string dialogTitle)
@@ -122,7 +147,7 @@ public partial class FSModelUtility : Form
         }
     }
 
-    private void PopulateModelArchivesView()
+    private static void PopulateModelArchivesView()
     {
         modelArchivesView.Nodes.Clear();
         ReadAllModelArchives();
@@ -136,13 +161,49 @@ public partial class FSModelUtility : Form
         modelArchivesView.SelectedNode = modelArchivesView.Nodes[0];
     }
 
+    private void PopulateModelReplaceView(TreeNode? selectedArchiveNode)
+    {
+        if (selectedArchiveNode == null) return;
+        modelReplaceButton.Enabled = false;
+        modelReplaceView.Nodes.Clear();
+        switch (selectedArchiveNode)
+        {
+            case { Level: 0 }:
+                modelReplaceButton.Enabled = true;
+                modelReplaceView.Nodes.Add(new TreeNode("Click the Replace button to use the selected set for replacement."));
+                break;
+            case { Level: 1 }:
+            {
+                string archiveModelPrefix = GetModelNamePrefix(selectedArchiveNode.Text);
+                List<Model> matchingModels = models.Where(i => i.Prefix == archiveModelPrefix).ToList();
+                if (matchingModels.Count == 0)
+                {
+                    modelReplaceView.Nodes.Add(new TreeNode($"There are no model parts which match the prefix {archiveModelPrefix}."));
+                    return;
+                }
+                foreach (Model model in matchingModels)
+                    modelReplaceView.Nodes.Add(new TreeNode { BackColor = model.StatusColor, Name = model.Name, Text = model.DispName });
+                break;
+            }
+            default:
+                modelReplaceView.Nodes.Add(new TreeNode("Select a model part to view available parts to replace."));
+                break;
+        }
+    }
+
+    private static void ReadAllModels()
+    {
+        ReadModelReplaceLog();
+        ReadModels(modelFilePaths.ToList(), models);
+    }
+
     private void UpdateModelArchives()
     {
         if (modelArchiveFilePaths.Length == 0) return;
         mainSplitContainer.Enabled = true;
         modelReplaceButton.Enabled = false;
         PopulateModelArchivesView();
-        ReadModels(modelFilePaths.ToList(), models);
+        ReadAllModels();
     }
 
     private void BrowseModelArchivesFolder()
@@ -177,7 +238,7 @@ public partial class FSModelUtility : Form
             ShowInformationDialog("The selected folder contains no model files.");
             return;
         }
-        modelsFolderPathLabel.Text = modelsFolderPath;
+        modelsFolderPathLabel.Text = Path.GetDirectoryName(modelFilePaths[0]);
         modelArchivesFolderGroupBox.Enabled = true;
         UpdateModelArchives();
     }
@@ -189,31 +250,7 @@ public partial class FSModelUtility : Form
 
     private void ModelArchivesView_AfterSelect(object sender, TreeViewEventArgs e)
     {
-        modelReplaceButton.Enabled = false;
-        modelReplaceView.Nodes.Clear();
-        switch (e.Node)
-        {
-            case { Level: 0 }:
-                modelReplaceButton.Enabled = true;
-                modelReplaceView.Nodes.Add(new TreeNode("Click the Replace button to use the selected set for replacement."));
-                break;
-            case { Level: 1 }:
-            {
-                string archiveModelPrefix = GetModelNamePrefix(e.Node.Text);
-                List<Model> matchingModels = models.Where(i => i.Prefix == archiveModelPrefix).ToList();
-                if (matchingModels.Count == 0)
-                {
-                    modelReplaceView.Nodes.Add(new TreeNode($"There are no model parts which match the prefix {archiveModelPrefix}."));
-                    return;
-                }
-                foreach (Model model in matchingModels)
-                    modelReplaceView.Nodes.Add(new TreeNode { Name = model.Name, Text = model.DispName });
-                break;
-            }
-            default:
-                modelReplaceView.Nodes.Add(new TreeNode("Select a model part to view available parts to replace."));
-                break;
-        }
+        PopulateModelReplaceView(e.Node);
     }
 
     private static bool IsMatch(string sourceStr, string targetStr)
@@ -263,6 +300,16 @@ public partial class FSModelUtility : Form
         if (shouldDelay) await Task.Delay(2000);
         await archiveMdStream.CopyToAsync(replaceModelStream);
         replaceModelStream.Close();
+        var modelReplaceEntry = new JObject
+        {
+            { archiveModelPartKey, archiveModel.Name },
+            { replaceModelPartKey, replaceModel.Name },
+            { replaceStatusKey, ModelStatus.Taken.ToString() }
+        };
+        modelReplaceLog.Add(new JProperty($"{archiveModel.Name} -> {replaceModel.Name}", modelReplaceEntry));
+        WriteModelReplaceLog();
+        ReadAllModels();
+        PopulateModelReplaceView(modelArchivesView.SelectedNode);
         statusLabel.Text = @"Replacement completed!";
         if (shouldDelay) await Task.Delay(2000);
         statusLabel.Visible = false;
@@ -328,6 +375,8 @@ public partial class FSModelUtility : Form
         public readonly string FilePath;
         public readonly string Name;
         public readonly string Prefix;
+        private ModelStatus Status = ModelStatus.Available;
+        public Color StatusColor;
 
         public Model(string modelName = "", string filePath = "", string dispName = "")
         {
@@ -335,6 +384,21 @@ public partial class FSModelUtility : Form
             Prefix = GetModelNamePrefix(Name);
             FilePath = filePath;
             DispName = dispName == "" ? Name : $"{dispName} ({Name})";
+            UpdateStatus();
+        }
+
+        private void UpdateStatus()
+        {
+            StatusColor = Color.PaleGreen;
+            foreach (KeyValuePair<string, JToken> entry in modelReplaceLog)
+            {
+                bool doesReplaceModelMatch = entry.Value[replaceModelPartKey].ToString() == Name;
+                if (!doesReplaceModelMatch) continue;
+                bool statusParsed = Enum.TryParse(entry.Value[replaceStatusKey].ToString(), out ModelStatus status);
+                if (!statusParsed) continue;
+                Status = status;
+                StatusColor = Status == ModelStatus.Available ? StatusColor : Color.PaleVioletRed;
+            }
         }
     }
 
@@ -349,5 +413,11 @@ public partial class FSModelUtility : Form
             Name = GetModelName(archiveName);
             Archive = archive;
         }
+    }
+
+    private enum ModelStatus
+    {
+        Available,
+        Taken
     }
 }
