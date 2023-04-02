@@ -43,8 +43,10 @@
             modelArchivesGroupBox = new GroupBox();
             modelArchivesView = new TreeView();
             modelReplaceGroupBox = new GroupBox();
+            label1 = new Label();
             modelReplaceView = new TreeView();
             modelReplaceButton = new Button();
+            searchBox = new TextBox();
             statusLabel = new Label();
             nodeRightClickMenu = new ContextMenuStrip(components);
             copyToolStripMenuItem = new ToolStripMenuItem();
@@ -169,7 +171,7 @@
             // 
             mainSplitContainer.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             mainSplitContainer.Enabled = false;
-            mainSplitContainer.Location = new Point(4, 176);
+            mainSplitContainer.Location = new Point(4, 180);
             mainSplitContainer.Name = "mainSplitContainer";
             // 
             // mainSplitContainer.Panel1
@@ -179,7 +181,7 @@
             // mainSplitContainer.Panel2
             // 
             mainSplitContainer.Panel2.Controls.Add(modelReplaceGroupBox);
-            mainSplitContainer.Size = new Size(784, 276);
+            mainSplitContainer.Size = new Size(784, 272);
             mainSplitContainer.SplitterDistance = 379;
             mainSplitContainer.TabIndex = 15;
             // 
@@ -189,7 +191,7 @@
             modelArchivesGroupBox.Controls.Add(modelArchivesView);
             modelArchivesGroupBox.Location = new Point(3, 3);
             modelArchivesGroupBox.Name = "modelArchivesGroupBox";
-            modelArchivesGroupBox.Size = new Size(373, 270);
+            modelArchivesGroupBox.Size = new Size(373, 266);
             modelArchivesGroupBox.TabIndex = 16;
             modelArchivesGroupBox.TabStop = false;
             modelArchivesGroupBox.Text = "Model Archives";
@@ -198,9 +200,9 @@
             // 
             modelArchivesView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             modelArchivesView.HideSelection = false;
-            modelArchivesView.Location = new Point(5, 20);
+            modelArchivesView.Location = new Point(5, 22);
             modelArchivesView.Name = "modelArchivesView";
-            modelArchivesView.Size = new Size(362, 244);
+            modelArchivesView.Size = new Size(362, 238);
             modelArchivesView.TabIndex = 0;
             modelArchivesView.AfterSelect += ModelArchivesView_AfterSelect;
             modelArchivesView.MouseDown += NodeRightClick;
@@ -208,22 +210,35 @@
             // modelReplaceGroupBox
             // 
             modelReplaceGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            modelReplaceGroupBox.Controls.Add(label1);
             modelReplaceGroupBox.Controls.Add(modelReplaceView);
             modelReplaceGroupBox.Controls.Add(modelReplaceButton);
+            modelReplaceGroupBox.Controls.Add(searchBox);
             modelReplaceGroupBox.Location = new Point(3, 3);
             modelReplaceGroupBox.Name = "modelReplaceGroupBox";
-            modelReplaceGroupBox.Size = new Size(395, 270);
+            modelReplaceGroupBox.Size = new Size(395, 266);
             modelReplaceGroupBox.TabIndex = 15;
             modelReplaceGroupBox.TabStop = false;
             modelReplaceGroupBox.Text = "Model Replacement";
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.ForeColor = SystemColors.ControlText;
+            label1.Location = new Point(4, 25);
+            label1.Name = "label1";
+            label1.Size = new Size(43, 21);
+            label1.TabIndex = 17;
+            label1.Text = "Search:";
+            label1.UseCompatibleTextRendering = true;
+            // 
             // modelReplaceView
             // 
             modelReplaceView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            modelReplaceView.Location = new Point(6, 22);
+            modelReplaceView.Location = new Point(6, 52);
             modelReplaceView.Name = "modelReplaceView";
             modelReplaceView.ShowNodeToolTips = true;
-            modelReplaceView.Size = new Size(383, 205);
+            modelReplaceView.Size = new Size(383, 171);
             modelReplaceView.TabIndex = 1;
             modelReplaceView.AfterSelect += ModelReplaceView_AfterSelect;
             modelReplaceView.MouseDown += NodeRightClick;
@@ -231,13 +246,23 @@
             // modelReplaceButton
             // 
             modelReplaceButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            modelReplaceButton.Location = new Point(5, 231);
+            modelReplaceButton.Location = new Point(5, 227);
             modelReplaceButton.Name = "modelReplaceButton";
             modelReplaceButton.Size = new Size(385, 34);
             modelReplaceButton.TabIndex = 0;
             modelReplaceButton.Text = "Replace!";
             modelReplaceButton.UseVisualStyleBackColor = true;
             modelReplaceButton.Click += ModelReplaceButton_Click;
+            // 
+            // searchBox
+            // 
+            searchBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            searchBox.Enabled = false;
+            searchBox.Location = new Point(51, 22);
+            searchBox.Name = "searchBox";
+            searchBox.Size = new Size(338, 23);
+            searchBox.TabIndex = 0;
+            searchBox.TextChanged += SearchBox_TextChanged;
             // 
             // statusLabel
             // 
@@ -287,6 +312,7 @@
             mainSplitContainer.ResumeLayout(false);
             modelArchivesGroupBox.ResumeLayout(false);
             modelReplaceGroupBox.ResumeLayout(false);
+            modelReplaceGroupBox.PerformLayout();
             nodeRightClickMenu.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
@@ -310,6 +336,8 @@
         private Label statusLabel;
         private ContextMenuStrip nodeRightClickMenu;
         private ToolStripMenuItem copyToolStripMenuItem;
-        private static TreeView modelArchivesView;
+        private TextBox searchBox;
+        private Label label1;
+        private TreeView modelArchivesView;
     }
 }

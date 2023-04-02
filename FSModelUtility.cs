@@ -49,7 +49,7 @@ public partial class FSModelUtility : Form
 
     private static string BrowseForFolder(string dialogTitle)
     {
-        var dialog = new FolderBrowserDialog
+        FolderBrowserDialog dialog = new()
         {
             Description = dialogTitle,
             UseDescriptionForTitle = true
@@ -101,8 +101,8 @@ public partial class FSModelUtility : Form
         bool isTypeString = typeof(T) == typeof(string);
         bool isTypeArchive = typeof(T) == typeof(IArchiveEntry);
         models.Clear();
-        var modelNamesListFilePath = $"{appRootPath}\\modelnames.csv";
-        var parser = new TextFieldParser(modelNamesListFilePath);
+        string modelNamesListFilePath = $"{appRootPath}\\modelnames.csv";
+        TextFieldParser parser = new(modelNamesListFilePath);
         parser.TextFieldType = FieldType.Delimited;
         parser.SetDelimiters(",");
         while (!parser.EndOfData)
@@ -112,12 +112,12 @@ public partial class FSModelUtility : Form
             foreach (T entry in rawModelsList)
             {
                 if (entry == null) continue;
-                var modelPath = "";
+                string modelPath = "";
                 if (isTypeString) modelPath = entry.ToString() ?? "";
                 else if (isTypeArchive) modelPath = ((IArchiveEntry)entry).Key;
                 bool foundMatch = modelPath.ToLower().Contains(rowFields.ElementAt(1).ToLower());
                 if (!foundMatch || rowFields.ElementAt(1) == "") continue;
-                var model = new Model(modelPath, modelPath, rowFields.ElementAt(2), isTypeString);
+                Model model = new(modelPath, modelPath, rowFields.ElementAt(2), isTypeString);
                 outputModelsList.Add(model);
                 break;
             }
@@ -129,7 +129,7 @@ public partial class FSModelUtility : Form
         modelArchives.Clear();
         foreach (string path in modelArchiveFilePaths)
         {
-            var modelArchive = new ModelArchive(path);
+            ModelArchive modelArchive = new(path);
             IArchive? modelArchiveFile = null;
             try
             {
@@ -155,19 +155,25 @@ public partial class FSModelUtility : Form
         return new TreeNode { BackColor = model.StatusColor, Name = model.Name, Text = model.DispName };
     }
 
-    private static void PopulateModelArchivesView()
+    private void PopulateModelArchivesView()
     {
         modelArchivesView.Nodes.Clear();
         ReadModelReplaceLog();
         ReadAllModelArchives();
         foreach (ModelArchive archive in modelArchives)
         {
-            var archiveNode = new TreeNode(archive.Name);
+            TreeNode archiveNode = new(archive.Name);
             foreach (Model entry in archive.Entries)
                 archiveNode.Nodes.Add(GetModelPartNode(entry));
             modelArchivesView.Nodes.Add(archiveNode);
         }
         modelArchivesView.SelectedNode = modelArchivesView.Nodes[0];
+    }
+
+    private bool DoesMatchSearchQuery(string query)
+    {
+        string[] tokens = searchBox.Text.Split(' ');
+        return tokens.Any(token => query.ToLower().Contains(token.ToLower()));
     }
 
     private void PopulateModelReplaceView(TreeNode? selectedArchiveNode)
@@ -185,9 +191,10 @@ public partial class FSModelUtility : Form
             {
                 string archiveModelPrefix = GetModelNamePrefix(selectedArchiveNode.Text);
                 List<Model> matchingModels = models.Where(i => i.Prefix == archiveModelPrefix).ToList();
+                matchingModels = matchingModels.Where(i => DoesMatchSearchQuery(i.DispName)).ToList();
                 if (matchingModels.Count == 0)
                 {
-                    modelReplaceView.Nodes.Add(new TreeNode($"There are no model parts which match the prefix {archiveModelPrefix}."));
+                    modelReplaceView.Nodes.Add(new TreeNode($"There are no model parts which match the prefix, {archiveModelPrefix}, or query."));
                     return;
                 }
                 foreach (Model model in matchingModels)
@@ -230,6 +237,7 @@ public partial class FSModelUtility : Form
         modelArchivesFolderPathLabel.Text = modelArchivesFolderPath;
         mainSplitContainer.Enabled = true;
         modelReplaceButton.Enabled = false;
+        searchBox.Enabled = false;
         PopulateModelArchivesView();
         ReadAllModels();
     }
@@ -261,6 +269,7 @@ public partial class FSModelUtility : Form
 
     private void ModelArchivesView_AfterSelect(object sender, TreeViewEventArgs e)
     {
+        searchBox.Enabled = e.Node?.Level == 1;
         PopulateModelReplaceView(e.Node);
     }
 
@@ -271,7 +280,7 @@ public partial class FSModelUtility : Form
 
     private static string ShowInputDialog(string text, string caption)
     {
-        var prompt = new Form
+        Form prompt = new()
         {
             Width = 340,
             Height = 125,
@@ -280,11 +289,11 @@ public partial class FSModelUtility : Form
             StartPosition = FormStartPosition.CenterScreen,
             MaximizeBox = false
         };
-        var textLabel = new Label { Left = 8, Top = 8, Width = 300, Text = text };
-        var textBox = new TextBox { Left = 10, Top = 28, Width = 300 };
-        var cancelButton = new Button { Text = @"Cancel", Left = 9, Width = 150, Top = 55, DialogResult = DialogResult.Cancel };
+        Label textLabel = new() { Left = 8, Top = 8, Width = 300, Text = text };
+        TextBox textBox = new() { Left = 10, Top = 28, Width = 300 };
+        Button cancelButton = new() { Text = @"Cancel", Left = 9, Width = 150, Top = 55, DialogResult = DialogResult.Cancel };
         cancelButton.Click += (_, _) => { prompt.Close(); };
-        var confirmation = new Button { Text = @"OK", Left = 160, Width = 150, Top = 55, DialogResult = DialogResult.OK };
+        Button confirmation = new() { Text = @"OK", Left = 160, Width = 150, Top = 55, DialogResult = DialogResult.OK };
         confirmation.Click += (_, _) => { prompt.Close(); };
         prompt.Controls.Add(textBox);
         prompt.Controls.Add(cancelButton);
@@ -303,15 +312,15 @@ public partial class FSModelUtility : Form
         Stream? archiveMdStream = archiveMdEntry?.OpenEntryStream();
         if (archiveMdStream == null) return;
         Model replaceModel = models.FirstOrDefault(i => replaceModelName.Contains(i.Name)) ?? new Model();
-        var replaceModelBakFilePath = $"{replaceModel.FilePath}.bak";
+        string replaceModelBakFilePath = $"{replaceModel.FilePath}.bak";
         if (!File.Exists(replaceModelBakFilePath)) File.Copy(replaceModel.FilePath, $"{replaceModel.FilePath}.bak", true);
-        var replaceModelStream = new FileStream(replaceModel.FilePath, FileMode.Create, FileAccess.Write);
+        FileStream replaceModelStream = new(replaceModel.FilePath, FileMode.Create, FileAccess.Write);
         statusLabel.Visible = true;
         statusLabel.Text = @$"Replacing {replaceModel.DispName} with modified {archiveModel.DispName}...";
         if (shouldDelay) await Task.Delay(2000);
         await archiveMdStream.CopyToAsync(replaceModelStream);
         replaceModelStream.Close();
-        var modelReplaceEntry = new JObject
+        JObject modelReplaceEntry = new()
         {
             { archiveModelPartKey, archiveModel.Name },
             { replaceModelPartKey, replaceModel.Name },
@@ -343,7 +352,7 @@ public partial class FSModelUtility : Form
             if (replaceSet.Count == 0) ShowInformationDialog("An in-game set matching the specified ID could not be found.");
             else
             {
-                var modelReplacements = "";
+                string modelReplacements = "";
                 foreach (Model model in replaceSet)
                 {
                     Model archiveModel = modelArchive.Entries.FirstOrDefault(i => i.Prefix == model.Prefix) ?? new Model();
@@ -377,13 +386,18 @@ public partial class FSModelUtility : Form
     private void NodeRightClick(object sender, MouseEventArgs e)
     {
         if (e.Button != MouseButtons.Right) return;
-        var treeView = (TreeView)sender;
+        TreeView treeView = (TreeView)sender;
         nodeRightClickMenu.ItemClicked += (_, _) =>
         {
             string nodeName = treeView.SelectedNode.Name;
             Clipboard.SetText(nodeName == "" ? treeView.SelectedNode.Text : nodeName);
         };
         nodeRightClickMenu.Show(treeView, e.X, e.Y);
+    }
+
+    private void SearchBox_TextChanged(object sender, EventArgs e)
+    {
+        PopulateModelReplaceView(modelArchivesView.SelectedNode);
     }
 
     private class Model
