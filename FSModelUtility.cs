@@ -188,19 +188,19 @@ public partial class FSModelUtility : Form
                 modelReplaceView.Nodes.Add(new TreeNode("Click the Replace button to use the selected set for replacement."));
                 break;
             case { Level: 1 }:
+            {
+                string archiveModelPrefix = GetModelNamePrefix(selectedArchiveNode.Text);
+                List<Model> matchingModels = models.Where(i => i.Prefix == archiveModelPrefix).ToList();
+                matchingModels = matchingModels.Where(i => DoesMatchSearchQuery(i.DispName)).ToList();
+                if (matchingModels.Count == 0)
                 {
-                    string archiveModelPrefix = GetModelNamePrefix(selectedArchiveNode.Text);
-                    List<Model> matchingModels = models.Where(i => i.Prefix == archiveModelPrefix).ToList();
-                    matchingModels = matchingModels.Where(i => DoesMatchSearchQuery(i.DispName)).ToList();
-                    if (matchingModels.Count == 0)
-                    {
-                        modelReplaceView.Nodes.Add(new TreeNode($"There are no model parts which match the prefix, {archiveModelPrefix}, or query."));
-                        return;
-                    }
-                    foreach (Model model in matchingModels)
-                        modelReplaceView.Nodes.Add(new TreeNode { ToolTipText = model.NodeTooltip, BackColor = model.StatusColor, Name = model.Name, Text = model.DispName });
-                    break;
+                    modelReplaceView.Nodes.Add(new TreeNode($"There are no model parts which match the prefix, {archiveModelPrefix}, or query."));
+                    return;
                 }
+                foreach (Model model in matchingModels)
+                    modelReplaceView.Nodes.Add(new TreeNode { ToolTipText = model.NodeTooltip, BackColor = model.StatusColor, Name = model.Name, Text = model.DispName });
+                break;
+            }
             default:
                 modelReplaceView.Nodes.Add(new TreeNode("Select a model part to view available parts to replace."));
                 break;
@@ -237,7 +237,8 @@ public partial class FSModelUtility : Form
         modelArchivesFolderPathLabel.Text = modelArchivesFolderPath;
         mainSplitContainer.Enabled = true;
         modelReplaceButton.Enabled = false;
-        searchBox.Enabled = false;
+        searchGroupBox.Enabled = true;
+        modelReplaceRadioButton.Checked = true;
         PopulateModelArchivesView();
         ReadAllModels();
     }
@@ -269,7 +270,6 @@ public partial class FSModelUtility : Form
 
     private void ModelArchivesView_AfterSelect(object sender, TreeViewEventArgs e)
     {
-        searchBox.Enabled = e.Node?.Level == 1;
         PopulateModelReplaceView(e.Node);
     }
 
@@ -397,7 +397,7 @@ public partial class FSModelUtility : Form
 
     private void SearchBox_TextChanged(object sender, EventArgs e)
     {
-        PopulateModelReplaceView(modelArchivesView.SelectedNode);
+        if (modelReplaceRadioButton.Checked) PopulateModelReplaceView(modelArchivesView.SelectedNode);
     }
 
     private class Model
