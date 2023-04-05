@@ -266,7 +266,6 @@
             // 
             // statusLabel
             // 
-            statusLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             statusLabel.AutoSize = true;
             statusLabel.ForeColor = SystemColors.ControlText;
             statusLabel.Location = new Point(3, 3);
