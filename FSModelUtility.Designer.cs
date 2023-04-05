@@ -50,6 +50,8 @@
             nodeRightClickMenu = new ContextMenuStrip(components);
             copyToolStripMenuItem = new ToolStripMenuItem();
             searchGroupBox = new GroupBox();
+            label1 = new Label();
+            filterSearchOptionsBox = new ComboBox();
             modelReplaceRadioButton = new RadioButton();
             modelArchivesFolderGroupBox.SuspendLayout();
             modelsFolderGroupBox.SuspendLayout();
@@ -278,6 +280,8 @@
             // searchGroupBox
             // 
             searchGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            searchGroupBox.Controls.Add(label1);
+            searchGroupBox.Controls.Add(filterSearchOptionsBox);
             searchGroupBox.Controls.Add(modelReplaceRadioButton);
             searchGroupBox.Controls.Add(searchBox);
             searchGroupBox.Enabled = false;
@@ -287,6 +291,26 @@
             searchGroupBox.TabIndex = 17;
             searchGroupBox.TabStop = false;
             searchGroupBox.Text = "Search";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(139, 50);
+            label1.Name = "label1";
+            label1.Size = new Size(36, 15);
+            label1.TabIndex = 3;
+            label1.Text = "Filter:";
+            // 
+            // filterSearchOptionsBox
+            // 
+            filterSearchOptionsBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            filterSearchOptionsBox.FormattingEnabled = true;
+            filterSearchOptionsBox.Items.AddRange(new object[] { "None", "Available", "Taken" });
+            filterSearchOptionsBox.Location = new Point(177, 46);
+            filterSearchOptionsBox.Name = "filterSearchOptionsBox";
+            filterSearchOptionsBox.Size = new Size(121, 23);
+            filterSearchOptionsBox.TabIndex = 2;
+            filterSearchOptionsBox.SelectedIndexChanged += FilterSearchOptionsBox_SelectedIndexChanged;
             // 
             // modelReplaceRadioButton
             // 
@@ -353,5 +377,7 @@
         private TreeView modelArchivesView;
         private GroupBox searchGroupBox;
         private RadioButton modelReplaceRadioButton;
+        private Label label1;
+        private ComboBox filterSearchOptionsBox;
     }
 }

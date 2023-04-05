@@ -192,6 +192,9 @@ public partial class FSModelUtility : Form
                 string archiveModelPrefix = GetModelNamePrefix(selectedArchiveNode.Text);
                 List<Model> matchingModels = models.Where(i => i.Prefix == archiveModelPrefix).ToList();
                 matchingModels = matchingModels.Where(i => DoesMatchSearchQuery(i.DispName)).ToList();
+                bool wantsAvailable = filterSearchOptionsBox.SelectedIndex == 1;
+                bool wantsReplaced = filterSearchOptionsBox.SelectedIndex == 2;
+                matchingModels = matchingModels.Where(i => wantsAvailable ? i.Status == ModelStatus.Available : !wantsReplaced || i.Status == ModelStatus.Taken).ToList();
                 if (matchingModels.Count == 0)
                 {
                     modelReplaceView.Nodes.Add(new TreeNode($"There are no model parts which match the prefix, {archiveModelPrefix}, or query."));
@@ -239,6 +242,7 @@ public partial class FSModelUtility : Form
         modelReplaceButton.Enabled = false;
         searchGroupBox.Enabled = true;
         modelReplaceRadioButton.Checked = true;
+        filterSearchOptionsBox.SelectedIndex = 0;
         PopulateModelArchivesView();
         ReadAllModels();
     }
@@ -396,6 +400,11 @@ public partial class FSModelUtility : Form
     }
 
     private void SearchBox_TextChanged(object sender, EventArgs e)
+    {
+        if (modelReplaceRadioButton.Checked) PopulateModelReplaceView(modelArchivesView.SelectedNode);
+    }
+
+    private void FilterSearchOptionsBox_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (modelReplaceRadioButton.Checked) PopulateModelReplaceView(modelArchivesView.SelectedNode);
     }
