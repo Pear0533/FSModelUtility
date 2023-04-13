@@ -53,6 +53,7 @@
             label1 = new Label();
             filterSearchOptionsBox = new ComboBox();
             modelReplaceRadioButton = new RadioButton();
+            versionNumberLabel = new Label();
             modelArchivesFolderGroupBox.SuspendLayout();
             modelsFolderGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)mainSplitContainer).BeginInit();
@@ -323,11 +324,23 @@
             modelReplaceRadioButton.Text = "Model Replacement";
             modelReplaceRadioButton.UseVisualStyleBackColor = true;
             // 
+            // versionNumberLabel
+            // 
+            versionNumberLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            versionNumberLabel.AutoSize = true;
+            versionNumberLabel.ForeColor = Color.DimGray;
+            versionNumberLabel.Location = new Point(549, 6);
+            versionNumberLabel.Name = "versionNumberLabel";
+            versionNumberLabel.Size = new Size(48, 15);
+            versionNumberLabel.TabIndex = 18;
+            versionNumberLabel.Text = "Version:";
+            // 
             // FSModelUtility
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(792, 457);
+            Controls.Add(versionNumberLabel);
             Controls.Add(searchGroupBox);
             Controls.Add(statusLabel);
             Controls.Add(copyrightInfoLabel);
@@ -379,5 +392,6 @@
         private RadioButton modelReplaceRadioButton;
         private Label label1;
         private ComboBox filterSearchOptionsBox;
+        private Label versionNumberLabel;
     }
 }
