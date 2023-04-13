@@ -187,11 +187,13 @@ public partial class FSModelUtility : Form
     {
         if (selectedArchiveNode == null) return;
         modelReplaceButton.Enabled = false;
+        modelRestoreButton.Enabled = false;
         modelReplaceView.Nodes.Clear();
         switch (selectedArchiveNode)
         {
             case { Level: 0 }:
                 modelReplaceButton.Enabled = true;
+                modelRestoreButton.Enabled = true;
                 modelReplaceView.Nodes.Add(new TreeNode("Click the Replace button to use the selected set for replacement."));
                 break;
             case { Level: 1 }:

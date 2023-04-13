@@ -43,8 +43,10 @@
             modelArchivesGroupBox = new GroupBox();
             modelArchivesView = new TreeView();
             modelReplaceGroupBox = new GroupBox();
-            modelReplaceView = new TreeView();
+            splitContainer1 = new SplitContainer();
             modelReplaceButton = new Button();
+            modelRestoreButton = new Button();
+            modelReplaceView = new TreeView();
             searchBox = new TextBox();
             statusLabel = new Label();
             nodeRightClickMenu = new ContextMenuStrip(components);
@@ -62,6 +64,10 @@
             mainSplitContainer.SuspendLayout();
             modelArchivesGroupBox.SuspendLayout();
             modelReplaceGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
+            splitContainer1.Panel1.SuspendLayout();
+            splitContainer1.Panel2.SuspendLayout();
+            splitContainer1.SuspendLayout();
             nodeRightClickMenu.SuspendLayout();
             searchGroupBox.SuspendLayout();
             SuspendLayout();
@@ -215,14 +221,52 @@
             // modelReplaceGroupBox
             // 
             modelReplaceGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            modelReplaceGroupBox.Controls.Add(splitContainer1);
             modelReplaceGroupBox.Controls.Add(modelReplaceView);
-            modelReplaceGroupBox.Controls.Add(modelReplaceButton);
             modelReplaceGroupBox.Location = new Point(3, 3);
             modelReplaceGroupBox.Name = "modelReplaceGroupBox";
             modelReplaceGroupBox.Size = new Size(395, 191);
             modelReplaceGroupBox.TabIndex = 15;
             modelReplaceGroupBox.TabStop = false;
             modelReplaceGroupBox.Text = "Model Replacement";
+            // 
+            // splitContainer1
+            // 
+            splitContainer1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            splitContainer1.Location = new Point(2, 150);
+            splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            splitContainer1.Panel1.Controls.Add(modelReplaceButton);
+            // 
+            // splitContainer1.Panel2
+            // 
+            splitContainer1.Panel2.Controls.Add(modelRestoreButton);
+            splitContainer1.Size = new Size(390, 37);
+            splitContainer1.SplitterDistance = 191;
+            splitContainer1.TabIndex = 2;
+            // 
+            // modelReplaceButton
+            // 
+            modelReplaceButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            modelReplaceButton.Location = new Point(3, 3);
+            modelReplaceButton.Name = "modelReplaceButton";
+            modelReplaceButton.Size = new Size(185, 31);
+            modelReplaceButton.TabIndex = 0;
+            modelReplaceButton.Text = "Replace!";
+            modelReplaceButton.UseVisualStyleBackColor = true;
+            modelReplaceButton.Click += ModelReplaceButton_Click;
+            // 
+            // modelRestoreButton
+            // 
+            modelRestoreButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            modelRestoreButton.Location = new Point(3, 3);
+            modelRestoreButton.Name = "modelRestoreButton";
+            modelRestoreButton.Size = new Size(189, 31);
+            modelRestoreButton.TabIndex = 1;
+            modelRestoreButton.Text = "Restore!";
+            modelRestoreButton.UseVisualStyleBackColor = true;
             // 
             // modelReplaceView
             // 
@@ -234,17 +278,6 @@
             modelReplaceView.TabIndex = 1;
             modelReplaceView.AfterSelect += ModelReplaceView_AfterSelect;
             modelReplaceView.MouseDown += NodeRightClick;
-            // 
-            // modelReplaceButton
-            // 
-            modelReplaceButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            modelReplaceButton.Location = new Point(5, 152);
-            modelReplaceButton.Name = "modelReplaceButton";
-            modelReplaceButton.Size = new Size(385, 34);
-            modelReplaceButton.TabIndex = 0;
-            modelReplaceButton.Text = "Replace!";
-            modelReplaceButton.UseVisualStyleBackColor = true;
-            modelReplaceButton.Click += ModelReplaceButton_Click;
             // 
             // searchBox
             // 
@@ -361,6 +394,10 @@
             mainSplitContainer.ResumeLayout(false);
             modelArchivesGroupBox.ResumeLayout(false);
             modelReplaceGroupBox.ResumeLayout(false);
+            splitContainer1.Panel1.ResumeLayout(false);
+            splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
+            splitContainer1.ResumeLayout(false);
             nodeRightClickMenu.ResumeLayout(false);
             searchGroupBox.ResumeLayout(false);
             searchGroupBox.PerformLayout();
@@ -393,5 +430,7 @@
         private Label label1;
         private ComboBox filterSearchOptionsBox;
         private Label versionNumberLabel;
+        private SplitContainer splitContainer1;
+        private Button modelRestoreButton;
     }
 }
