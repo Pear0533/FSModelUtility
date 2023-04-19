@@ -267,6 +267,7 @@
             modelRestoreButton.TabIndex = 1;
             modelRestoreButton.Text = "Restore!";
             modelRestoreButton.UseVisualStyleBackColor = true;
+            modelRestoreButton.Click += ModelRestoreButton_Click;
             // 
             // modelReplaceView
             // 

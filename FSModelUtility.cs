@@ -6,6 +6,9 @@ using SharpCompress.Archives.Rar;
 using SharpCompress.Archives.Zip;
 using SearchOption = System.IO.SearchOption;
 
+// TODO: Search function for model archives
+// TODO: Recall model and model archive folder paths
+
 namespace FSModelUtility;
 
 public partial class FSModelUtility : Form
@@ -13,6 +16,7 @@ public partial class FSModelUtility : Form
     private const string archiveModelPartKey = "Archive Model Part";
     private const string replaceModelPartKey = "Replace Model Part";
     private const string replaceStatusKey = "Status";
+    private const string version = "1.1";
     private static string modelsFolderPath = "";
     private static string modelArchivesFolderPath = "";
     private static string[] modelArchiveFilePaths = Array.Empty<string>();
@@ -22,7 +26,6 @@ public partial class FSModelUtility : Form
     private static readonly string appRootPath = Path.GetDirectoryName(Application.ExecutablePath) ?? "";
     private static readonly string modelReplaceLogPath = $"{appRootPath}\\model_replace_log.json";
     private static JObject modelReplaceLog = new();
-    private const string version = "1.0";
 
     public FSModelUtility()
     {
@@ -195,24 +198,25 @@ public partial class FSModelUtility : Form
                 modelReplaceButton.Enabled = true;
                 modelRestoreButton.Enabled = true;
                 modelReplaceView.Nodes.Add(new TreeNode("Click the Replace button to use the selected set for replacement."));
+                modelReplaceView.Nodes.Add(new TreeNode("Click the Restore button to specify a set to restore from backup."));
                 break;
             case { Level: 1 }:
+            {
+                string archiveModelPrefix = GetModelNamePrefix(selectedArchiveNode.Text);
+                List<Model> matchingModels = models.Where(i => i.Prefix == archiveModelPrefix).ToList();
+                matchingModels = matchingModels.Where(i => DoesMatchSearchQuery(i.DispName)).ToList();
+                bool wantsAvailable = filterSearchOptionsBox.SelectedIndex == 1;
+                bool wantsReplaced = filterSearchOptionsBox.SelectedIndex == 2;
+                matchingModels = matchingModels.Where(i => wantsAvailable ? i.Status == ModelStatus.Available : !wantsReplaced || i.Status == ModelStatus.Taken).ToList();
+                if (matchingModels.Count == 0)
                 {
-                    string archiveModelPrefix = GetModelNamePrefix(selectedArchiveNode.Text);
-                    List<Model> matchingModels = models.Where(i => i.Prefix == archiveModelPrefix).ToList();
-                    matchingModels = matchingModels.Where(i => DoesMatchSearchQuery(i.DispName)).ToList();
-                    bool wantsAvailable = filterSearchOptionsBox.SelectedIndex == 1;
-                    bool wantsReplaced = filterSearchOptionsBox.SelectedIndex == 2;
-                    matchingModels = matchingModels.Where(i => wantsAvailable ? i.Status == ModelStatus.Available : !wantsReplaced || i.Status == ModelStatus.Taken).ToList();
-                    if (matchingModels.Count == 0)
-                    {
-                        modelReplaceView.Nodes.Add(new TreeNode($"There are no model parts which match the prefix, {archiveModelPrefix}, or query."));
-                        return;
-                    }
-                    foreach (Model model in matchingModels)
-                        modelReplaceView.Nodes.Add(new TreeNode { ToolTipText = model.NodeTooltip, BackColor = model.StatusColor, Name = model.Name, Text = model.DispName });
-                    break;
+                    modelReplaceView.Nodes.Add(new TreeNode($"There are no model parts which match the prefix, {archiveModelPrefix}, or query."));
+                    return;
                 }
+                foreach (Model model in matchingModels)
+                    modelReplaceView.Nodes.Add(new TreeNode { ToolTipText = model.NodeTooltip, BackColor = model.StatusColor, Name = model.Name, Text = model.DispName });
+                break;
+            }
             default:
                 modelReplaceView.Nodes.Add(new TreeNode("Select a model part to view available parts to replace."));
                 break;
@@ -316,30 +320,16 @@ public partial class FSModelUtility : Form
         return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : "";
     }
 
-    private async Task ReplaceModel(ModelArchive modelArchive, string archiveModelName, string replaceModelName, bool shouldDelay = false)
+    private async Task UpdateStatusLabel(bool isVisible, string message, bool shouldDelay)
     {
-        modelReplaceButton.Enabled = false;
-        Model archiveModel = modelArchive.Entries.FirstOrDefault(i => IsMatch(i.Name, archiveModelName)) ?? new Model();
-        if (archiveModel.Name == "") return;
-        IArchiveEntry? archiveMdEntry = modelArchive.Archive?.Entries.FirstOrDefault(i => IsMatch(i.Key, archiveModel.Name));
-        Stream? archiveMdStream = archiveMdEntry?.OpenEntryStream();
-        if (archiveMdStream == null) return;
-        Model replaceModel = models.FirstOrDefault(i => replaceModelName.Contains(i.Name)) ?? new Model();
-        string replaceModelBakFilePath = $"{replaceModel.FilePath}.bak";
-        if (!File.Exists(replaceModelBakFilePath)) File.Copy(replaceModel.FilePath, $"{replaceModel.FilePath}.bak", true);
-        FileStream replaceModelStream = new(replaceModel.FilePath, FileMode.Create, FileAccess.Write);
-        statusLabel.Visible = true;
-        statusLabel.Text = @$"Replacing {replaceModel.DispName} with modified {archiveModel.DispName}...";
+        if (isVisible) statusLabel.Visible = true;
+        statusLabel.Text = message;
         if (shouldDelay) await Task.Delay(2000);
-        await archiveMdStream.CopyToAsync(replaceModelStream);
-        replaceModelStream.Close();
-        JObject modelReplaceEntry = new()
-        {
-            { archiveModelPartKey, archiveModel.Name },
-            { replaceModelPartKey, replaceModel.Name },
-            { replaceStatusKey, ModelStatus.Taken.ToString() }
-        };
-        modelReplaceLog.Add(new JProperty($"{archiveModel.Name} -> {replaceModel.Name}", modelReplaceEntry));
+        if (!isVisible) statusLabel.Visible = false;
+    }
+
+    private void ExitTaskState()
+    {
         WriteModelReplaceLog();
         bool isSelectedNodeAnArchive = modelArchivesView.SelectedNode.Parent == null;
         int archiveNodeIndex = isSelectedNodeAnArchive ? modelArchivesView.SelectedNode.Index : modelArchivesView.SelectedNode.Parent!.Index;
@@ -349,34 +339,104 @@ public partial class FSModelUtility : Form
         else modelArchivesView.SelectedNode = modelArchivesView.Nodes[archiveNodeIndex].Nodes[modelPartNodeIndex];
         ReadAllModels();
         PopulateModelReplaceView(modelArchivesView.SelectedNode);
-        statusLabel.Text = @"Replacement completed!";
-        if (shouldDelay) await Task.Delay(2000);
-        statusLabel.Visible = false;
-        modelReplaceButton.Enabled = true;
+    }
+
+    private void DefocusModelActions()
+    {
+        modelReplaceButton.Enabled = false;
+        modelRestoreButton.Enabled = false;
+    }
+
+    private async Task<bool> RestoreModel(string modelName, bool shouldDelay = false)
+    {
+        DefocusModelActions();
+        Model model = models.FirstOrDefault(i => modelName.Contains(i.Name)) ?? new Model();
+        if (!File.Exists(model.BackupFilePath))
+        {
+            if (shouldDelay) ShowInformationDialog($"There is no backup file associated with {model.DispName}.");
+            return false;
+        }
+        File.Copy(model.BackupFilePath, model.FilePath, true);
+        await UpdateStatusLabel(true, $"Restoring {model.DispName} from backup...", shouldDelay);
+        modelReplaceLog.Remove(model.Name);
+        if (shouldDelay) ExitTaskState();
+        await UpdateStatusLabel(false, "Restoration completed!", shouldDelay);
+        return true;
+    }
+
+    private async Task ReplaceModel(ModelArchive modelArchive, string archiveModelName, string replaceModelName, bool shouldDelay = false)
+    {
+        DefocusModelActions();
+        Model archiveModel = modelArchive.Entries.FirstOrDefault(i => IsMatch(i.Name, archiveModelName)) ?? new Model();
+        if (archiveModel.Name == "") return;
+        IArchiveEntry? archiveMdEntry = modelArchive.Archive?.Entries.FirstOrDefault(i => IsMatch(i.Key, archiveModel.Name));
+        Stream? archiveMdStream = archiveMdEntry?.OpenEntryStream();
+        if (archiveMdStream == null) return;
+        Model replaceModel = models.FirstOrDefault(i => replaceModelName.Contains(i.Name)) ?? new Model();
+        if (!File.Exists(replaceModel.BackupFilePath)) File.Copy(replaceModel.FilePath, replaceModel.BackupFilePath, true);
+        FileStream replaceModelStream = new(replaceModel.FilePath, FileMode.Create, FileAccess.Write);
+        await UpdateStatusLabel(true, $"Replacing {replaceModel.DispName} with modified {archiveModel.DispName}...", shouldDelay);
+        await archiveMdStream.CopyToAsync(replaceModelStream);
+        replaceModelStream.Close();
+        JObject modelReplaceEntry = new()
+        {
+            { archiveModelPartKey, archiveModel.Name },
+            { replaceModelPartKey, replaceModel.Name },
+            { replaceStatusKey, ModelStatus.Taken.ToString() }
+        };
+        modelReplaceLog.Add(new JProperty(replaceModel.Name, modelReplaceEntry));
+        if (shouldDelay) ExitTaskState();
+        await UpdateStatusLabel(false, "Replacement completed!", shouldDelay);
+    }
+
+    private static string PromptSetID()
+    {
+        string idString = ShowInputDialog("Enter the ID of an in-game set:", "Set ID");
+        if (idString == "") return "";
+        if (int.TryParse(idString, out int id)) return id.ToString();
+        ShowInformationDialog("The specified set ID is invalid.");
+        return "";
+    }
+
+    private static List<Model> GetMatchingSet(string setId)
+    {
+        List<Model> set = models.Where(i => i.Name.Contains(setId)).ToList();
+        if (set.Count == 0) ShowInformationDialog("An in-game set matching the specified ID could not be found.");
+        return set;
+    }
+
+    private async Task RestoreSet()
+    {
+        string id = PromptSetID();
+        if (id == "") return;
+        List<Model> restoreSet = GetMatchingSet(id);
+        if (restoreSet.Count == 0) return;
+        string modelRestorations = "";
+        foreach (Model model in restoreSet)
+        {
+            if (!await RestoreModel(model.Name)) continue;
+            modelRestorations += $"{model.DispName}\n\n";
+        }
+        ExitTaskState();
+        ShowInformationDialog($"The in-game set with ID {id} was successfully restored:\n\n{modelRestorations}");
     }
 
     private async Task ReplaceSet(ModelArchive modelArchive)
     {
-        string replaceSetId = ShowInputDialog("Enter the ID of an in-game set to replace:", "Set ID");
-        if (replaceSetId == "") return;
-        if (int.TryParse(replaceSetId, out int _))
+        string id = PromptSetID();
+        if (id == "") return;
+        List<Model> replaceSet = GetMatchingSet(id);
+        if (replaceSet.Count == 0) return;
+        string modelReplacements = "";
+        foreach (Model model in replaceSet)
         {
-            List<Model> replaceSet = models.Where(i => i.Name.Contains(replaceSetId)).ToList();
-            if (replaceSet.Count == 0) ShowInformationDialog("An in-game set matching the specified ID could not be found.");
-            else
-            {
-                string modelReplacements = "";
-                foreach (Model model in replaceSet)
-                {
-                    Model archiveModel = modelArchive.Entries.FirstOrDefault(i => i.Prefix == model.Prefix) ?? new Model();
-                    if (archiveModel.Name == "") continue;
-                    await ReplaceModel(modelArchive, archiveModel.Name, model.Name);
-                    modelReplacements += $"{archiveModel.DispName} -> {model.DispName}\n\n";
-                }
-                ShowInformationDialog($"The in-game set with ID {replaceSetId} was successfully replaced with the following:\n\n{modelReplacements}");
-            }
+            Model archiveModel = modelArchive.Entries.FirstOrDefault(i => i.Prefix == model.Prefix) ?? new Model();
+            if (archiveModel.Name == "") continue;
+            await ReplaceModel(modelArchive, archiveModel.Name, model.Name);
+            modelReplacements += $"{archiveModel.DispName} -> {model.DispName}\n\n";
         }
-        else ShowInformationDialog("The specified set ID is invalid.");
+        ExitTaskState();
+        ShowInformationDialog($"The in-game set with ID {id} was successfully replaced with the following:\n\n{modelReplacements}");
     }
 
     private async void ModelReplaceButton_Click(object sender, EventArgs e)
@@ -394,6 +454,7 @@ public partial class FSModelUtility : Form
     {
         if (modelReplaceView.SelectedNode.Name == "") return;
         modelReplaceButton.Enabled = true;
+        modelRestoreButton.Enabled = true;
     }
 
     private void NodeRightClick(object sender, MouseEventArgs e)
@@ -418,8 +479,16 @@ public partial class FSModelUtility : Form
         if (modelReplaceRadioButton.Checked) PopulateModelReplaceView(modelArchivesView.SelectedNode);
     }
 
+    private async void ModelRestoreButton_Click(object sender, EventArgs e)
+    {
+        TreeNode replaceModelNode = modelReplaceView.SelectedNode;
+        if (modelArchivesView.SelectedNode.Parent == null) await RestoreSet();
+        else await RestoreModel(replaceModelNode.Name, true);
+    }
+
     private class Model
     {
+        public readonly string BackupFilePath;
         public readonly string DispName;
         public readonly string FilePath;
         public readonly string Name;
@@ -434,6 +503,7 @@ public partial class FSModelUtility : Form
             Name = GetModelName(modelName, true);
             Prefix = GetModelNamePrefix(Name);
             FilePath = filePath;
+            BackupFilePath = $"{FilePath}.bak";
             DispName = dispName == "" ? Name : $"{dispName} ({Name})";
             UpdateStatus(useReplaceModelPartName);
         }
