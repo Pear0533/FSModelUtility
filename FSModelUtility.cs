@@ -16,7 +16,7 @@ public partial class FSModelUtility : Form
     private const string archiveModelPartKey = "Archive Model Part";
     private const string replaceModelPartKey = "Replace Model Part";
     private const string replaceStatusKey = "Status";
-    private const string version = "1.1";
+    private const string version = "1.2";
     private static string modelsFolderPath = "";
     private static string modelArchivesFolderPath = "";
     private static string[] modelArchiveFilePaths = Array.Empty<string>();
@@ -223,16 +223,17 @@ public partial class FSModelUtility : Form
         }
     }
 
-    private static void AssignModelTooltips()
+    private void AssignModelTooltips()
     {
+        ModelArchive modelArchive = GetCurrentModelArchive();
         foreach (Model model in models)
         {
             string archiveModelDispName = models.Find(i => i.Name == model.ArchiveModelName)?.DispName ?? model.ArchiveModelName;
-            model.NodeTooltip = model.Status == ModelStatus.Available ? "Available to replace" : $"Replaced with {archiveModelDispName}";
+            model.NodeTooltip = model.Status == ModelStatus.Available ? "Available to replace" : $"Replaced with {modelArchive.Name}: {archiveModelDispName}";
         }
     }
 
-    private static void ReadAllModels()
+    private void ReadAllModels()
     {
         ReadModels(modelFilePaths.ToList(), models);
         AssignModelTooltips();
@@ -439,15 +440,18 @@ public partial class FSModelUtility : Form
         ShowInformationDialog($"The in-game set with ID {id} was successfully replaced with the following:\n\n{modelReplacements}");
     }
 
+    private ModelArchive GetCurrentModelArchive()
+    {
+        TreeNode modelArchiveNode = modelArchivesView.SelectedNode.Parent ?? modelArchivesView.SelectedNode;
+        return modelArchives.FirstOrDefault(i => i.Name == modelArchiveNode.Text) ?? new ModelArchive();
+    }
+
     private async void ModelReplaceButton_Click(object sender, EventArgs e)
     {
-        TreeNode archiveModelNode = modelArchivesView.SelectedNode;
-        TreeNode modelArchiveNode = modelArchivesView.SelectedNode.Parent ?? archiveModelNode;
-        TreeNode replaceModelNode = modelReplaceView.SelectedNode;
-        ModelArchive modelArchive = modelArchives.FirstOrDefault(i => i.Name == modelArchiveNode.Text) ?? new ModelArchive();
+        ModelArchive modelArchive = GetCurrentModelArchive();
         if (modelArchive.Name == "") return;
         if (modelArchivesView.SelectedNode.Parent == null) await ReplaceSet(modelArchive);
-        else await ReplaceModel(modelArchive, archiveModelNode.Name, replaceModelNode.Name, true);
+        else await ReplaceModel(modelArchive, modelArchivesView.SelectedNode.Name, modelReplaceView.SelectedNode.Name, true);
     }
 
     private void ModelReplaceView_AfterSelect(object sender, TreeViewEventArgs e)
