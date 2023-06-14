@@ -56,6 +56,7 @@
             filterSearchOptionsBox = new ComboBox();
             modelReplaceRadioButton = new RadioButton();
             versionNumberLabel = new Label();
+            modelArchivesRadioButton = new RadioButton();
             modelArchivesFolderGroupBox.SuspendLayout();
             modelsFolderGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)mainSplitContainer).BeginInit();
@@ -315,6 +316,7 @@
             // searchGroupBox
             // 
             searchGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            searchGroupBox.Controls.Add(modelArchivesRadioButton);
             searchGroupBox.Controls.Add(label1);
             searchGroupBox.Controls.Add(filterSearchOptionsBox);
             searchGroupBox.Controls.Add(modelReplaceRadioButton);
@@ -330,7 +332,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(139, 50);
+            label1.Location = new Point(250, 50);
             label1.Name = "label1";
             label1.Size = new Size(36, 15);
             label1.TabIndex = 3;
@@ -341,7 +343,7 @@
             filterSearchOptionsBox.DropDownStyle = ComboBoxStyle.DropDownList;
             filterSearchOptionsBox.FormattingEnabled = true;
             filterSearchOptionsBox.Items.AddRange(new object[] { "None", "Available", "Taken" });
-            filterSearchOptionsBox.Location = new Point(177, 46);
+            filterSearchOptionsBox.Location = new Point(288, 46);
             filterSearchOptionsBox.Name = "filterSearchOptionsBox";
             filterSearchOptionsBox.Size = new Size(121, 23);
             filterSearchOptionsBox.TabIndex = 2;
@@ -350,7 +352,7 @@
             // modelReplaceRadioButton
             // 
             modelReplaceRadioButton.AutoSize = true;
-            modelReplaceRadioButton.Location = new Point(6, 48);
+            modelReplaceRadioButton.Location = new Point(117, 48);
             modelReplaceRadioButton.Name = "modelReplaceRadioButton";
             modelReplaceRadioButton.Size = new Size(131, 19);
             modelReplaceRadioButton.TabIndex = 1;
@@ -368,6 +370,17 @@
             versionNumberLabel.Size = new Size(48, 15);
             versionNumberLabel.TabIndex = 18;
             versionNumberLabel.Text = "Version:";
+            // 
+            // modelArchivesRadioButton
+            // 
+            modelArchivesRadioButton.AutoSize = true;
+            modelArchivesRadioButton.Location = new Point(6, 48);
+            modelArchivesRadioButton.Name = "modelArchivesRadioButton";
+            modelArchivesRadioButton.Size = new Size(107, 19);
+            modelArchivesRadioButton.TabIndex = 4;
+            modelArchivesRadioButton.TabStop = true;
+            modelArchivesRadioButton.Text = "Model Archives";
+            modelArchivesRadioButton.UseVisualStyleBackColor = true;
             // 
             // FSModelUtility
             // 
@@ -433,5 +446,6 @@
         private Label versionNumberLabel;
         private SplitContainer splitContainer1;
         private Button modelRestoreButton;
+        private RadioButton modelArchivesRadioButton;
     }
 }

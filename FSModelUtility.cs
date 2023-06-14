@@ -3,11 +3,11 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SharpCompress.Archives;
 using SharpCompress.Archives.Rar;
-using SharpCompress.Archives.Zip;
 using SearchOption = System.IO.SearchOption;
+using ZipArchive = SharpCompress.Archives.Zip.ZipArchive;
 
-// TODO: Search function for model archives
 // TODO: Recall model and model archive folder paths
+// TODO: Game-specific tabs for ease of use
 
 namespace FSModelUtility;
 
@@ -165,19 +165,37 @@ public partial class FSModelUtility : Form
         return new TreeNode { BackColor = model.StatusColor, Name = model.Name, Text = model.DispName };
     }
 
-    private void PopulateModelArchivesView()
+    private void PopulateModelArchivesView(bool refreshData = true, bool saveTreeState = true)
     {
+        bool isSelectedNodeAnArchive = true;
+        int archiveNodeIndex = 0;
+        int modelPartNodeIndex = 0;
+        if (saveTreeState)
+        {
+            isSelectedNodeAnArchive = modelArchivesView.SelectedNode?.Parent == null;
+            archiveNodeIndex = isSelectedNodeAnArchive ? modelArchivesView.SelectedNode?.Index ?? 0 : modelArchivesView.SelectedNode?.Parent?.Index ?? 0;
+            modelPartNodeIndex = isSelectedNodeAnArchive ? -1 : modelArchivesView.SelectedNode?.Index ?? 0;
+        }
         modelArchivesView.Nodes.Clear();
-        ReadModelReplaceLog();
-        ReadAllModelArchives();
+        if (refreshData)
+        {
+            ReadModelReplaceLog();
+            ReadAllModelArchives();
+        }
         foreach (ModelArchive archive in modelArchives)
         {
-            TreeNode archiveNode = new(archive.Name);
-            foreach (Model entry in archive.Entries)
+            TreeNode archiveNode = new() { Name = archive.Name, Text = archive.Name };
+            List<Model> matchingEntries = archive.Entries;
+            if (modelArchivesRadioButton.Checked)
+                matchingEntries = matchingEntries.Where(i => DoesMatchSearchQuery(i.DispName)).ToList();
+            foreach (Model entry in matchingEntries)
                 archiveNode.Nodes.Add(GetModelPartNode(entry));
             modelArchivesView.Nodes.Add(archiveNode);
         }
         modelArchivesView.SelectedNode = modelArchivesView.Nodes[0];
+        if (!saveTreeState) return;
+        if (isSelectedNodeAnArchive) modelArchivesView.Nodes[archiveNodeIndex].Expand();
+        else modelArchivesView.SelectedNode = modelArchivesView.Nodes[archiveNodeIndex].Nodes[modelPartNodeIndex];
     }
 
     private bool DoesMatchSearchQuery(string query)
@@ -204,7 +222,7 @@ public partial class FSModelUtility : Form
             {
                 string archiveModelPrefix = GetModelNamePrefix(selectedArchiveNode.Text);
                 List<Model> matchingModels = models.Where(i => i.Prefix == archiveModelPrefix).ToList();
-                matchingModels = matchingModels.Where(i => DoesMatchSearchQuery(i.DispName)).ToList();
+                if (modelReplaceRadioButton.Checked) matchingModels = matchingModels.Where(i => DoesMatchSearchQuery(i.DispName)).ToList();
                 bool wantsAvailable = filterSearchOptionsBox.SelectedIndex == 1;
                 bool wantsReplaced = filterSearchOptionsBox.SelectedIndex == 2;
                 matchingModels = matchingModels.Where(i => wantsAvailable ? i.Status == ModelStatus.Available : !wantsReplaced || i.Status == ModelStatus.Taken).ToList();
@@ -229,7 +247,7 @@ public partial class FSModelUtility : Form
         foreach (Model model in models)
         {
             string archiveModelDispName = models.Find(i => i.Name == model.ArchiveModelName)?.DispName ?? model.ArchiveModelName;
-            model.NodeTooltip = model.Status == ModelStatus.Available ? "Available to replace" : $"Replaced with {modelArchive.Name}: {archiveModelDispName}";
+            model.NodeTooltip = model.Status == ModelStatus.Available ? "Available to replace" : $"{modelArchive.Name}: {archiveModelDispName} -> {model.DispName}";
         }
     }
 
@@ -257,7 +275,7 @@ public partial class FSModelUtility : Form
         searchGroupBox.Enabled = true;
         modelReplaceRadioButton.Checked = true;
         filterSearchOptionsBox.SelectedIndex = 0;
-        PopulateModelArchivesView();
+        PopulateModelArchivesView(true, false);
         ReadAllModels();
     }
 
@@ -332,12 +350,7 @@ public partial class FSModelUtility : Form
     private void ExitTaskState()
     {
         WriteModelReplaceLog();
-        bool isSelectedNodeAnArchive = modelArchivesView.SelectedNode.Parent == null;
-        int archiveNodeIndex = isSelectedNodeAnArchive ? modelArchivesView.SelectedNode.Index : modelArchivesView.SelectedNode.Parent!.Index;
-        int modelPartNodeIndex = isSelectedNodeAnArchive ? -1 : modelArchivesView.SelectedNode.Index;
         PopulateModelArchivesView();
-        if (isSelectedNodeAnArchive) modelArchivesView.Nodes[archiveNodeIndex].Expand();
-        else modelArchivesView.SelectedNode = modelArchivesView.Nodes[archiveNodeIndex].Nodes[modelPartNodeIndex];
         ReadAllModels();
         PopulateModelReplaceView(modelArchivesView.SelectedNode);
     }
@@ -465,8 +478,10 @@ public partial class FSModelUtility : Form
     {
         if (e.Button != MouseButtons.Right) return;
         TreeView treeView = (TreeView)sender;
+        if (string.IsNullOrEmpty(treeView.SelectedNode.Name)) return;
         nodeRightClickMenu.ItemClicked += (_, _) =>
         {
+            if (treeView.SelectedNode == null) return;
             string nodeName = treeView.SelectedNode.Name;
             Clipboard.SetText(nodeName == "" ? treeView.SelectedNode.Text : nodeName);
         };
@@ -476,11 +491,13 @@ public partial class FSModelUtility : Form
     private void SearchBox_TextChanged(object sender, EventArgs e)
     {
         if (modelReplaceRadioButton.Checked) PopulateModelReplaceView(modelArchivesView.SelectedNode);
+        else PopulateModelArchivesView(false);
     }
 
     private void FilterSearchOptionsBox_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (modelReplaceRadioButton.Checked) PopulateModelReplaceView(modelArchivesView.SelectedNode);
+        else PopulateModelArchivesView(false);
     }
 
     private async void ModelRestoreButton_Click(object sender, EventArgs e)
