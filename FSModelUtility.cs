@@ -25,6 +25,7 @@ public partial class FSModelUtility : Form
     private static readonly string appRootPath = Path.GetDirectoryName(Application.ExecutablePath) ?? "";
     private static readonly string modelReplaceLogPath = $"{appRootPath}\\model_replace_log.json";
     private static readonly string gamesDatabasePath = $"{appRootPath}\\games_database.json";
+    private static readonly string csvsFolderPath = $"{appRootPath}\\CSVs";
     private static JObject modelReplaceLog = new();
     private static JObject gamesDatabase = GetDefaultGamesDatabase();
 
@@ -54,6 +55,8 @@ public partial class FSModelUtility : Form
         JObject database = new()
         {
             { "ELDEN RING", paths },
+            { "DARK SOULS I", paths },
+            { "DARK SOULS II", paths },
             { "DARK SOULS III", paths }
         };
         return database;
@@ -147,13 +150,14 @@ public partial class FSModelUtility : Form
         MessageBox.Show(message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
     }
 
-    private static void ReadModels<T>(List<T> rawModelsList, ICollection<Model> outputModelsList)
+    private void ReadModels<T>(List<T> rawModelsList, ICollection<Model> outputModelsList)
     {
         if (appRootPath == "") return;
         bool isTypeString = typeof(T) == typeof(string);
         bool isTypeArchive = typeof(T) == typeof(IArchiveEntry);
         models.Clear();
-        string modelNamesListFilePath = $"{appRootPath}\\modelnames.csv";
+        string[] csvFiles = Directory.GetFiles(csvsFolderPath);
+        string modelNamesListFilePath = csvFiles.FirstOrDefault(i => i.Contains(gameTabs.SelectedTab.Text)) ?? "";
         TextFieldParser parser = new(modelNamesListFilePath);
         parser.TextFieldType = FieldType.Delimited;
         parser.SetDelimiters(",");
@@ -176,7 +180,7 @@ public partial class FSModelUtility : Form
         }
     }
 
-    private static void ReadAllModelArchives()
+    private void ReadAllModelArchives()
     {
         modelArchives.Clear();
         foreach (string path in modelArchiveFilePaths)

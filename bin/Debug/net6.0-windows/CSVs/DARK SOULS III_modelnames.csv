@@ -1,0 +1,809 @@
+0,HD_A_1000,Dragon Head
+0,BD_A_1001,Dragon Body
+0,AM_A_1002,Dragon Arms
+0,LG_A_1003,Dragon Legs
+0,HD_A_1900,Fallen Knight Helm
+0,BD_A_1900,Fallen Knight Armor
+0,AM_A_1900,Fallen Knight Gauntlets
+0,LG_A_1900,Fallen Knight Trousers
+0,HD_A_1950,Knight Helm
+0,BD_A_1950,Knight Armor
+0,AM_A_1950,Knight Gauntlets
+0,LG_A_1950,Knight Leggings
+0,HD_A_2000,Vilhelm's Helm
+0,BD_A_2000,Vilhelm's Armor
+0,AM_A_2000,Vilhelm's Gauntlets
+0,LG_A_2000,Vilhelm's Leggings
+0,HD_A_2100,Firelink Helm
+0,BD_A_2100,Firelink Armor
+0,AM_A_2100,Firelink Gauntlets
+0,LG_A_2100,Firelink Leggings
+0,HD_A_2150,Sellsword Helm
+0,BD_A_2150,Sellsword Armor
+0,AM_A_2150,Sellsword Gauntlet
+0,LG_A_2150,Sellsword Trousers
+0,HD_A_2200,Herald Helm
+0,BD_A_2200,Herald Armor
+0,AM_A_2200,Herald Gloves
+0,LG_A_2200,Herald Trousers
+0,HD_A_2250,Sunless Veil
+0,BD_A_2250,Sunless Armor
+0,AM_A_2250,Sunless Gauntlets
+0,LG_A_2250,Sunless Leggings
+0,HD_A_2300,Black Hand Hat
+0,BD_A_2300,Black Hand Armor
+0,AM_A_2300,Assassin Gloves
+0,LG_A_2300,Assassin Trousers
+0,HD_A_2310,Assassin Hood
+0,BD_A_2310,Assassin Armor
+0,HD_A_2350,Xanthous Crown
+0,BD_A_2350,Xanthous Overcoat
+0,AM_A_2350,Xanthous Gloves
+0,LG_A_2350,Xanthous Trousers
+0,HD_A_2400,Northern Helm
+0,BD_A_2400,Northern Armor
+0,AM_A_2400,Northern Gloves
+0,LG_A_2400,Northern Trousers
+0,HD_A_2450,Morne's Helm
+0,BD_A_2450,Morne's Armor
+0,AM_A_2450,Morne's Gauntlets
+0,LG_A_2450,Morne's Leggings
+0,HD_A_2500,Silver Mask
+0,BD_A_2500,Leonhard's Garb
+0,AM_A_2500,Leonhard's Gauntlets
+0,LG_A_2500,Leonhard's Trousers
+0,HD_A_2550,Sneering Mask
+0,BD_A_2550,Pale Shade Robe
+0,AM_A_2550,Pale Shade Gloves
+0,LG_A_2550,Pale Shade Trousers
+0,HD_A_2600,Sunset Helm
+0,BD_A_2600,Sunset Armor
+0,AM_A_2600,Sunset Gauntlets
+0,LG_A_2600,Sunset Leggings
+0,HD_A_2650,Old Sage's Blindfold
+0,BD_A_2650,Cornyx's Garb
+0,AM_A_2650,Cornyx's Wrap
+0,LG_A_2650,Cornyx's Skirt
+0,HD_A_2700,Executioner Helm
+0,BD_A_2700,Executioner Armor
+0,AM_A_2700,Executioner Gauntlets
+0,LG_A_2700,Executioner Leggings
+0,HD_A_2750,Billed Mask
+0,BD_A_2750,Black Dress
+0,AM_A_2750,Black Gauntlets
+0,LG_A_2750,Black Leggings
+0,HD_A_2800,Pyromancer Crown
+0,BD_A_2800,Pyromancer Garb
+0,AM_A_2800,Pyromancer Wrap
+0,LG_A_2800,Pyromancer Trousers
+0,BD_A_2850,Antiquated Plain Garb
+0,AM_A_2850,Violet Wrappings
+0,LG_A_2850,Loincloth
+0,HD_A_2900,Court Sorcerer Hood
+0,BD_A_2900,Court Sorcerer Robe
+0,AM_A_2900,Court Sorcerer Gloves
+0,LG_A_2900,Court Sorcerer Trousers
+0,HD_A_2950,Shira's Crown
+0,BD_A_2950,Shira's Armor
+0,AM_A_2950,Shira's Gloves
+0,LG_A_2950,Shira's Trousers
+0,HD_A_3000,Sorcerer Hood
+0,BD_A_3000,Sorcerer Robe
+0,AM_A_3000,Sorcerer Gloves
+0,LG_A_3000,Sorcerer Trousers
+0,BD_A_3010,Clandestine Coat
+0,HD_A_3100,Cleric Hat
+0,BD_A_3100,Cleric Blue Robe
+0,AM_A_3100,Cleric Gloves
+0,LG_A_3100,Cleric Trousers
+0,HD_A_3200,Lapp's Helm
+0,BD_A_3200,Lapp's Armor
+0,AM_A_3200,Lapp's Gauntlets
+0,LG_A_3200,Lapp's Leggings
+0,HD_A_3300,Grotto Hat
+0,BD_A_3300,Grotto Robe
+0,AM_A_3300,Grotto Wrap
+0,LG_A_3300,Grotto Trousers
+0,HD_A_4000,Steel Soldier Helm
+0,BD_A_4000,Deserter Armor
+0,LG_A_4000,Deserter Trousers
+0,HD_A_4020,Thief Mask
+0,HD_A_4300,Sage's Big Hat
+0,HD_A_4400,Aristocrat's Mask
+0,BD_A_4400,Jailer Robe
+0,AM_A_4400,Jailer Gloves
+0,LG_A_4400,Jailer Trousers
+0,HD_A_4450,Saint's Veil
+0,BD_A_4450,Saint's Dress
+0,HD_A_4500,Footman's Hood
+0,BD_A_4500,Footman's Overcoat
+0,AM_A_4500,Footman's Bracelet
+0,LG_A_4500,Footman's Trousers
+0,HD_A_4600,Grave Warden Hood
+0,BD_A_4600,Grave Warden Robe
+0,AM_A_4600,Grave Warden Wrap
+0,LG_A_4600,Grave Warden Skirt
+0,HD_A_4700,Worker Hat
+0,BD_A_4700,Worker Garb
+0,AM_A_4700,Worker Gloves
+0,LG_A_4700,Worker Trousers
+0,HD_A_4750,Thrall Hood
+0,HD_A_4800,Evangelist Hat
+0,BD_A_4800,Evangelist Robe
+0,AM_A_4800,Evangelist Gloves
+0,LG_A_4800,Evangelist Trousers
+0,HD_A_4850,Scholar's Shed Skin
+0,BD_A_4850,Scholar's Robe
+0,HD_A_4900,Winged Knight Helm
+0,BD_A_4900,Winged Knight Armor
+0,AM_A_4900,Winged Knight Gauntlets
+0,LG_A_4900,Winged Knight Leggings
+0,HD_A_5050,Cathedral Knight Helm
+0,BD_A_5050,Cathedral Knight Armor
+0,AM_A_5050,Cathedral Knight Gauntlets
+0,LG_A_5050,Cathedral Knight Leggings
+0,HD_A_5200,Lothric Knight Helm
+0,BD_A_5200,Lothric Knight Armor
+0,AM_A_5200,Lothric Knight Gauntlets
+0,LG_A_5200,Lothric Knight Leggings
+0,HD_A_5300,Outrider Knight Helm
+0,BD_A_5300,Outrider Knight Armor
+0,AM_A_5300,Outrider Knight Gauntlets
+0,LG_A_5300,Outrider Knight Leggings
+0,HD_A_5400,Black Knight Helm
+0,BD_A_5400,Black Knight Armor
+0,AM_A_5400,Black Knight Gauntlets
+0,LG_A_5400,Black Knight Leggings
+0,HD_A_5450,Dark Mask
+0,BD_A_5450,Dark Armor
+0,AM_A_5450,Dark Gauntlets
+0,LG_A_5450,Dark Leggings
+0,HD_A_5500,Exile Mask
+0,BD_A_5500,Exile Armor
+0,AM_A_5500,Exile Gauntlets
+0,LG_A_5500,Exile Leggings
+0,HD_A_5550,Slave Knight Hood
+0,BD_A_5550,Slave Knight Armor
+0,AM_A_5550,Slave Knight Gauntlets
+0,LG_A_5550,Slave Knight Leggings
+0,HD_A_5600,Pontiff Knight Crown
+0,BD_A_5600,Pontiff Knight Armor
+0,AM_A_5600,Pontiff Knight Gauntlets
+0,LG_A_5600,Pontiff Knight Leggings
+0,HD_A_5650,Ordained Hood
+0,BD_A_5650,Ordained Dress
+0,LG_A_5650,Ordained Trousers
+0,HD_A_5700,Golden Crown
+0,BD_A_5700,Dragonscale Armor
+0,AM_A_5700,Golden Bracelets
+0,LG_A_5700,Dragonscale Waistcloth
+0,HD_A_5750,Wolnir's Crown
+0,HD_A_5800,Undead Legion Helm
+0,BD_A_5800,Undead Legion Armor
+0,AM_A_5800,Undead Legion Gauntlet
+0,LG_A_5800,Undead Legion Leggings
+0,HD_A_5850,Follower Helm
+0,BD_A_5850,Follower Armor
+0,AM_A_5850,Follower Gloves
+0,LG_A_5850,Follower Boots
+0,HD_A_5950,Man Serpent's Mask
+0,BD_A_5950,Man Serpent's Robes
+0,HD_A_6000,Fire Witch Helm
+0,BD_A_6000,Fire Witch Armor
+0,AM_A_6000,Fire Witch Gauntlets
+0,LG_A_6000,Fire Witch Leggings
+0,HD_A_6050,Millwood Knight Helm
+0,BD_A_6050,Millwood Knight Armor
+0,AM_A_6050,Millwood Knight Gauntlets
+0,LG_A_6050,Millwood Knight Leggings
+0,HD_A_6100,Lorian's Helm
+0,BD_A_6100,Lorian's Armor
+0,AM_A_6100,Lorian's Gauntlets
+0,LG_A_6100,Lorian's Leggings
+0,HD_A_6150,Hood of Prayer
+0,BD_A_6150,Robe of Prayer
+0,LG_A_6150,Skirt of Prayer
+0,HD_A_6200,Giant's Crown
+0,BD_A_6200,Giant's Armor
+0,AM_A_6200,Giant's Gauntlets
+0,LG_A_6200,Giant's Leggings
+0,HD_A_6300,Dancer's Crown
+0,BD_A_6300,Dancer's Armor
+0,AM_A_6300,Dancer's Gauntlets
+0,LG_A_6300,Dancer's Leggings
+0,HD_A_6350,Ringed Knight Hood
+0,BD_A_6350,Ringed Knight Armor
+0,AM_A_6350,Ringed Knight Gauntlets
+0,LG_A_6350,Ringed Knight Leggings
+0,HD_A_6400,Gundyr's Helm
+0,BD_A_6400,Gundyr's Armor
+0,AM_A_6400,Gundyr's Gauntlets
+0,LG_A_6400,Gundyr's Leggings
+0,BD_A_6450,Harald Legion Armor
+0,AM_A_6450,Harald Legion Gauntlets
+0,LG_A_6450,Harald Legion Leggings
+0,HD_A_6600,Archdeacon White Crown
+0,BD_A_6600,Archdeacon Holy Garb
+0,LG_A_6600,Archdeacon Skirt
+0,BD_A_6650,Deacon Robe
+0,LG_A_6650,Deacon Skirt
+0,HD_A_6750,Iron Dragonslayer Helm
+0,BD_A_6750,Iron Dragonslayer Armor
+0,AM_A_6750,Iron Dragonslayer Gauntlets
+0,LG_A_6750,Iron Dragonslayer Leggings
+0,HD_A_6800,Dingy Hood
+0,BD_A_6800,Fire Keeper Robe
+0,AM_A_6800,Fire Keeper Gloves
+0,LG_A_6800,Fire Keeper Skirt
+0,HD_A_6850,White Preacher Head
+0,HD_A_7000,Chain Helm
+0,BD_A_7000,Chain Armor
+0,AM_A_7000,Leather Gauntlets
+0,LG_A_7000,Chain Leggings
+0,HD_A_7100,Nameless Knight Helm
+0,BD_A_7100,Nameless Knight Armor
+0,AM_A_7100,Nameless Knight Gauntlets
+0,LG_A_7100,Nameless Knight Leggings
+0,HD_A_7200,Elite Knight Helm
+0,BD_A_7200,Elite Knight Armor
+0,AM_A_7200,Elite Knight Gauntlets
+0,LG_A_7200,Elite Knight Leggings
+0,HD_A_7300,Faraam Helm
+0,BD_A_7300,Faraam Armor
+0,AM_A_7300,Faraam Gauntlets
+0,LG_A_7300,Faraam Boots
+0,HD_A_7400,Catarina Helm
+0,BD_A_7400,Catarina Armor
+0,AM_A_7400,Catarina Gauntlets
+0,LG_A_7400,Catarina Leggings
+0,HD_A_7450,Standard Helm
+0,BD_A_7450,Hard Leather Armor
+0,AM_A_7450,Hard Leather Gauntlets
+0,LG_A_7450,Hard Leather Boots
+0,HD_A_7500,Havel's Helm
+0,BD_A_7500,Havel's Armor
+0,AM_A_7500,Havel's Gauntlets
+0,LG_A_7500,Havel's Leggings
+0,HD_A_7550,Brigand Hood
+0,BD_A_7550,Brigand Armor
+0,AM_A_7550,Brigand Gauntlets
+0,LG_A_7550,Brigand Trousers
+0,HD_A_7600,Pharis's Hat
+0,BD_A_7600,Leather Armor
+0,AM_A_7600,Leather Gloves
+0,LG_A_7600,Leather Boots
+0,HD_A_7650,Ragged Mask
+0,BD_A_7650,Master's Attire
+0,AM_A_7650,Master's Gloves
+0,LG_A_7650,Loincloth
+0,HD_A_7700,Old Sorcerer Hat
+0,BD_A_7700,Old Sorcerer Coat
+0,AM_A_7700,Old Sorcerer Gauntlets
+0,LG_A_7700,Old Sorcerer Boots
+0,HD_A_7750,Conjurator Hood
+0,BD_A_7750,Conjurator Robe
+0,AM_A_7750,Conjurator Manchettes
+0,LG_A_7750,Conjurator Boots
+0,BD_A_7800,Black Leather Armor
+0,AM_A_7800,Black Leather Gloves
+0,LG_A_7800,Black Leather Boots
+0,HD_A_7850,Symbol of Avarice
+0,HD_A_7900,Creighton's Steel Mask
+0,BD_A_7900,Mirrah Chain Mail
+0,AM_A_7900,Mirrah Chain Gloves
+0,LG_A_7900,Mirrah Chain Leggings
+0,HD_A_7950,Maiden Hood
+0,BD_A_7950,Maiden Robe
+0,AM_A_7950,Maiden Gloves
+0,LG_A_7950,Maiden Skirt
+0,HD_A_8000,Alva Helm
+0,BD_A_8000,Alva Armor
+0,AM_A_8000,Alva Gauntlets
+0,LG_A_8000,Alva Leggings
+0,HD_A_8050,Ruin Helm
+0,BD_A_8050,Ruin Armor
+0,AM_A_8050,Ruin Gauntlets
+0,LG_A_8050,Ruin Leggings
+0,HD_A_8100,Shadow Mask
+0,BD_A_8100,Shadow Garb
+0,AM_A_8100,Shadow Gauntlets
+0,LG_A_8100,Shadow Leggings
+0,HD_A_8150,Desert Pyromancer Hood
+0,BD_A_8150,Desert Pyromancer Garb
+0,AM_A_8150,Desert Pyromancer Gloves
+0,LG_A_8150,Desert Pyromancer Skirt
+0,HD_A_8200,Eastern Helm
+0,BD_A_8200,Eastern Armor
+0,AM_A_8200,Eastern Gauntlets
+0,LG_A_8200,Eastern Leggings
+0,HD_A_8250,Black Witch Hat
+0,BD_A_8250,Black Witch Garb
+0,AM_A_8250,Black Witch Wrappings
+0,LG_A_8250,Black Witch Trousers
+0,HD_A_8300,Helm of Favor
+0,BD_A_8300,Embraced Armor of Favor
+0,AM_A_8300,Gauntlets of Favor
+0,LG_A_8300,Leggings of Favor
+0,HD_A_8350,Black Witch Veil
+0,HD_A_8400,Brass Helm
+0,BD_A_8400,Brass Armor
+0,AM_A_8400,Brass Gauntlets
+0,LG_A_8400,Brass Leggings
+0,HD_A_8450,Blindfold Mask
+0,HD_A_8500,Silver Knight Helm
+0,BD_A_8500,Silver Knight Armor
+0,AM_A_8500,Silver Knight Gauntlets
+0,LG_A_8500,Silver Knight Leggings
+0,HD_A_8600,Lucatiel's Mask
+0,BD_A_8600,Mirrah Vest
+0,AM_A_8600,Mirrah Gloves
+0,LG_A_8600,Mirrah Trousers
+0,HD_A_8700,Iron Helm
+0,BD_A_8700,Armor of the Sun
+0,AM_A_8700,Iron Bracelets
+0,LG_A_8700,Iron Leggings
+0,HD_A_8800,Drakeblood Helm
+0,BD_A_8800,Drakeblood Armor
+0,AM_A_8800,Drakeblood Gauntlets
+0,LG_A_8800,Drakeblood Leggings
+0,BD_A_8900,Drang Armor
+0,AM_A_8900,Drang Gauntlets
+0,LG_A_8900,Drang Shoes
+0,HD_A_9000,Black Iron Helm
+0,BD_A_9000,Black Iron Armor
+0,AM_A_9000,Black Iron Gauntlets
+0,LG_A_9000,Black Iron Leggings
+0,HD_A_9100,Painting Guardian Hood
+0,BD_A_9100,Painting Guardian Gown
+0,AM_A_9100,Painting Guardian Gloves
+0,LG_A_9100,Painting Guardian Waistcloth
+0,HD_A_9200,Wolf Knight Helm
+0,BD_A_9200,Wolf Knight Armor
+0,AM_A_9200,Wolf Knight Gauntlets
+0,LG_A_9200,Wolf Knight Leggings
+0,HD_A_9300,Dragonslayer Helm
+0,BD_A_9300,Dragonslayer Armor
+0,AM_A_9300,Dragonslayer Gauntlets
+0,LG_A_9300,Dragonslayer Leggings
+0,HD_A_9400,Smough's Helm
+0,BD_A_9400,Smough's Armor
+0,AM_A_9400,Smough's Gauntlets
+0,LG_A_9400,Smough's Leggings
+0,HD_A_9500,Hexer's Hood
+0,BD_A_9500,Hexer's Robes
+0,AM_A_9500,Hexer's Gloves
+0,LG_A_9500,Hexer's Boots
+0,HD_A_9600,Helm of Thorns
+0,BD_A_9600,Armor of Thorns
+0,AM_A_9600,Gauntlets of Thorns
+0,LG_A_9600,Leggings of Thorns
+0,HD_A_9700,Varangian Helmet
+0,BD_A_9700,Varangian Armor
+0,AM_A_9700,Varangian Cuffs
+0,LG_A_9700,Varangian Leggings
+0,HD_A_9800,Crown of Dusk
+0,BD_A_9800,Antiquated Dress
+0,AM_A_9800,Antiquated Gloves
+0,LG_A_9800,Antiquated Skirt
+0,HD_A_9900,Karla's Pointed Hat
+0,BD_A_9900,Karla's Coat
+0,AM_A_9900,Karla's Gloves
+0,LG_A_9900,Karla's Trousers
+0,HD_A_9901,Burial Knight Helm
+0,BD_A_9901,Burial Knight Armor
+0,AM_A_9901,Burial Knight Gauntlets
+0,LG_A_9901,Burial Knight Leggings
+0,WP_A_0100,Dagger [Normal]
+0,WP_A_0101,Bandit's Knife [Normal]
+0,WP_A_0102,Parrying Dagger [Normal]
+0,WP_A_0103,Engraved Dagger [Unique]
+0,WP_A_0104,Rotten Ghru Dagger [Normal]
+0,WP_A_0106,Harpe [Normal]
+0,WP_A_0107,Scholar's Candlestick [Normal]
+0,WP_A_0108,Tailbone Short Sword [Dragon]
+0,WP_A_0109,Corvian Greatknife [Normal]
+0,WP_A_0112,Handmaid's Dagger [Unique]
+0,WP_A_0114,Aquamarine Dagger [Unique]
+0,WP_A_0115,Murky Hand Scythe [Normal]
+0,WP_A_0200,Shortsword [Normal]
+0,WP_A_0201,Longsword [Normal]
+0,WP_A_0202,Broadsword [Normal]
+0,WP_A_0203,Broken Straight Sword [Normal]
+0,WP_A_0206,Lothric Knight Sword [Normal]
+0,WP_A_0211,Sunlight Straight Sword [Unique]
+0,WP_A_0212,Rotten Ghru Curved Sword [Normal]
+0,WP_A_0214,Irithyll Straight Sword [Unique]
+0,WP_A_0215,Lothric Candlestick [Unique]
+0,WP_A_0216,Cleric's Candlestick [Boss]
+0,WP_A_0218,Morion Blade [Unique]
+0,WP_A_0220,Astora Straight Sword [Normal]
+0,WP_A_0221,Barbed Straight Sword [Normal]
+0,WP_A_0222,Executioner's Greatsword [Normal]
+0,WP_A_0223,Anri's Straight Sword [Unique]
+0,WP_A_0224,Onyx Blade [Unique]
+0,WP_A_0225,Ringed Knight Straight Sword [Unique]
+0,WP_A_0226,Gael's Greatsword [Boss]
+0,WP_A_0227,Sword of Avowal [Unique]
+0,WP_A_0300,Estoc [Normal]
+0,WP_A_0301,Mail Breaker [Normal]
+0,WP_A_0302,Rapier [Normal]
+0,WP_A_0303,Ricard's Rapier [Normal]
+0,WP_A_0304,Crystal Sage's Rapier [Boss]
+0,WP_A_0305,Irithyll Rapier [Unique]
+0,WP_A_0306,Bone Rapier [Unique]
+0,WP_A_0401,Shotel [Normal]
+0,WP_A_0403,Scimitar [Normal]
+0,WP_A_0404,Falchion [Normal]
+0,WP_A_0405,Carthus Curved Sword [Normal]
+0,WP_A_0406,Carthus Curved Greatsword [Normal]
+0,WP_A_0407,Pontiff Knight Curved Sword [Unique]
+0,WP_A_0408,Storm Curved Sword [Boss]
+0,WP_A_0409,Painting Guardian's Curved Sword [Normal]
+0,WP_A_0410,Crescent Moon Sword [Normal]
+0,WP_A_0411,Carthus Shotel [Normal]
+0,WP_A_0412,Follower Sabre [Normal]
+0,WP_A_0413,Demon's Scar [Boss]
+0,WP_A_0500,Uchigatana [Normal]
+0,WP_A_0501,Washing Pole [Normal]
+0,WP_A_0502,Chaos Blade [Unique]
+0,WP_A_0503,Black Blade [Normal]
+0,WP_A_0504,Bloodlust [Unique]
+0,WP_A_0505,Darkdrift [Unique]
+0,WP_A_0506,Frayed Blade [Boss]
+0,WP_A_0600,Bastard Sword [Normal]
+0,WP_A_0601,Smouldering Greatsword [Unique]
+0,WP_A_0602,Claymore [Normal]
+0,WP_A_0604,Zweihander [Normal]
+0,WP_A_0605,Greatsword [Normal]
+0,WP_A_0606,Irithyll Greatsword [Unique]
+0,WP_A_0607,Astora Greatsword [Normal]
+0,WP_A_0608,Murakumo [Normal]
+0,WP_A_0610,Lothric Knight Greatsword [Normal]
+0,WP_A_0613,Black Knight Greatsword [Unique]
+0,WP_A_0614,Flamberge [Normal]
+0,WP_A_0615,Exile Greatsword [Normal]
+0,WP_A_0617,Greatsword of Judgment [Boss]
+0,WP_A_0618,Profaned Greatsword [Boss]
+0,WP_A_0619,Cathedral Knight Greatsword [Normal]
+0,WP_A_0620,Farron Greatsword [Boss]
+0,WP_A_0623,Yhorm's Great Machete [Boss]
+0,WP_A_0624,Dark Sword [Normal]
+0,WP_A_0625,Black Knight Sword [Unique]
+0,WP_A_0626,Lorian's Greatsword [Boss]
+0,WP_A_0627,Twin Princes' Greatsword [Boss]
+0,WP_A_0628,Lothric's Holy Sword [Boss]
+0,WP_A_0629,Wolnir's Holy Sword [Boss]
+0,WP_A_0630,Wolf Knight's Greatsword [Boss]
+0,WP_A_0631,Hollowslayer Greatsword [Boss]
+0,WP_A_0632,Moonlight Greatsword [Boss]
+0,WP_A_0633,Drakeblood Greatsword [Normal]
+0,WP_A_0634,Firelink Greatsword [Boss]
+0,WP_A_0635,Fume Ultra Greatsword [Unique]
+0,WP_A_0636,Old Wolf Curved Sword [Unique]
+0,WP_A_0637,Storm Ruler [Boss]
+0,WP_A_0638,Harald Curved Greatsword [Normal]
+0,WP_A_0700,Hand Axe [Normal]
+0,WP_A_0701,Battle Axe [Normal]
+0,WP_A_0702,Brigand Axe [Normal]
+0,WP_A_0704,Crescent Axe [Normal]
+0,WP_A_0705,Greataxe [Normal]
+0,WP_A_0707,Butcher Knife [Unique]
+0,WP_A_0708,Dragonslayer's Axe [Normal]
+0,WP_A_0709,Missionary Axe [Normal]
+0,WP_A_0710,Thrall Axe [Normal]
+0,WP_A_0711,Dragonslayer Greataxe [Boss]
+0,WP_A_0712,Demon's Greataxe [Boss]
+0,WP_A_0713,Eleonora [Unique]
+0,WP_A_0715,Man Serpent Hatchet [Normal]
+0,WP_A_0717,Millwood Battle Axe [Normal]
+0,WP_A_0718,Earth Seeker [Unique]
+0,WP_A_0800,Club [Normal]
+0,WP_A_0801,Mace [Normal]
+0,WP_A_0802,Morning Star [Normal]
+0,WP_A_0803,Reinforced Club [Normal]
+0,WP_A_0806,Large Club [Normal]
+0,WP_A_0808,Great Club [Normal]
+0,WP_A_0811,Great Mace [Normal]
+0,WP_A_0816,Great Wooden Hammer [Normal]
+0,WP_A_0817,Gargoyle Flame Hammer [Unique]
+0,WP_A_0818,Vordt's Great Hammer [Boss]
+0,WP_A_0819,Old King's Great Hammer [Boss]
+0,WP_A_0821,Four Knights Hammer [Unique]
+0,WP_A_0822,Heysel Pick [Unique]
+0,WP_A_0823,Hammer of the Great Tree [Boss]
+0,WP_A_0824,Warpick [Normal]
+0,WP_A_0825,Pickaxe [Normal]
+0,WP_A_0826,Dragon Tooth [Dragon]
+0,WP_A_0827,Smough's Great Hammer [Unique]
+0,WP_A_0828,Blacksmith Hammer [Normal]
+0,WP_A_0829,Morne's Great Hammer [Unique]
+0,WP_A_0830,Spiked Mace [Normal]
+0,WP_A_0831,Quakestone Hammer [Unique]
+0,WP_A_0832,Ledo's Great Hammer [Unique]
+0,WP_A_0900,Spear [Normal]
+0,WP_A_0901,Winged Spear [Normal]
+0,WP_A_0903,Partizan [Normal]
+0,WP_A_0908,Greatlance [Normal]
+0,WP_A_0909,Lothric Knight Long Spear [Normal]
+0,WP_A_0912,Rotten Ghru Spear [Normal]
+0,WP_A_0913,Tailbone Spear [Dragon]
+0,WP_A_0914,Soldering Iron [Unique]
+0,WP_A_0916,Dragonslayer Swordspear [Boss]
+0,WP_A_0917,Arstor's Spear [Boss]
+0,WP_A_0918,Saint Bident [Normal]
+0,WP_A_0919,Yorshka's Spear [Unique]
+0,WP_A_0922,Dragonslayer Spear [Unique]
+0,WP_A_0923,Follower Javelin [Normal]
+0,WP_A_0924,Ringed Knight Spear [Unique]
+0,WP_A_0925,Lothric War Banner [Normal]
+0,WP_A_0926,Crucifix of the Mad King [Unique]
+0,WP_A_1001,Lucerne [Normal]
+0,WP_A_1002,Glaive [Normal]
+0,WP_A_1003,Halberd [Normal]
+0,WP_A_1005,Black Knight Greataxe [Unique]
+0,WP_A_1007,Pontiff Knight Great Scythe [Unique]
+0,WP_A_1008,Great Corvian Scythe [Normal]
+0,WP_A_1009,Winged Knight Halberd [Normal]
+0,WP_A_1010,Gundyr's Halberd [Boss]
+0,WP_A_1011,Lothric's Scythe [Boss]
+0,WP_A_1012,Ancient Dragon Halberd [Dragon]
+0,WP_A_1014,Red Hilted Halberd [Normal]
+0,WP_A_1015,Black Knight Glaive [Unique]
+0,WP_A_1016,Immolation Tinder [Unique]
+0,WP_A_1017,Splitleaf Greatsword [Normal]
+0,WP_A_1018,Friede's Great Scythe [Boss]
+0,WP_A_1101,Caestus [Normal]
+0,WP_A_1102,Manikin Claws [Normal]
+0,WP_A_1103,Demon's Fist [Boss]
+0,WP_A_1104,Dark Hand [Uninfusable]
+0,WP_A_1105,Crow Talons [Normal]
+0,WP_A_1107,Censuring Palm [Normal]
+0,WP_A_1204,Witch's Locks [Unique]
+0,WP_A_1205,Notched Whip [Normal]
+0,WP_A_1206,Spotted Whip [Unique]
+0,WP_A_1207,Rose of Ariandel [Boss]
+0,WP_A_1211,Quarterstaff [Normal]
+0,WP_A_1212,Corvian Longstaff [Unique]
+0,WP_A_1213,Witchtree Limb [Unique]
+0,WP_A_1214,Murky Warstaff [Unique]
+0,WP_A_1215,Longstaff of Rosaria [Boss]
+0,WP_A_1216,Staff of Serpents [Dragon]
+0,WP_A_1217,Archdeacon's Longstaff [Unique]
+0,WP_A_1218,Heretic's Warstaff [Unique]
+0,WP_A_1219,Witch's Staff [Unique]
+0,WP_A_1305,Talisman [Normal]
+0,WP_A_1306,Sorcerer's Staff [Normal]
+0,WP_A_1307,Storyteller's Staff [Normal]
+0,WP_A_1308,Mendicant's Staff [Normal]
+0,WP_A_1310,Man-grub's Staff [Unique]
+0,WP_A_1311,Archdeacon's Great Staff [Unique]
+0,WP_A_1312,Golden Ritual Spear [Boss]
+0,WP_A_1314,Yorshka's Chime [Unique]
+0,WP_A_1316,Sage's Crystal Staff [Unique]
+0,WP_A_1317,Heretic's Staff [Normal]
+0,WP_A_1318,Court Sorcerer's Staff [Unique]
+0,WP_A_1319,Witchtree Branch [Unique]
+0,WP_A_1320,Izalith Staff [Unique]
+0,WP_A_1321,Cleric's Sacred Chime [Normal]
+0,WP_A_1322,Priest's Chime [Normal]
+0,WP_A_1323,Saint-tree Bellvine [Unique]
+0,WP_A_1324,Caitha's Chime [Boss]
+0,WP_A_1325,Crystal Chime [Unique]
+0,WP_A_1326,Sunlight Talisman [Unique]
+0,WP_A_1327,Canvas Talisman [Normal]
+0,WP_A_1328,Sunless Talisman [Unique]
+0,WP_A_1329,Saint's Talisman [Normal]
+0,WP_A_1330,White Hair Talisman [Unique]
+0,WP_A_1340,Pyromancy Flame [Fire Seed]
+0,WP_A_1341,Pyromancer's Parting Flame [Fire Seed]
+0,WP_A_1342,Murky Longstaff [Normal]
+0,WP_A_1343,Sacred Chime of Filianore [Unique]
+0,WP_A_1344,Preacher's Right Arm [Unique]
+0,WP_A_1345,Black Flame [Fire Seed]
+0,WP_A_1346,Holy Flame [Fire Seed]
+0,WP_A_1347,Veiled Staff [Normal]
+0,WP_A_1348,Veiled Talisman [Normal]
+0,WP_A_1349,Veiled Flame [Fire Seed]
+0,WP_A_1350,Sorcerous Flame [Fire Seed]
+0,WP_A_1351,Fool's Flame [Fire Seed]
+0,WP_A_1352,Petrified Flame [Fire Seed]
+0,WP_A_1353,Jester's Talisman [Unique]
+0,WP_A_1354,Darkmoon Ritual Staff [Boss]
+0,WP_A_1360,Dragonslayer Greatbow [Unique]
+0,WP_A_1401,Short Bow [Normal]
+0,WP_A_1402,Composite Bow [Normal]
+0,WP_A_1404,Birch Crossbow [Normal]
+0,WP_A_1405,Arbalest [Unique]
+0,WP_A_1406,Longbow [Normal]
+0,WP_A_1407,Dragonrider Bow [Unique]
+0,WP_A_1409,Avelyn [Unique]
+0,WP_A_1410,Knight's Crossbow [Normal]
+0,WP_A_1411,Oak Crossbow [Normal]
+0,WP_A_1412,White Birch Bow [Unique]
+0,WP_A_1413,Darkmoon Longbow [Boss]
+0,WP_A_1414,Onislayer Greatbow [Unique]
+0,WP_A_1415,Black Bow of Pharis [Normal]
+0,WP_A_1417,Sniper Crossbow [Normal]
+0,WP_A_1418,Millwood Greatbow [Unique]
+0,WP_A_1419,Repeating Crossbow [Boss]
+0,WP_A_1602,Warden Twinblades [Normal]
+0,WP_A_1603,Winged Knight Twinaxes [Normal]
+0,WP_A_1604,Dancer's Enchanted Swords [Boss]
+0,WP_A_1605,Great Machete [Normal]
+0,WP_A_1606,Brigand Twindaggers [Normal]
+0,WP_A_1607,Gotthard Twinswords [Normal]
+0,WP_A_1608,Golden Dual Swords [Unique]
+0,WP_A_1609,Onikiri and Ubadachi [Normal]
+0,WP_A_1610,Drang Twinspears [Normal]
+0,WP_A_1612,Giant Door Shield [Normal]
+0,WP_A_1613,Drang Hammers [Normal]
+0,WP_A_1614,Valorheart [Unique]
+0,WP_A_1615,Crow Quills [Normal]
+0,WP_A_1616,Ringed Knight Paired Greatswords [Unique]
+0,WP_A_2001,Small Leather Shield [Normal]
+0,WP_A_2003,Round Shield [Normal]
+0,WP_A_2004,Large Leather Shield [Normal]
+0,WP_A_2007,Hawkwood's Shield [Normal]
+0,WP_A_2008,Iron Round Shield [Normal]
+0,WP_A_2011,Wooden Shield [Normal]
+0,WP_A_2012,Kite Shield [Normal]
+0,WP_A_2013,Ghru Rotshield [Normal]
+0,WP_A_2015,Havel's Greatshield [Dragon]
+0,WP_A_2016,Target Shield [Normal]
+0,WP_A_2017,Elkhorn Round Shield [Normal]
+0,WP_A_2018,Warrior's Round Shield [Normal]
+0,WP_A_2019,Caduceus Round Shield [Normal]
+0,WP_A_2020,Red and White Round Shield [Normal]
+0,WP_A_2021,Plank Shield [Normal]
+0,WP_A_2022,Leather Shield [Normal]
+0,WP_A_2023,Crimson Parma [Normal]
+0,WP_A_2024,Eastern Iron Shield [Normal]
+0,WP_A_2025,Llewellyn Shield [Normal]
+0,WP_A_2026,Cleric's Parma [Normal]
+0,WP_A_2027,Golden Falcon Shield [Normal]
+0,WP_A_2028,Sacred Bloom Shield [Unique]
+0,WP_A_2029,Ancient Dragon Greatshield [Dragon]
+0,WP_A_2030,Follower Shield [Normal]
+0,WP_A_2031,Dragonhead Shield [Dragon]
+0,WP_A_2101,Lothric Knight Shield [Normal]
+0,WP_A_2104,Knight Shield [Normal]
+0,WP_A_2106,Pontiff Knight Shield [Unique]
+0,WP_A_2107,Carthus Shield [Normal]
+0,WP_A_2110,Black Knight Shield [Unique]
+0,WP_A_2111,Prince's Shield [Boss]
+0,WP_A_2112,Silver Knight Shield [Unique]
+0,WP_A_2113,Spiked Shield [Normal]
+0,WP_A_2114,Pierce Shield [Normal]
+0,WP_A_2115,East-West Shield [Normal]
+0,WP_A_2116,Sunlight Shield [Normal]
+0,WP_A_2117,Crest Shield [Unique]
+0,WP_A_2118,Dragon Crest Shield [Unique]
+0,WP_A_2119,Spider Shield [Normal]
+0,WP_A_2120,Grass Crest Shield [Unique]
+0,WP_A_2121,Sunset Shield [Normal]
+0,WP_A_2122,Golden Wing Crest Shield [Unique]
+0,WP_A_2123,Blue Wooden Shield [Normal]
+0,WP_A_2124,Silver Eagle Kite Shield [Normal]
+0,WP_A_2125,Stone Parma [Normal]
+0,WP_A_2126,Spirit Tree Crest Shield [Unique]
+0,WP_A_2127,Porcine Shield [Normal]
+0,WP_A_2128,Shield of Want [Boss]
+0,WP_A_2129,Wargod Wooden Shield [Normal]
+0,WP_A_2131,Dragonhead Greatshield [Dragon]
+0,WP_A_2201,Lothric Knight Greatshield [Normal]
+0,WP_A_2202,Cathedral Knight Greatshield [Normal]
+0,WP_A_2204,Dragonslayer Greatshield [Boss]
+0,WP_A_2205,Moaning Shield [Unique]
+0,WP_A_2206,Immortal Dragon Greatshield [Dragon]
+0,WP_A_2207,Yhorm's Greatshield [Boss]
+0,WP_A_2208,Black Iron Greatshield [Normal]
+0,WP_A_2209,Wolf Knight's Greatshield [Unique]
+0,WP_A_2210,Twin Dragon Greatshield [Normal]
+0,WP_A_2211,Greatshield of Glory [Unique]
+0,WP_A_2212,Curse Ward Greatshield [Boss]
+0,WP_A_2213,Bonewheel Shield [Normal]
+0,WP_A_2214,Stone Greatshield [Normal]
+0,WP_A_2300,Torch
+0,WP_A_2301,Follower Torch
+0,WP_A_3001,Firelink Dagger [Boss]
+0,WP_A_3002,Firelink Spear [Boss]
+0,WP_A_3003,Firelink Sword [Boss]
+0,WP_A_3004,Firelink Rapier [Boss]
+0,WP_A_3005,Greatwood Club [Boss]
+0,WP_A_3006,Irithyll Lance [Unique]
+0,WP_A_3007,Fume Sword [Unique]
+0,WP_A_3008,Machete [Normal]
+0,WP_A_3009,Demon's Axe [Boss]
+0,WP_A_3010,Abyssal Greatsword [Unique]
+0,WP_A_3011,Moonlight Sword [Boss]
+0,WP_A_3013,Pontiff Knight Greatsword [Unique]
+0,WP_A_3014,Demon's Great Hammer [Boss]
+0,WP_A_3015,Tailbone Sword [Dragon]
+0,WP_A_3016,Yorshka's Hammer [Unique]
+0,WP_A_3017,Dragon's Grasp [Dragon]
+0,WP_A_3018,Irithyll Pick [Unique]
+0,WP_A_3019,Tailbone Pick [Dragon]
+0,WP_A_3020,Tailbone Club [Dragon]
+0,WP_A_3021,Archdeacon's Bident [Boss]
+0,WP_A_3022,Irithyll Mace [Unique]
+0,WP_A_3023,Hammer of Carim [Unique]
+0,WP_A_3024,Wooden Mallet [Normal]
+0,WP_A_6399,[Debug] Arrow
+0,WP_A_6700,[Debug] Bolt
+0,WP_A_9004,[Debug] Daggers
+0,WP_A_9005,[Debug] Twinswords
+0,WP_A_9006,[Debug] Shield
+0,WP_A_1000,No Correction
+0,WP_A_1100,Throwing Knife
+0,WP_A_1200,Church Guardian Shiv
+0,WP_A_1300,Poison Throwing Knife
+0,WP_A_1400,Firebomb
+0,WP_A_1500,Lightning Urn
+0,WP_A_1600,TestData4
+0,WP_A_1700,Black Firebomb
+0,WP_A_1800,Dung Pie
+0,WP_A_1900,Twinkling Dragon Head Stone
+0,WP_A_2000,Twinkling Dragon Torso Stone
+0,WP_A_2100,Spear Fragment
+0,WP_A_4000,Standard Arrow
+0,WP_A_4001,Fire Arrow
+0,WP_A_4002,Poison Arrow
+0,WP_A_4003,Large Arrow
+0,WP_A_4004,Feather Arrow
+0,WP_A_4005,Moonlight Arrow
+0,WP_A_4006,Wood Arrow
+0,WP_A_4007,Dark Arrow
+0,WP_A_4020,Dragonslayer Greatarrow
+0,WP_A_4022,Dragonslayer Lightning Arrow
+0,WP_A_4023,Onislayer Greatarrow
+0,WP_A_4024,Millwood Greatarrow
+0,WP_A_4040,Standard Bolt
+0,WP_A_4041,Heavy Bolt
+0,WP_A_4042,Sniper Bolt
+0,WP_A_4043,Wood Bolt
+0,WP_A_4044,Lightning Bolt
+0,WP_A_4045,Splintering Bolt
+0,WP_A_4046,Exploding Bolt
+0,WP_A_4099,TestData Bolt1
+0,WP_A_4199,TestData Bolt2
+0,WP_A_8000,Test Greatbow
+0,WP_A_8900,Test-Glow
+0,WP_A_9300,Ghost Dagger
+0,WP_A_9301,Ghost Sword
+0,WP_A_9302,Ghost Longsword
+0,WP_A_9303,Ghost Ultralongsword
+0,WP_A_9304,Ghost Rapier
+0,WP_A_9305,Ghost Curved Sword
+0,WP_A_9306,Ghost Saber
+0,WP_A_9307,Ghost Katana
+0,WP_A_9308,Ghost Curved Greatsword
+0,WP_A_9309,Ghost Axe
+0,WP_A_9310,Ghost Greataxe
+0,WP_A_9311,Ghost Club
+0,WP_A_9312,Ghost Greatclub
+0,WP_A_9313,Ghost Spear
+0,WP_A_9314,Ghost Halberd
+0,WP_A_9315,Ghost Scythe
+0,WP_A_9316,Ghost Staff
+0,WP_A_9317,Ghost Chime
+0,WP_A_9318,Ghost Pyrohand
+0,WP_A_9319,Ghost Whip
+0,WP_A_9320,Ghost Bow
+0,WP_A_9321,Ghost Greatbow
+0,WP_A_9322,Ghost Arbalet
+0,WP_A_9323,Ghost Fist
+0,WP_A_9324,Ghost Caestus
+0,WP_A_9325,Ghost Claw
+0,WP_A_9326,Ghost PairedCurvedSwords
+0,WP_A_9327,Ghost PairedAxes
+0,WP_A_9328,Ghost PairedDaggers
+0,WP_A_9329,Ghost PairedLongSwords
+0,WP_A_9330,Ghost PairedKatanas
+0,WP_A_9331,Ghost PairedSpears
+0,WP_A_9332,Ghost DemonFist
+0,WP_A_9333,Ghost Claw
+0,WP_A_9334,Ghost PairedMace
+0,WP_A_9336,Ghost SmallShield
+0,WP_A_9337,Ghost Shield
+0,WP_A_9338,Ghost GreatShield
+0,WP_A_9339,Ghost Torch

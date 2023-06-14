@@ -3,6 +3,14 @@
     "ModelsFolderPath": "D:\\SteamLibrary\\steamapps\\common\\ELDEN RING\\Game\\parts",
     "ModelArchivesFolderPath": "D:\\Syncthing Shared\\Game Mods & Tools\\Tools\\FromSoftware\\Repositories\\Active\\FSModelUtility\\Armor Sets"
   },
+  "DARK SOULS I": {
+    "ModelsFolderPath": "",
+    "ModelArchivesFolderPath": ""
+  },
+  "DARK SOULS II": {
+    "ModelsFolderPath": "",
+    "ModelArchivesFolderPath": ""
+  },
   "DARK SOULS III": {
     "ModelsFolderPath": "D:\\SteamLibrary\\steamapps\\common\\DARK SOULS III\\Game\\parts",
     "ModelArchivesFolderPath": "D:\\Syncthing Shared\\Game Mods & Tools\\Tools\\FromSoftware\\Repositories\\Active\\FSModelUtility\\Armor Sets"

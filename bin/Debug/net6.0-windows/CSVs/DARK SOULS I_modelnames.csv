@@ -1,0 +1,364 @@
+0,AM_M_0000,Shaved
+0,AM_F_0000,Shaved
+0,AM_M_0002,Receding
+0,AM_F_0002,Wave
+0,AM_M_0003,Bobbed
+0,AM_F_0003,Pigtails
+0,AM_M_0004,Swept Back
+0,AM_F_0004,Straight A
+0,AM_M_0005,Semi-Long
+0,AM_F_0005,Straight B
+0,AM_M_0006,Wild
+0,AM_F_0006,Very Short
+0,AM_M_0007,Curly
+0,AM_F_0007,Ponytail A
+0,AM_F_0008,Ponytail B
+0,AM_F_0009,Bun
+0,AM_M_0010,Parted Center
+0,AM_F_0010,Braided
+0,AM_M_0011,Short
+0,AM_M_0012,Ponytail
+0,AM_A_1000,Catarina Helm
+0,AM_M_1000,Catarina Leggings (Male Version)
+0,AM_F_1000,Catarina Leggings (Female Version)
+0,AM_M_2520,Hollow Thief's Hood (Male Version)
+0,AM_F_2520,Hollow Thief's Hood (Female Version)
+0,AM_M_2540,Hollow Warrior Helm (Male Version)
+0,AM_F_2540,Hollow Warrior Helm (Female Version)
+0,AM_M_2550,Hollow Soldier Helm (Male Version)
+0,AM_F_2550,Hollow Soldier Helm (Female Version)
+0,AM_A_2560,Balder Helm
+0,AM_M_2560,Balder Armor (Male Version)
+0,AM_F_2560,Balder Armor (Female Version)
+0,AM_A_2570,Steel Helm
+0,AM_M_2570,Steel Leggings (Male Version)
+0,AM_F_2570,Steel Leggings (Female Version)
+0,AM_A_2660,Sack
+0,AM_A_2780,Symbol of Avarice
+0,AM_A_2870,Giant Helm
+0,AM_M_2870,Giant Leggings (Male Version)
+0,AM_F_2870,Giant Leggings (Female Version)
+0,AM_A_2920,Royal Helm
+0,AM_A_3320,Mask of the Father
+0,AM_A_3321,Mask of the Mother
+0,AM_A_3322,Mask of the Child
+0,AM_A_3460,Fang Boar Helm
+0,AM_A_5320,Crown of the Dark Sun
+0,AM_M_5320,Moonlight Robe (Male Version)
+0,AM_F_5320,Moonlight Robe (Female Version)
+0,AM_A_5350,Gargoyle Helm
+0,AM_A_5370,Crown of the Great Lord
+0,AM_M_5370,Robe of the Great Lord (Male Version)
+0,AM_F_5370,Robe of the Great Lord (Female Version)
+0,AM_A_8200,Paladin Helm
+0,AM_M_8200,Paladin Leggings (Male Version)
+0,AM_F_8200,Paladin Leggings (Female Version)
+0,AM_M_8990,No Travel Gear / Head (Male Version)
+0,AM_F_8990,No Travel Gear / Head (Female Version)
+0,AM_M_9000,Travel Hairstyle (Male Version)
+0,AM_F_9000,Travel Hairstyle (Female Version)
+0,AM_A_9120,Egg
+0,AM_A_9130,Sunlight Maggot
+0,AM_A_9200,Smough's Helm
+0,AM_M_9200,Smough's Leggings (Male Version)
+0,AM_F_9200,Smough's Leggings (Female Version)
+0,AM_A_9210,Six-Eyed Helm of the Channelers
+0,AM_M_9210,Waistcloth of the Channelers (Male Version)
+0,AM_F_9210,Waistcloth of the Channelers (Female Version)
+0,AM_A_9220,Helm of Favor
+0,AM_M_9220,Embraced Armor of Favor (Male Version)
+0,AM_F_9220,Embraced Armor of Favor (Female Version)
+0,AM_M_9230,Witch Hat (Male Version)
+0,AM_F_9230,Witch Hat (Female Version)
+0,AM_A_9240,Stone Helm
+0,AM_M_9240,Stone Leggings (Male Version)
+0,AM_F_9240,Stone Leggings (Female Version)
+0,AM_A_9250,Crystalline Helm
+0,AM_M_9250,Crystalline Leggings (Male Version)
+0,AM_F_9250,Crystalline Leggings (Female Version)
+0,AM_M_9260,Mask of the Sealer (Male Version)
+0,AM_F_9260,Mask of the Sealer (Female Version)
+0,AM_M_9270,Mask of Velka (Male Version)
+0,AM_F_9270,Mask of Velka (Female Version)
+0,AM_M_9280,Iron Helm (Male Version)
+0,AM_F_9280,Iron Helm (Female Version)
+0,AM_A_9290,Black Iron Helm
+0,AM_M_9290,Black Iron Leggings (Male Version)
+0,AM_F_9290,Black Iron Leggings (Female Version)
+0,AM_M_9300,Chain Helm (Male Version)
+0,AM_F_9300,Chain Helm (Female Version)
+0,AM_A_9310,Dark Mask
+0,AM_M_9310,Dark Leggings (Male Version)
+0,AM_F_9310,Dark Leggings (Female Version)
+0,AM_M_9320,Brigand Hood (Male Version)
+0,AM_F_9320,Brigand Hood (Female Version)
+0,AM_M_9340,Cleric Helm (Male Version)
+0,AM_F_9340,Cleric Helm (Female Version)
+0,AM_M_9341,Elite Cleric Helm (Male Version)
+0,AM_F_9341,Elite Cleric Helm (Female Version)
+0,AM_M_9350,Shadow Mask (Male Version)
+0,AM_F_9350,Shadow Mask (Female Version)
+0,AM_M_9360,Standard Helm (Male Version)
+0,AM_F_9360,Standard Helm (Female Version)
+0,AM_M_9370,Sorcerer Hat (Male Version)
+0,AM_F_9370,Sorcerer Hat (Female Version)
+0,AM_M_9371,Mage Smith Hat (Male Version)
+0,AM_F_9371,Mage Smith Hat (Female Version)
+0,AM_M_9372,Black Sorcerer Hat (Male Version)
+0,AM_F_9372,Black Sorcerer Hat (Female Version)
+0,AM_M_9380,Tattered Cloth Hood (Male Version)
+0,AM_F_9380,Tattered Cloth Hood (Female Version)
+0,AM_A_9390,Helm of Thorns
+0,AM_M_9390,Leggings of Thorns (Male Version)
+0,AM_F_9390,Leggings of Thorns (Female Version)
+0,AM_M_9400,Xanthous Crown (Male Version)
+0,AM_F_9400,Xanthous Crown (Female Version)
+0,AM_M_9420,Pharis's Hat (Male Version)
+0,AM_F_9420,Pharis's Hat (Female Version)
+0,AM_M_9430,Painting Guardian Hood (Male Version)
+0,AM_F_9430,Painting Guardian Hood (Female Version)
+0,AM_M_9440,Eastern Helm (Male Version)
+0,AM_F_9440,Eastern Helm (Female Version)
+0,AM_M_9450,Thief Mask (Male Version)
+0,AM_F_9450,Thief Mask (Female Version)
+0,AM_M_9460,Priest's Hat (Male Version)
+0,AM_F_9460,Priest's Hat (Female Version)
+0,AM_A_9470,Ornstein's Helm
+0,AM_M_9470,Ornstein's Leggings (Male Version)
+0,AM_F_9470,Ornstein's Leggings (Female Version)
+0,AM_M_9480,Crown of Dusk (Male Version)
+0,AM_F_9480,Crown of Dusk (Female Version)
+0,AM_A_9490,Black Knight Helm
+0,AM_M_9490,Black Knight Leggings (Male Version)
+0,AM_F_9490,Black Knight Leggings (Female Version)
+0,AM_A_9500,Elite Knight Helm
+0,AM_M_9500,Elite Knight Leggings (Male Version)
+0,AM_F_9500,Elite Knight Leggings (Female Version)
+0,AM_M_9510,Helm of the Wise (Male Version)
+0,AM_F_9510,Helm of the Wise (Female Version)
+0,AM_M_9520,Dingy Hood (Male Version)
+0,AM_F_9520,Dingy Hood (Female Version)
+0,AM_M_9521,Maiden Hood (Male Version)
+0,AM_F_9521,Maiden Hood (Female Version)
+0,AM_M_9530,Wanderer Hood (Male Version)
+0,AM_F_9530,Wanderer Hood (Female Version)
+0,AM_M_9540,Big Hat (Male Version)
+0,AM_F_9540,Big Hat (Female Version)
+0,AM_M_9550,Knight Helm (Male Version)
+0,AM_F_9550,Knight Helm (Female Version)
+0,AM_A_9560,Silver Knight Helm
+0,AM_M_9560,Silver Knight Leggings (Male Version)
+0,AM_F_9560,Silver Knight Leggings (Female Version)
+0,AM_A_9570,Havel's Helm
+0,AM_M_9570,Havel's Leggings (Male Version)
+0,AM_F_9570,Havel's Leggings (Female Version)
+0,AM_M_9600,Dragon Head (Male Version)
+0,AM_F_9600,Dragon Head (Female Version)
+0,AM_A_9600,Dragon Body
+0,AM_M_9610,Brass Helm (Male Version)
+0,AM_F_9610,Brass Helm (Female Version)
+0,AM_M_9620,Gold-Hemmed Black Hood (Male Version)
+0,AM_F_9620,Gold-Hemmed Black Hood (Female Version)
+0,AM_A_9630,Golem Helm
+0,AM_M_9630,Golem Leggings (Male Version)
+0,AM_F_9630,Golem Leggings (Female Version)
+0,WP_A_0100,Dagger
+0,WP_A_0101,Bandit's Knife
+0,WP_A_0102,Jagged Ghost Blade
+0,WP_A_0103,Ghost Blade
+0,WP_A_0104,Priscilla's Dagger
+0,WP_A_0106,Mail Breaker
+0,WP_A_0107,Parrying Dagger
+0,WP_A_0200,Broken Straight Sword
+0,WP_A_0201,Longsword
+0,WP_A_0202,Balder Side Sword
+0,WP_A_0203,Crystal Straight Sword
+0,WP_A_0204,Broadsword
+0,WP_A_0206,Bastard Sword
+0,WP_A_0207,Shortsword
+0,WP_A_0208,Zweihander
+0,WP_A_0210,Man-serpent Greatsword
+0,WP_A_0211,Flamberge
+0,WP_A_0212,Silv. Knight Str. Sword
+0,WP_A_0213,Quelaag's Furysword
+0,WP_A_0220,Stone Greatsword
+0,WP_A_0221,Black Knight Greatsword
+0,WP_A_0230,Velka's Rapier
+0,WP_A_0231,Sunlight Straight Sword
+0,WP_A_0251,Greatsword
+0,WP_A_0252,Butcher Knife
+0,WP_A_0258,Moonlight Greatsword
+0,WP_A_0259,Black Knight Sword
+0,WP_A_0260,Darksword
+0,WP_A_0263,Crystal Greatsword
+0,WP_A_0264,Barbed Straight Sword
+0,WP_A_0266,Claymore
+0,WP_A_0267,Greatsword of Artorias
+0,WP_A_0268,Great Lord Greatsword
+0,WP_A_0269,Greatsword of Artorias
+0,WP_A_0270,Demon Great Machete
+0,WP_A_0271,Astora's Straight Sword
+0,WP_A_0272,Straight Sword Hilt
+0,WP_A_0280,Server
+0,WP_A_0281,Dragon Greatsword
+0,WP_A_0282,Gravelord Sword
+0,WP_A_0284,Murakumo
+0,WP_A_0291,Drake Sword
+0,WP_A_0300,Rapier
+0,WP_A_0301,Estoc
+0,WP_A_0302,Ricard's Rapier
+0,WP_A_0400,Scimitar
+0,WP_A_0401,Falchion
+0,WP_A_0402,Uchigatana
+0,WP_A_0403,Shotel
+0,WP_A_0406,Painting Guardian Sword
+0,WP_A_0450,Washing Pole
+0,WP_A_0451,Chaos Blade
+0,WP_A_0452,Iaito
+0,WP_A_0502,Hand Axe
+0,WP_A_0503,Crescent Axe
+0,WP_A_0504,Greataxe
+0,WP_A_0505,Battle Axe
+0,WP_A_0506,Dragon King Greataxe
+0,WP_A_0507,Black Knight Greataxe
+0,WP_A_0508,Golem Axe
+0,WP_A_0509,Gargoyle Tail Axe
+0,WP_A_0600,Club
+0,WP_A_0602,Reinforced Club
+0,WP_A_0603,Morning Star
+0,WP_A_0604,Warpick
+0,WP_A_0605,Pickaxe
+0,WP_A_0606,Mace
+0,WP_A_0607,Great Club
+0,WP_A_0608,Grant
+0,WP_A_0651,Demon's Greataxe
+0,WP_A_0652,Smough's Hammer
+0,WP_A_0653,Demon's Catalyst
+0,WP_A_0654,Demon's Great Hammer
+0,WP_A_0655,Dragon Tooth
+0,WP_A_0656,Blacksmith Hammer
+0,WP_A_0657,Blacksmith Giant Hammer
+0,WP_A_0658,Hammer of Vamos
+0,WP_A_0659,Large Club
+0,WP_A_0700,Spear
+0,WP_A_0702,Winged Spear
+0,WP_A_0703,Partizan
+0,WP_A_0710,Demon's Spear
+0,WP_A_0720,Channeler's Trident
+0,WP_A_0721,Tin Banishment Catalyst
+0,WP_A_0730,Titanite Catch Pole
+0,WP_A_0731,Black Knight Halberd
+0,WP_A_0801,Great Scythe
+0,WP_A_0802,Lucerne
+0,WP_A_0803,Scythe
+0,WP_A_0804,Halberd
+0,WP_A_0805,Giant's Halberd
+0,WP_A_0810,Lifehunt Scythe
+0,WP_A_0811,Gargoyle's Halberd
+0,WP_A_0901,Logan's Catalyst
+0,WP_A_0902,Talisman
+0,WP_A_0903,Canvas Talisman
+0,WP_A_0904,Thorolund Talisman
+0,WP_A_0905,Ivory Talisman
+0,WP_A_0907,Sunlight Talisman
+0,WP_A_0908,Darkmoon Talisman
+0,WP_A_0909,Velka's Talisman
+0,WP_A_0910,Sorcerer's Catalyst
+0,WP_A_0911,Pyromancy Flame
+0,WP_A_0912,Beatrice's Catalyst
+0,WP_A_0913,Tin Darkmoon Catalyst
+0,WP_A_0914,Oolacile Ivory Catalyst
+0,WP_A_0915,Tin Crystallization Ctlyst.
+0,WP_A_0916,Izalith Catalyst
+0,WP_A_1000,Caestus
+0,WP_A_1002,Claw
+0,WP_A_1003,Dragon Bone Fist
+0,WP_A_1004,Dark Hand
+0,WP_A_1005,Fists
+0,WP_A_1100,Pike
+0,WP_A_1101,Silver Knight Spear
+0,WP_A_1102,Dragonslayer Spear
+0,WP_A_1103,Moonlight Butterfly Horn
+0,WP_A_1200,Whip
+0,WP_A_1201,Notched Whip
+0,WP_A_1300,Short Bow
+0,WP_A_1301,Longbow
+0,WP_A_1302,Composite Bow
+0,WP_A_1304,Black Bow of Pharis
+0,WP_A_1305,Darkmoon Bow
+0,WP_A_1360,Dragonslayer Greatbow
+0,WP_A_1399,Standard Arrow
+0,WP_A_1401,Light Crossbow
+0,WP_A_1402,Heavy Crossbow
+0,WP_A_1404,Sniper Crossbow
+0,WP_A_1405,Avelyn
+0,WP_A_1501,Target Shield
+0,WP_A_1502,Hollow Soldier Shield
+0,WP_A_1503,Cracked Round Shield
+0,WP_A_1504,Balder Shield
+0,WP_A_1505,Tower Shield
+0,WP_A_1507,Spiked Shield
+0,WP_A_1509,Crystal Shield
+0,WP_A_1510,Stone Greatshield
+0,WP_A_1511,Sunlight Shield
+0,WP_A_1513,Tower Kite Shield
+0,WP_A_1514,Black Knight Shield
+0,WP_A_1515,Heater Shield
+0,WP_A_1516,Knight Shield
+0,WP_A_1517,Grass Crest Shield
+0,WP_A_1518,Red and White Round Shield
+0,WP_A_1519,Iron Round Shield
+0,WP_A_1520,Spider Shield
+0,WP_A_1521,East-West Shield
+0,WP_A_1522,Wooden Shield
+0,WP_A_1523,Plank Shield
+0,WP_A_1524,Large Leather Shield
+0,WP_A_1525,Small Leather Shield
+0,WP_A_1526,Leather Shield
+0,WP_A_1527,Giant Shield
+0,WP_A_1528,Buckler
+0,WP_A_1529,Eagle Shield
+0,WP_A_1530,Pierce Shield
+0,WP_A_1531,Crystal Ring Shield
+0,WP_A_1532,Havel's Greatshield
+0,WP_A_1533,Silver Knight Shield
+0,WP_A_1534,Greatshield of Artorias
+0,WP_A_1535,Crest Shield
+0,WP_A_1536,Warrior's Round Shield
+0,WP_A_1537,Caduceus Kite Shield
+0,WP_A_1538,Caduceus Round Shield
+0,WP_A_1539,Gargoyle's Shield
+0,WP_A_1540,Bonewheel Shield
+0,WP_A_1541,Dragon Crest Shield
+0,WP_A_1542,Effigy Shield
+0,WP_A_1543,Sanctus
+0,WP_A_1544,Bloodshield
+0,WP_A_1545,Black Iron Greatshield
+0,WP_A_1700,Standard Bolt
+0,WP_A_1801,Skull Lantern
+0,WP_A_2001,<null>
+0,WP_A_2002,<null>
+0,WP_A_2003,<null>
+0,WP_A_2004,<null>
+0,WP_A_2005,<null>
+0,WP_A_2006,<null>
+0,WP_A_2007,<null>
+0,WP_A_2008,<null>
+0,WP_A_2009,<null>
+0,WP_A_2010,<null>
+0,WP_A_2011,<null>
+0,WP_A_2012,<null>
+0,WP_A_2013,<null>
+0,WP_A_2014,<null>
+0,WP_A_2015,<null>
+0,WP_A_2016,<null>
+0,WP_A_2017,<null>
+0,WP_A_2018,<null>
+0,WP_A_2019,<null>
+0,WP_A_2020,<null>
+0,WP_A_2021,<null>
+0,WP_A_2022,<null>
+0,WP_A_2023,<null>
+0,WP_A_2024,<null>
+0,WP_A_2025,Arrow
+0,WP_A_2026,Bolt

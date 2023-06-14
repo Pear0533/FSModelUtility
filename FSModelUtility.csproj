@@ -21,6 +21,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="CSVs\DARK SOULS III_modelnames.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="CSVs\DARK SOULS II_modelnames.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="CSVs\DARK SOULS I_modelnames.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="CSVs\ELDEN RING_modelnames.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DARK SOULS III_modelnames.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="ELDEN RING_modelnames.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="modelnames.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
