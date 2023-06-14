@@ -3,11 +3,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SharpCompress.Archives;
 using SharpCompress.Archives.Rar;
+using SharpCompress.Archives.Zip;
 using SearchOption = System.IO.SearchOption;
-using ZipArchive = SharpCompress.Archives.Zip.ZipArchive;
-
-// TODO: Recall model and model archive folder paths
-// TODO: Game-specific tabs for ease of use
 
 namespace FSModelUtility;
 
@@ -17,6 +14,8 @@ public partial class FSModelUtility : Form
     private const string replaceModelPartKey = "Replace Model Part";
     private const string replaceStatusKey = "Status";
     private const string version = "1.2";
+    private const string modelsFolderPathKey = "ModelsFolderPath";
+    private const string modelArchivesFolderPathKey = "ModelArchivesFolderPath";
     private static string modelsFolderPath = "";
     private static string modelArchivesFolderPath = "";
     private static string[] modelArchiveFilePaths = Array.Empty<string>();
@@ -25,13 +24,56 @@ public partial class FSModelUtility : Form
     private static readonly List<Model> models = new();
     private static readonly string appRootPath = Path.GetDirectoryName(Application.ExecutablePath) ?? "";
     private static readonly string modelReplaceLogPath = $"{appRootPath}\\model_replace_log.json";
+    private static readonly string gamesDatabasePath = $"{appRootPath}\\games_database.json";
     private static JObject modelReplaceLog = new();
+    private static JObject gamesDatabase = GetDefaultGamesDatabase();
 
     public FSModelUtility()
     {
         InitializeComponent();
         CenterToScreen();
         SetVersionString();
+        ReadGamesDatabase();
+        PopulateGameTabs();
+    }
+
+    private void PopulateGameTabs()
+    {
+        gameTabs.TabPages.Clear();
+        foreach (JProperty game in gamesDatabase.Properties())
+            gameTabs.TabPages.Add(game.Name);
+    }
+
+    private static JObject GetDefaultGamesDatabase()
+    {
+        JObject paths = new()
+        {
+            { "ModelsFolderPath", "" },
+            { "ModelArchivesFolderPath", "" }
+        };
+        JObject database = new()
+        {
+            { "ELDEN RING", paths },
+            { "DARK SOULS III", paths }
+        };
+        return database;
+    }
+
+    private static void ReadGamesDatabase()
+    {
+        try
+        {
+            gamesDatabase = JObject.Parse(File.ReadAllText(gamesDatabasePath));
+        }
+        catch
+        {
+            WriteGamesDatabase();
+        }
+    }
+
+    private static void WriteGamesDatabase()
+    {
+        File.WriteAllText(gamesDatabasePath, JsonConvert.SerializeObject(gamesDatabase, Formatting.Indented));
     }
 
     private void SetVersionString()
@@ -257,10 +299,8 @@ public partial class FSModelUtility : Form
         AssignModelTooltips();
     }
 
-    private void BrowseModelArchivesFolder()
+    private void PopulateModelArchives()
     {
-        modelArchivesFolderPath = BrowseForFolder("Select Model Archives Folder");
-        if (modelArchivesFolderPath == "") return;
         string[] zipFilePaths = GetAllFolderFiles(modelArchivesFolderPath, "*.zip");
         string[] rarFilePaths = GetAllFolderFiles(modelArchivesFolderPath, "*.rar");
         if (zipFilePaths.Length == 0 && rarFilePaths.Length == 0)
@@ -279,15 +319,22 @@ public partial class FSModelUtility : Form
         ReadAllModels();
     }
 
+    private void BrowseModelArchivesFolder()
+    {
+        modelArchivesFolderPath = BrowseForFolder("Select Model Archives Folder");
+        if (string.IsNullOrEmpty(modelArchivesFolderPath)) return;
+        gamesDatabase[gameTabs.SelectedTab.Text][modelArchivesFolderPathKey] = modelArchivesFolderPath;
+        WriteGamesDatabase();
+        PopulateModelArchives();
+    }
+
     private void BrowseModelArchivesButton_Click(object sender, EventArgs e)
     {
         BrowseModelArchivesFolder();
     }
 
-    private void BrowseModelsFolder()
+    private void PopulateModels()
     {
-        modelsFolderPath = BrowseForFolder("Select Models Folder");
-        if (modelsFolderPath == "") return;
         modelFilePaths = GetAllFolderFiles(modelsFolderPath, "*.partsbnd.dcx")
             .Concat(GetAllFolderFiles(modelsFolderPath, "*.chrbnd.dcx")).ToArray();
         if (modelFilePaths.Length == 0)
@@ -297,6 +344,15 @@ public partial class FSModelUtility : Form
         }
         modelsFolderPathLabel.Text = Path.GetDirectoryName(modelFilePaths[0]);
         modelArchivesFolderGroupBox.Enabled = true;
+    }
+
+    private void BrowseModelsFolder()
+    {
+        modelsFolderPath = BrowseForFolder("Select Models Folder");
+        if (string.IsNullOrEmpty(modelsFolderPath)) return;
+        gamesDatabase[gameTabs.SelectedTab.Text][modelsFolderPathKey] = modelsFolderPath;
+        WriteGamesDatabase();
+        PopulateModels();
     }
 
     private void BrowseModelsFolderButton_Click(object sender, EventArgs e)
@@ -505,6 +561,38 @@ public partial class FSModelUtility : Form
         TreeNode replaceModelNode = modelReplaceView.SelectedNode;
         if (modelArchivesView.SelectedNode.Parent == null) await RestoreSet();
         else await RestoreModel(replaceModelNode.Name, true);
+    }
+
+    private void ResetToModelsFolderState()
+    {
+        modelsFolderPathLabel.Text = @"N/A";
+        modelArchivesFolderGroupBox.Enabled = false;
+        searchGroupBox.Enabled = false;
+        mainSplitContainer.Enabled = false;
+    }
+
+    private void ResetToModelArchivesFolderState()
+    {
+        modelArchivesFolderPathLabel.Text = @"N/A";
+        searchGroupBox.Enabled = false;
+        mainSplitContainer.Enabled = false;
+    }
+
+    private void GameTabs_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (gameTabs.SelectedIndex == -1) return;
+        modelsFolderPath = gamesDatabase[gameTabs.SelectedTab.Text][modelsFolderPathKey].ToString();
+        modelArchivesFolderPath = gamesDatabase[gameTabs.SelectedTab.Text][modelArchivesFolderPathKey].ToString();
+        if (!string.IsNullOrEmpty(modelsFolderPath)) PopulateModels();
+        else ResetToModelsFolderState();
+        if (!string.IsNullOrEmpty(modelArchivesFolderPath)) PopulateModelArchives();
+        else ResetToModelArchivesFolderState();
+    }
+
+    private void FSModelUtility_Load(object sender, EventArgs e)
+    {
+        gameTabs.SelectedIndex = -1;
+        gameTabs.SelectedIndex = 0;
     }
 
     private class Model

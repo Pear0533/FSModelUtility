@@ -52,11 +52,13 @@
             nodeRightClickMenu = new ContextMenuStrip(components);
             copyToolStripMenuItem = new ToolStripMenuItem();
             searchGroupBox = new GroupBox();
+            modelArchivesRadioButton = new RadioButton();
             label1 = new Label();
             filterSearchOptionsBox = new ComboBox();
             modelReplaceRadioButton = new RadioButton();
             versionNumberLabel = new Label();
-            modelArchivesRadioButton = new RadioButton();
+            gameTabs = new TabControl();
+            tabPage1 = new TabPage();
             modelArchivesFolderGroupBox.SuspendLayout();
             modelsFolderGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)mainSplitContainer).BeginInit();
@@ -71,6 +73,7 @@
             splitContainer1.SuspendLayout();
             nodeRightClickMenu.SuspendLayout();
             searchGroupBox.SuspendLayout();
+            gameTabs.SuspendLayout();
             SuspendLayout();
             // 
             // copyrightInfoLabel
@@ -78,7 +81,7 @@
             copyrightInfoLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             copyrightInfoLabel.AutoSize = true;
             copyrightInfoLabel.ForeColor = Color.DimGray;
-            copyrightInfoLabel.Location = new Point(614, 6);
+            copyrightInfoLabel.Location = new Point(931, 9);
             copyrightInfoLabel.Name = "copyrightInfoLabel";
             copyrightInfoLabel.Size = new Size(174, 15);
             copyrightInfoLabel.TabIndex = 3;
@@ -91,11 +94,11 @@
             modelArchivesFolderGroupBox.Controls.Add(modelArchivesFolderPathLabel);
             modelArchivesFolderGroupBox.Controls.Add(label2);
             modelArchivesFolderGroupBox.Enabled = false;
-            modelArchivesFolderGroupBox.Location = new Point(4, 99);
+            modelArchivesFolderGroupBox.Location = new Point(6, 131);
             modelArchivesFolderGroupBox.Margin = new Padding(4, 5, 4, 5);
             modelArchivesFolderGroupBox.Name = "modelArchivesFolderGroupBox";
             modelArchivesFolderGroupBox.Padding = new Padding(4, 5, 4, 5);
-            modelArchivesFolderGroupBox.Size = new Size(784, 73);
+            modelArchivesFolderGroupBox.Size = new Size(1094, 73);
             modelArchivesFolderGroupBox.TabIndex = 13;
             modelArchivesFolderGroupBox.TabStop = false;
             modelArchivesFolderGroupBox.Text = "Model Archives Folder";
@@ -106,7 +109,7 @@
             modelArchivesFolderButton.Location = new Point(9, 23);
             modelArchivesFolderButton.Margin = new Padding(4, 5, 4, 5);
             modelArchivesFolderButton.Name = "modelArchivesFolderButton";
-            modelArchivesFolderButton.Size = new Size(766, 26);
+            modelArchivesFolderButton.Size = new Size(1076, 26);
             modelArchivesFolderButton.TabIndex = 5;
             modelArchivesFolderButton.Text = "Browse";
             modelArchivesFolderButton.UseVisualStyleBackColor = true;
@@ -138,11 +141,11 @@
             modelsFolderGroupBox.Controls.Add(modelsFolderButton);
             modelsFolderGroupBox.Controls.Add(modelsFolderPathLabel);
             modelsFolderGroupBox.Controls.Add(label6);
-            modelsFolderGroupBox.Location = new Point(4, 20);
+            modelsFolderGroupBox.Location = new Point(6, 52);
             modelsFolderGroupBox.Margin = new Padding(4, 5, 4, 5);
             modelsFolderGroupBox.Name = "modelsFolderGroupBox";
             modelsFolderGroupBox.Padding = new Padding(4, 5, 4, 5);
-            modelsFolderGroupBox.Size = new Size(784, 73);
+            modelsFolderGroupBox.Size = new Size(1094, 73);
             modelsFolderGroupBox.TabIndex = 12;
             modelsFolderGroupBox.TabStop = false;
             modelsFolderGroupBox.Text = "Models Folder (parts, chr, etc.)";
@@ -153,7 +156,7 @@
             modelsFolderButton.Location = new Point(9, 22);
             modelsFolderButton.Margin = new Padding(4, 5, 4, 5);
             modelsFolderButton.Name = "modelsFolderButton";
-            modelsFolderButton.Size = new Size(766, 26);
+            modelsFolderButton.Size = new Size(1076, 26);
             modelsFolderButton.TabIndex = 5;
             modelsFolderButton.Text = "Browse";
             modelsFolderButton.UseVisualStyleBackColor = true;
@@ -183,7 +186,7 @@
             // 
             mainSplitContainer.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             mainSplitContainer.Enabled = false;
-            mainSplitContainer.Location = new Point(4, 255);
+            mainSplitContainer.Location = new Point(6, 287);
             mainSplitContainer.Name = "mainSplitContainer";
             // 
             // mainSplitContainer.Panel1
@@ -193,8 +196,8 @@
             // mainSplitContainer.Panel2
             // 
             mainSplitContainer.Panel2.Controls.Add(modelReplaceGroupBox);
-            mainSplitContainer.Size = new Size(784, 197);
-            mainSplitContainer.SplitterDistance = 379;
+            mainSplitContainer.Size = new Size(1094, 377);
+            mainSplitContainer.SplitterDistance = 527;
             mainSplitContainer.TabIndex = 15;
             // 
             // modelArchivesGroupBox
@@ -203,7 +206,7 @@
             modelArchivesGroupBox.Controls.Add(modelArchivesView);
             modelArchivesGroupBox.Location = new Point(3, 3);
             modelArchivesGroupBox.Name = "modelArchivesGroupBox";
-            modelArchivesGroupBox.Size = new Size(373, 191);
+            modelArchivesGroupBox.Size = new Size(521, 371);
             modelArchivesGroupBox.TabIndex = 16;
             modelArchivesGroupBox.TabStop = false;
             modelArchivesGroupBox.Text = "Model Archives";
@@ -214,7 +217,7 @@
             modelArchivesView.HideSelection = false;
             modelArchivesView.Location = new Point(5, 22);
             modelArchivesView.Name = "modelArchivesView";
-            modelArchivesView.Size = new Size(362, 163);
+            modelArchivesView.Size = new Size(510, 342);
             modelArchivesView.TabIndex = 0;
             modelArchivesView.AfterSelect += ModelArchivesView_AfterSelect;
             modelArchivesView.MouseDown += NodeRightClick;
@@ -226,7 +229,7 @@
             modelReplaceGroupBox.Controls.Add(modelReplaceView);
             modelReplaceGroupBox.Location = new Point(3, 3);
             modelReplaceGroupBox.Name = "modelReplaceGroupBox";
-            modelReplaceGroupBox.Size = new Size(395, 191);
+            modelReplaceGroupBox.Size = new Size(557, 371);
             modelReplaceGroupBox.TabIndex = 15;
             modelReplaceGroupBox.TabStop = false;
             modelReplaceGroupBox.Text = "Model Replacement";
@@ -234,7 +237,7 @@
             // splitContainer1
             // 
             splitContainer1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            splitContainer1.Location = new Point(2, 150);
+            splitContainer1.Location = new Point(2, 330);
             splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -244,8 +247,8 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(modelRestoreButton);
-            splitContainer1.Size = new Size(390, 37);
-            splitContainer1.SplitterDistance = 191;
+            splitContainer1.Size = new Size(552, 37);
+            splitContainer1.SplitterDistance = 335;
             splitContainer1.TabIndex = 2;
             // 
             // modelReplaceButton
@@ -253,7 +256,7 @@
             modelReplaceButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             modelReplaceButton.Location = new Point(3, 3);
             modelReplaceButton.Name = "modelReplaceButton";
-            modelReplaceButton.Size = new Size(185, 31);
+            modelReplaceButton.Size = new Size(329, 31);
             modelReplaceButton.TabIndex = 0;
             modelReplaceButton.Text = "Replace!";
             modelReplaceButton.UseVisualStyleBackColor = true;
@@ -264,7 +267,7 @@
             modelRestoreButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             modelRestoreButton.Location = new Point(3, 3);
             modelRestoreButton.Name = "modelRestoreButton";
-            modelRestoreButton.Size = new Size(189, 31);
+            modelRestoreButton.Size = new Size(208, 31);
             modelRestoreButton.TabIndex = 1;
             modelRestoreButton.Text = "Restore!";
             modelRestoreButton.UseVisualStyleBackColor = true;
@@ -276,7 +279,7 @@
             modelReplaceView.Location = new Point(6, 22);
             modelReplaceView.Name = "modelReplaceView";
             modelReplaceView.ShowNodeToolTips = true;
-            modelReplaceView.Size = new Size(383, 126);
+            modelReplaceView.Size = new Size(545, 306);
             modelReplaceView.TabIndex = 1;
             modelReplaceView.AfterSelect += ModelReplaceView_AfterSelect;
             modelReplaceView.MouseDown += NodeRightClick;
@@ -286,7 +289,7 @@
             searchBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             searchBox.Location = new Point(6, 22);
             searchBox.Name = "searchBox";
-            searchBox.Size = new Size(766, 23);
+            searchBox.Size = new Size(1082, 23);
             searchBox.TabIndex = 0;
             searchBox.TextChanged += SearchBox_TextChanged;
             // 
@@ -294,7 +297,7 @@
             // 
             statusLabel.AutoSize = true;
             statusLabel.ForeColor = SystemColors.ControlText;
-            statusLabel.Location = new Point(3, 3);
+            statusLabel.Location = new Point(3, 4);
             statusLabel.Name = "statusLabel";
             statusLabel.Size = new Size(21, 15);
             statusLabel.TabIndex = 16;
@@ -322,12 +325,23 @@
             searchGroupBox.Controls.Add(modelReplaceRadioButton);
             searchGroupBox.Controls.Add(searchBox);
             searchGroupBox.Enabled = false;
-            searchGroupBox.Location = new Point(7, 176);
+            searchGroupBox.Location = new Point(6, 208);
             searchGroupBox.Name = "searchGroupBox";
-            searchGroupBox.Size = new Size(778, 73);
+            searchGroupBox.Size = new Size(1094, 73);
             searchGroupBox.TabIndex = 17;
             searchGroupBox.TabStop = false;
             searchGroupBox.Text = "Search";
+            // 
+            // modelArchivesRadioButton
+            // 
+            modelArchivesRadioButton.AutoSize = true;
+            modelArchivesRadioButton.Location = new Point(6, 48);
+            modelArchivesRadioButton.Name = "modelArchivesRadioButton";
+            modelArchivesRadioButton.Size = new Size(107, 19);
+            modelArchivesRadioButton.TabIndex = 4;
+            modelArchivesRadioButton.TabStop = true;
+            modelArchivesRadioButton.Text = "Model Archives";
+            modelArchivesRadioButton.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -365,39 +379,50 @@
             versionNumberLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             versionNumberLabel.AutoSize = true;
             versionNumberLabel.ForeColor = Color.DimGray;
-            versionNumberLabel.Location = new Point(549, 6);
+            versionNumberLabel.Location = new Point(866, 9);
             versionNumberLabel.Name = "versionNumberLabel";
             versionNumberLabel.Size = new Size(48, 15);
             versionNumberLabel.TabIndex = 18;
             versionNumberLabel.Text = "Version:";
             // 
-            // modelArchivesRadioButton
+            // gameTabs
             // 
-            modelArchivesRadioButton.AutoSize = true;
-            modelArchivesRadioButton.Location = new Point(6, 48);
-            modelArchivesRadioButton.Name = "modelArchivesRadioButton";
-            modelArchivesRadioButton.Size = new Size(107, 19);
-            modelArchivesRadioButton.TabIndex = 4;
-            modelArchivesRadioButton.TabStop = true;
-            modelArchivesRadioButton.Text = "Model Archives";
-            modelArchivesRadioButton.UseVisualStyleBackColor = true;
+            gameTabs.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            gameTabs.Controls.Add(tabPage1);
+            gameTabs.Location = new Point(-3, 24);
+            gameTabs.Name = "gameTabs";
+            gameTabs.SelectedIndex = 0;
+            gameTabs.Size = new Size(1114, 649);
+            gameTabs.TabIndex = 19;
+            gameTabs.SelectedIndexChanged += GameTabs_SelectedIndexChanged;
+            // 
+            // tabPage1
+            // 
+            tabPage1.BackColor = SystemColors.Control;
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Size = new Size(1106, 621);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "GAME";
             // 
             // FSModelUtility
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(792, 457);
-            Controls.Add(versionNumberLabel);
+            ClientSize = new Size(1109, 670);
+            Controls.Add(modelsFolderGroupBox);
+            Controls.Add(modelArchivesFolderGroupBox);
+            Controls.Add(mainSplitContainer);
             Controls.Add(searchGroupBox);
+            Controls.Add(gameTabs);
+            Controls.Add(versionNumberLabel);
             Controls.Add(statusLabel);
             Controls.Add(copyrightInfoLabel);
-            Controls.Add(mainSplitContainer);
-            Controls.Add(modelArchivesFolderGroupBox);
-            Controls.Add(modelsFolderGroupBox);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MinimumSize = new Size(600, 450);
             Name = "FSModelUtility";
             Text = "FromSoft Model Utility";
+            Load += FSModelUtility_Load;
             modelArchivesFolderGroupBox.ResumeLayout(false);
             modelArchivesFolderGroupBox.PerformLayout();
             modelsFolderGroupBox.ResumeLayout(false);
@@ -415,6 +440,7 @@
             nodeRightClickMenu.ResumeLayout(false);
             searchGroupBox.ResumeLayout(false);
             searchGroupBox.PerformLayout();
+            gameTabs.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -447,5 +473,7 @@
         private SplitContainer splitContainer1;
         private Button modelRestoreButton;
         private RadioButton modelArchivesRadioButton;
+        private TabControl gameTabs;
+        private TabPage tabPage1;
     }
 }
