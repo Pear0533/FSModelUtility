@@ -148,7 +148,7 @@
             modelsFolderGroupBox.Size = new Size(1094, 73);
             modelsFolderGroupBox.TabIndex = 12;
             modelsFolderGroupBox.TabStop = false;
-            modelsFolderGroupBox.Text = "Models Folder (parts, chr, etc.)";
+            modelsFolderGroupBox.Text = "Models Folder (parts)";
             // 
             // modelsFolderButton
             // 
@@ -248,7 +248,7 @@
             // 
             splitContainer1.Panel2.Controls.Add(modelRestoreButton);
             splitContainer1.Size = new Size(552, 37);
-            splitContainer1.SplitterDistance = 335;
+            splitContainer1.SplitterDistance = 274;
             splitContainer1.TabIndex = 2;
             // 
             // modelReplaceButton
@@ -256,7 +256,7 @@
             modelReplaceButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             modelReplaceButton.Location = new Point(3, 3);
             modelReplaceButton.Name = "modelReplaceButton";
-            modelReplaceButton.Size = new Size(329, 31);
+            modelReplaceButton.Size = new Size(268, 31);
             modelReplaceButton.TabIndex = 0;
             modelReplaceButton.Text = "Replace!";
             modelReplaceButton.UseVisualStyleBackColor = true;
@@ -267,7 +267,7 @@
             modelRestoreButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             modelRestoreButton.Location = new Point(3, 3);
             modelRestoreButton.Name = "modelRestoreButton";
-            modelRestoreButton.Size = new Size(208, 31);
+            modelRestoreButton.Size = new Size(269, 31);
             modelRestoreButton.TabIndex = 1;
             modelRestoreButton.Text = "Restore!";
             modelRestoreButton.UseVisualStyleBackColor = true;

@@ -1,5 +1,4 @@
 C:\Users\Isaac Fisher\Downloads\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\bin\Debug\net6.0-windows\FSModelUtility.exe
-C:\Users\Isaac Fisher\Downloads\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\bin\Debug\net6.0-windows\modelnames.csv
 C:\Users\Isaac Fisher\Downloads\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\bin\Debug\net6.0-windows\FSModelUtility.deps.json
 C:\Users\Isaac Fisher\Downloads\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\bin\Debug\net6.0-windows\FSModelUtility.runtimeconfig.json
 C:\Users\Isaac Fisher\Downloads\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\bin\Debug\net6.0-windows\FSModelUtility.dll
@@ -49,3 +48,7 @@ D:\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSM
 D:\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\bin\Debug\net6.0-windows\CSVs\ELDEN RING_modelnames.csv
 D:\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\bin\Debug\net6.0-windows\CSVs\DARK SOULS II_modelnames.csv
 D:\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\bin\Debug\net6.0-windows\CSVs\DARK SOULS I_modelnames.csv
+C:\Users\Isaac Fisher\Downloads\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\bin\Debug\net6.0-windows\CSVs\DARK SOULS III_modelnames.csv
+C:\Users\Isaac Fisher\Downloads\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\bin\Debug\net6.0-windows\CSVs\DARK SOULS II_modelnames.csv
+C:\Users\Isaac Fisher\Downloads\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\bin\Debug\net6.0-windows\CSVs\DARK SOULS I_modelnames.csv
+C:\Users\Isaac Fisher\Downloads\Syncthing Shared\Game Mods & Tools\Tools\FromSoftware\Repositories\Active\FSModelUtility\FSModelUtility\bin\Debug\net6.0-windows\CSVs\ELDEN RING_modelnames.csv
