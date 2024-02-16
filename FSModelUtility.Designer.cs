@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FSModelUtility));
             this.copyrightInfoLabel = new System.Windows.Forms.Label();
             this.modelArchivesFolderGroupBox = new System.Windows.Forms.GroupBox();
@@ -45,6 +46,8 @@
             this.modelReplaceView = new System.Windows.Forms.TreeView();
             this.modelReplaceButton = new System.Windows.Forms.Button();
             this.statusLabel = new System.Windows.Forms.Label();
+            this.modelReplaceRightClickMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modelArchivesFolderGroupBox.SuspendLayout();
             this.modelsFolderGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).BeginInit();
@@ -53,6 +56,7 @@
             this.mainSplitContainer.SuspendLayout();
             this.modelArchivesGroupBox.SuspendLayout();
             this.modelReplaceGroupBox.SuspendLayout();
+            this.modelReplaceRightClickMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // copyrightInfoLabel
@@ -234,6 +238,7 @@
             this.modelReplaceView.Size = new System.Drawing.Size(383, 205);
             this.modelReplaceView.TabIndex = 1;
             this.modelReplaceView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.ModelReplaceView_AfterSelect);
+            this.modelReplaceView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ModelReplaceView_MouseDown);
             // 
             // modelReplaceButton
             // 
@@ -259,6 +264,19 @@
             this.statusLabel.Text = "{0}";
             this.statusLabel.Visible = false;
             // 
+            // modelReplaceRightClickMenu
+            // 
+            this.modelReplaceRightClickMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyToolStripMenuItem});
+            this.modelReplaceRightClickMenu.Name = "modelReplaceRightClickMenu";
+            this.modelReplaceRightClickMenu.Size = new System.Drawing.Size(103, 26);
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.copyToolStripMenuItem.Text = "Copy";
+            // 
             // FSModelUtility
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -283,6 +301,7 @@
             this.mainSplitContainer.ResumeLayout(false);
             this.modelArchivesGroupBox.ResumeLayout(false);
             this.modelReplaceGroupBox.ResumeLayout(false);
+            this.modelReplaceRightClickMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -305,5 +324,7 @@
         private TreeView modelReplaceView;
         private Button modelReplaceButton;
         private Label statusLabel;
+        private ContextMenuStrip modelReplaceRightClickMenu;
+        private ToolStripMenuItem copyToolStripMenuItem;
     }
 }

@@ -53,8 +53,10 @@ public partial class FSModelUtility : Form
 
     private static string GetModelNamePrefix(string modelName)
     {
-        int underscoreIndex = modelName.IndexOf('_') + 2;
-        return underscoreIndex == -1 ? "" : modelName[..underscoreIndex];
+        int startIndex = modelName.LastIndexOf('(') + 1;
+        if (startIndex == -1) startIndex = 0;
+        int endIndex = modelName.IndexOf('_') + 2;
+        return endIndex == -1 ? "" : modelName.Substring(startIndex, endIndex - startIndex);
     }
 
     private static void ShowInformationDialog(string message)
@@ -127,7 +129,7 @@ public partial class FSModelUtility : Form
         {
             var archiveNode = new TreeNode(archive.Name);
             foreach (Model entry in archive.Entries)
-                archiveNode.Nodes.Add(new TreeNode(entry.Name));
+                archiveNode.Nodes.Add(new TreeNode { Name = entry.Name, Text = entry.DispName });
             modelArchivesView.Nodes.Add(archiveNode);
         }
         modelArchivesView.SelectedNode = modelArchivesView.Nodes[0];
@@ -193,7 +195,6 @@ public partial class FSModelUtility : Form
             modelReplaceView.Nodes.Add(new TreeNode("Select a model part to view available parts to replace."));
             return;
         }
-        // TODO: Implement model replacement status logic
         string archiveModelPrefix = GetModelNamePrefix(e.Node.Text);
         List<Model> matchingModels = models.Where(i => i.Prefix == archiveModelPrefix).ToList();
         if (matchingModels.Count == 0)
@@ -202,10 +203,7 @@ public partial class FSModelUtility : Form
             return;
         }
         foreach (Model model in matchingModels)
-        {
-            string modelDispName = model.DispName != "" ? $"{model.DispName} ({model.Name})" : model.Name;
-            modelReplaceView.Nodes.Add(new TreeNode { Name = model.Name, Text = modelDispName });
-        }
+            modelReplaceView.Nodes.Add(new TreeNode { Name = model.Name, Text = model.DispName });
     }
 
     private static bool IsMatch(string sourceStr, string targetStr)
@@ -221,18 +219,17 @@ public partial class FSModelUtility : Form
         TreeNode replaceModelNode = modelReplaceView.SelectedNode;
         ModelArchive modelArchive = modelArchives.FirstOrDefault(i => i.Name == modelArchiveNode.Text) ?? new ModelArchive();
         if (modelArchive.Name == "") return;
-        Model archiveModel = modelArchive.Entries.FirstOrDefault(i => i.Name == archiveModelNode.Text) ?? new Model();
+        Model archiveModel = modelArchive.Entries.FirstOrDefault(i => IsMatch(i.Name, archiveModelNode.Name)) ?? new Model();
         if (archiveModel.Name == "") return;
         IArchiveEntry? archiveMdEntry = modelArchive.Archive?.Entries.FirstOrDefault(i => IsMatch(i.Key, archiveModel.Name));
         Stream? archiveMdStream = archiveMdEntry?.OpenEntryStream();
         if (archiveMdStream == null) return;
         Model replaceModel = models.FirstOrDefault(i => replaceModelNode.Name.Contains(i.Name)) ?? new Model();
-        File.Copy(replaceModel.FilePath, $"{replaceModel.FilePath}.bak", true);
+        var replaceModelBakFilePath = $"{replaceModel.FilePath}.bak";
+        if (!File.Exists(replaceModelBakFilePath)) File.Copy(replaceModel.FilePath, $"{replaceModel.FilePath}.bak", true);
         var replaceModelStream = new FileStream(replaceModel.FilePath, FileMode.Create, FileAccess.Write);
         statusLabel.Visible = true;
-        string replaceModelName = replaceModel.DispName == "" ? replaceModel.Name : replaceModel.DispName;
-        string archiveModelName = archiveModel.DispName == "" ? archiveModel.Name : archiveModel.DispName;
-        statusLabel.Text = @$"Replacing {replaceModelName} with modified {archiveModelName}...";
+        statusLabel.Text = @$"Replacing {replaceModel.DispName} with modified {archiveModel.DispName}...";
         await Task.Delay(2000);
         await archiveMdStream.CopyToAsync(replaceModelStream);
         replaceModelStream.Close();
@@ -248,6 +245,17 @@ public partial class FSModelUtility : Form
         modelReplaceButton.Enabled = true;
     }
 
+    private void ModelReplaceView_MouseDown(object sender, MouseEventArgs e)
+    {
+        if (e.Button != MouseButtons.Right) return;
+        modelReplaceRightClickMenu.ItemClicked += (_, clickEventArgs) =>
+        {
+            if (modelReplaceRightClickMenu.Items.IndexOf(clickEventArgs.ClickedItem) == 0)
+                Clipboard.SetText(modelReplaceView.SelectedNode.Name);
+        };
+        modelReplaceRightClickMenu.Show(modelReplaceView, e.X, e.Y);
+    }
+
     private class Model
     {
         public readonly string DispName;
@@ -260,7 +268,7 @@ public partial class FSModelUtility : Form
             Name = GetModelName(modelName, true);
             Prefix = GetModelNamePrefix(Name);
             FilePath = filePath;
-            DispName = dispName;
+            DispName = dispName == "" ? Name : $"{dispName} ({Name})";
         }
     }
 
