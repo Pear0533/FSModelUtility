@@ -182,7 +182,7 @@ public partial class FSModelUtility : Form
                     return;
                 }
                 foreach (Model model in matchingModels)
-                    modelReplaceView.Nodes.Add(new TreeNode { BackColor = model.StatusColor, Name = model.Name, Text = model.DispName });
+                    modelReplaceView.Nodes.Add(new TreeNode { ToolTipText = model.NodeTooltip, BackColor = model.StatusColor, Name = model.Name, Text = model.DispName });
                 break;
             }
             default:
@@ -191,10 +191,20 @@ public partial class FSModelUtility : Form
         }
     }
 
+    private static void AssignModelTooltips()
+    {
+        foreach (Model model in models)
+        {
+            string archiveModelDispName = models.Find(i => i.Name == model.ArchiveModelName)?.DispName ?? model.ArchiveModelName;
+            model.NodeTooltip = model.Status == ModelStatus.Available ? "Available to replace" : $"Replaced with {archiveModelDispName}";
+        }
+    }
+
     private static void ReadAllModels()
     {
         ReadModelReplaceLog();
         ReadModels(modelFilePaths.ToList(), models);
+        AssignModelTooltips();
     }
 
     private void UpdateModelArchives()
@@ -375,7 +385,9 @@ public partial class FSModelUtility : Form
         public readonly string FilePath;
         public readonly string Name;
         public readonly string Prefix;
-        private ModelStatus Status = ModelStatus.Available;
+        public string ArchiveModelName = "";
+        public string NodeTooltip = "";
+        public ModelStatus Status = ModelStatus.Available;
         public Color StatusColor;
 
         public Model(string modelName = "", string filePath = "", string dispName = "")
@@ -397,7 +409,8 @@ public partial class FSModelUtility : Form
                 bool statusParsed = Enum.TryParse(entry.Value[replaceStatusKey].ToString(), out ModelStatus status);
                 if (!statusParsed) continue;
                 Status = status;
-                StatusColor = Status == ModelStatus.Available ? StatusColor : Color.PaleVioletRed;
+                StatusColor = Status == ModelStatus.Available ? StatusColor : Color.Khaki;
+                ArchiveModelName = entry.Value[archiveModelPartKey].ToString();
             }
         }
     }

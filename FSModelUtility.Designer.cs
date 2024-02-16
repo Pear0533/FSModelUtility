@@ -222,6 +222,7 @@
             modelReplaceView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             modelReplaceView.Location = new Point(6, 22);
             modelReplaceView.Name = "modelReplaceView";
+            modelReplaceView.ShowNodeToolTips = true;
             modelReplaceView.Size = new Size(383, 205);
             modelReplaceView.TabIndex = 1;
             modelReplaceView.AfterSelect += ModelReplaceView_AfterSelect;
@@ -303,12 +304,12 @@
         private Label label6;
         private SplitContainer mainSplitContainer;
         private GroupBox modelArchivesGroupBox;
-        private static TreeView modelArchivesView;
         private GroupBox modelReplaceGroupBox;
         private TreeView modelReplaceView;
         private Button modelReplaceButton;
         private Label statusLabel;
         private ContextMenuStrip nodeRightClickMenu;
         private ToolStripMenuItem copyToolStripMenuItem;
+        private static TreeView modelArchivesView;
     }
 }
