@@ -1,4 +1,9 @@
 {
+  "HD_M_2370 -> HD_M_1120": {
+    "Archive Model Part": "HD_M_2370",
+    "Replace Model Part": "HD_M_1120",
+    "Status": "Taken"
+  },
   "HD_M_1765 -> HD_M_1840": {
     "Archive Model Part": "HD_M_1765",
     "Replace Model Part": "HD_M_1840",
@@ -17,11 +22,6 @@
   "LG_M_2370 -> LG_M_1840": {
     "Archive Model Part": "LG_M_2370",
     "Replace Model Part": "LG_M_1840",
-    "Status": "Taken"
-  },
-  "AM_M_2230 -> AM_M_1140": {
-    "Archive Model Part": "AM_M_2230",
-    "Replace Model Part": "AM_M_1140",
     "Status": "Taken"
   }
 }

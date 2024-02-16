@@ -319,9 +319,12 @@ public partial class FSModelUtility : Form
         };
         modelReplaceLog.Add(new JProperty($"{archiveModel.Name} -> {replaceModel.Name}", modelReplaceEntry));
         WriteModelReplaceLog();
-        int selectedNodeIndex = modelArchivesView.SelectedNode.Parent?.Index ?? modelArchivesView.SelectedNode.Index;
+        bool isSelectedNodeAnArchive = modelArchivesView.SelectedNode.Parent == null;
+        int archiveNodeIndex = isSelectedNodeAnArchive ? modelArchivesView.SelectedNode.Index : modelArchivesView.SelectedNode.Parent!.Index;
+        int modelPartNodeIndex = isSelectedNodeAnArchive ? -1 : modelArchivesView.SelectedNode.Index;
         PopulateModelArchivesView();
-        modelArchivesView.Nodes[selectedNodeIndex].Expand();
+        if (isSelectedNodeAnArchive) modelArchivesView.Nodes[archiveNodeIndex].Expand();
+        else modelArchivesView.SelectedNode = modelArchivesView.Nodes[archiveNodeIndex].Nodes[modelPartNodeIndex];
         ReadAllModels();
         PopulateModelReplaceView(modelArchivesView.SelectedNode);
         statusLabel.Text = @"Replacement completed!";
