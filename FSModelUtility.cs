@@ -155,32 +155,19 @@ public partial class FSModelUtility : Form
         return new TreeNode { BackColor = model.StatusColor, Name = model.Name, Text = model.DispName };
     }
 
-    private static void PopulateModelArchivesView(TreeNode? selectedPartNode = null)
+    private static void PopulateModelArchivesView()
     {
+        modelArchivesView.Nodes.Clear();
         ReadModelReplaceLog();
         ReadAllModelArchives();
-        if (selectedPartNode == null)
+        foreach (ModelArchive archive in modelArchives)
         {
-            modelArchivesView.Nodes.Clear();
-            foreach (ModelArchive archive in modelArchives)
-            {
-                var archiveNode = new TreeNode(archive.Name);
-                foreach (Model entry in archive.Entries)
-                    archiveNode.Nodes.Add(GetModelPartNode(entry));
-                modelArchivesView.Nodes.Add(archiveNode);
-            }
-            modelArchivesView.SelectedNode = modelArchivesView.Nodes[0];
+            var archiveNode = new TreeNode(archive.Name);
+            foreach (Model entry in archive.Entries)
+                archiveNode.Nodes.Add(GetModelPartNode(entry));
+            modelArchivesView.Nodes.Add(archiveNode);
         }
-        else
-        {
-            TreeNode archiveNode = modelArchivesView.Nodes[selectedPartNode.Parent.Index];
-            Model model = modelArchives[selectedPartNode.Parent.Index].Entries[selectedPartNode.Index];
-            int insertIndex = selectedPartNode.Index;
-            archiveNode.Nodes.Remove(selectedPartNode);
-            selectedPartNode = GetModelPartNode(model);
-            archiveNode.Nodes.Insert(insertIndex, selectedPartNode);
-            modelArchivesView.SelectedNode = selectedPartNode;
-        }
+        modelArchivesView.SelectedNode = modelArchivesView.Nodes[0];
     }
 
     private void PopulateModelReplaceView(TreeNode? selectedArchiveNode)
@@ -332,7 +319,9 @@ public partial class FSModelUtility : Form
         };
         modelReplaceLog.Add(new JProperty($"{archiveModel.Name} -> {replaceModel.Name}", modelReplaceEntry));
         WriteModelReplaceLog();
-        PopulateModelArchivesView(modelArchivesView.SelectedNode);
+        int selectedNodeIndex = modelArchivesView.SelectedNode.Parent?.Index ?? modelArchivesView.SelectedNode.Index;
+        PopulateModelArchivesView();
+        modelArchivesView.Nodes[selectedNodeIndex].Expand();
         ReadAllModels();
         PopulateModelReplaceView(modelArchivesView.SelectedNode);
         statusLabel.Text = @"Replacement completed!";
