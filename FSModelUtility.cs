@@ -98,6 +98,8 @@ public partial class FSModelUtility : Form
     private static void ReadModels<T>(List<T> rawModelsList, ICollection<Model> outputModelsList)
     {
         if (appRootPath == "") return;
+        bool isTypeString = typeof(T) == typeof(string);
+        bool isTypeArchive = typeof(T) == typeof(IArchiveEntry);
         models.Clear();
         var modelNamesListFilePath = $"{appRootPath}\\modelnames.csv";
         var parser = new TextFieldParser(modelNamesListFilePath);
@@ -111,11 +113,12 @@ public partial class FSModelUtility : Form
             {
                 if (entry == null) continue;
                 var modelPath = "";
-                if (typeof(T) == typeof(string)) modelPath = entry.ToString() ?? "";
-                else if (typeof(T) == typeof(IArchiveEntry)) modelPath = ((IArchiveEntry)entry).Key;
+                if (isTypeString) modelPath = entry.ToString() ?? "";
+                else if (isTypeArchive) modelPath = ((IArchiveEntry)entry).Key;
                 bool foundMatch = modelPath.ToLower().Contains(rowFields.ElementAt(1).ToLower());
                 if (!foundMatch || rowFields.ElementAt(1) == "") continue;
-                outputModelsList.Add(new Model(modelPath, modelPath, rowFields.ElementAt(2)));
+                var model = new Model(modelPath, modelPath, rowFields.ElementAt(2), isTypeString);
+                outputModelsList.Add(model);
                 break;
             }
         }
@@ -147,18 +150,37 @@ public partial class FSModelUtility : Form
         }
     }
 
-    private static void PopulateModelArchivesView()
+    private static TreeNode GetModelPartNode(Model model)
     {
-        modelArchivesView.Nodes.Clear();
+        return new TreeNode { BackColor = model.StatusColor, Name = model.Name, Text = model.DispName };
+    }
+
+    private static void PopulateModelArchivesView(TreeNode? selectedPartNode = null)
+    {
+        ReadModelReplaceLog();
         ReadAllModelArchives();
-        foreach (ModelArchive archive in modelArchives)
+        if (selectedPartNode == null)
         {
-            var archiveNode = new TreeNode(archive.Name);
-            foreach (Model entry in archive.Entries)
-                archiveNode.Nodes.Add(new TreeNode { Name = entry.Name, Text = entry.DispName });
-            modelArchivesView.Nodes.Add(archiveNode);
+            modelArchivesView.Nodes.Clear();
+            foreach (ModelArchive archive in modelArchives)
+            {
+                var archiveNode = new TreeNode(archive.Name);
+                foreach (Model entry in archive.Entries)
+                    archiveNode.Nodes.Add(GetModelPartNode(entry));
+                modelArchivesView.Nodes.Add(archiveNode);
+            }
+            modelArchivesView.SelectedNode = modelArchivesView.Nodes[0];
         }
-        modelArchivesView.SelectedNode = modelArchivesView.Nodes[0];
+        else
+        {
+            TreeNode archiveNode = modelArchivesView.Nodes[selectedPartNode.Parent.Index];
+            Model model = modelArchives[selectedPartNode.Parent.Index].Entries[selectedPartNode.Index];
+            int insertIndex = selectedPartNode.Index;
+            archiveNode.Nodes.Remove(selectedPartNode);
+            selectedPartNode = GetModelPartNode(model);
+            archiveNode.Nodes.Insert(insertIndex, selectedPartNode);
+            modelArchivesView.SelectedNode = selectedPartNode;
+        }
     }
 
     private void PopulateModelReplaceView(TreeNode? selectedArchiveNode)
@@ -202,18 +224,8 @@ public partial class FSModelUtility : Form
 
     private static void ReadAllModels()
     {
-        ReadModelReplaceLog();
         ReadModels(modelFilePaths.ToList(), models);
         AssignModelTooltips();
-    }
-
-    private void UpdateModelArchives()
-    {
-        if (modelArchiveFilePaths.Length == 0) return;
-        mainSplitContainer.Enabled = true;
-        modelReplaceButton.Enabled = false;
-        PopulateModelArchivesView();
-        ReadAllModels();
     }
 
     private void BrowseModelArchivesFolder()
@@ -229,7 +241,10 @@ public partial class FSModelUtility : Form
         }
         modelArchiveFilePaths = zipFilePaths.Concat(rarFilePaths).ToArray();
         modelArchivesFolderPathLabel.Text = modelArchivesFolderPath;
-        UpdateModelArchives();
+        mainSplitContainer.Enabled = true;
+        modelReplaceButton.Enabled = false;
+        PopulateModelArchivesView();
+        ReadAllModels();
     }
 
     private void BrowseModelArchivesButton_Click(object sender, EventArgs e)
@@ -250,7 +265,6 @@ public partial class FSModelUtility : Form
         }
         modelsFolderPathLabel.Text = Path.GetDirectoryName(modelFilePaths[0]);
         modelArchivesFolderGroupBox.Enabled = true;
-        UpdateModelArchives();
     }
 
     private void BrowseModelsFolderButton_Click(object sender, EventArgs e)
@@ -318,6 +332,7 @@ public partial class FSModelUtility : Form
         };
         modelReplaceLog.Add(new JProperty($"{archiveModel.Name} -> {replaceModel.Name}", modelReplaceEntry));
         WriteModelReplaceLog();
+        PopulateModelArchivesView(modelArchivesView.SelectedNode);
         ReadAllModels();
         PopulateModelReplaceView(modelArchivesView.SelectedNode);
         statusLabel.Text = @"Replacement completed!";
@@ -390,21 +405,21 @@ public partial class FSModelUtility : Form
         public ModelStatus Status = ModelStatus.Available;
         public Color StatusColor;
 
-        public Model(string modelName = "", string filePath = "", string dispName = "")
+        public Model(string modelName = "", string filePath = "", string dispName = "", bool useReplaceModelPartName = true)
         {
             Name = GetModelName(modelName, true);
             Prefix = GetModelNamePrefix(Name);
             FilePath = filePath;
             DispName = dispName == "" ? Name : $"{dispName} ({Name})";
-            UpdateStatus();
+            UpdateStatus(useReplaceModelPartName);
         }
 
-        private void UpdateStatus()
+        private void UpdateStatus(bool useReplaceModelPartName)
         {
             StatusColor = Color.PaleGreen;
             foreach (KeyValuePair<string, JToken> entry in modelReplaceLog)
             {
-                bool doesReplaceModelMatch = entry.Value[replaceModelPartKey].ToString() == Name;
+                bool doesReplaceModelMatch = entry.Value[useReplaceModelPartName ? replaceModelPartKey : archiveModelPartKey].ToString() == Name;
                 if (!doesReplaceModelMatch) continue;
                 bool statusParsed = Enum.TryParse(entry.Value[replaceStatusKey].ToString(), out ModelStatus status);
                 if (!statusParsed) continue;

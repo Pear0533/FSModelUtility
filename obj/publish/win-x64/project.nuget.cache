@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "dgSpecHash": "AbOudIfWevxn+9Xamn23c5UI+7c7ftOhIgVxw0ulxug5enDwQhSj7u9IkFE2nJl6cMzkXFL9FGtIj8l1jbmrAA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Isaac Fisher\\Downloads\\Syncthing Shared\\Game Mods & Tools\\Tools\\FromSoftware\\Repositories\\Active\\FSModelUtility\\FSModelUtility\\FSModelUtility.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Isaac Fisher\\.nuget\\packages\\newtonsoft.json\\12.0.1\\newtonsoft.json.12.0.1.nupkg.sha512",
+    "C:\\Users\\Isaac Fisher\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
+    "C:\\Users\\Isaac Fisher\\.nuget\\packages\\sharpcompress\\0.32.2\\sharpcompress.0.32.2.nupkg.sha512",
+    "C:\\Users\\Isaac Fisher\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\Isaac Fisher\\.nuget\\packages\\system.text.encoding.codepages\\7.0.0\\system.text.encoding.codepages.7.0.0.nupkg.sha512",
+    "C:\\Users\\Isaac Fisher\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\6.0.15\\microsoft.netcore.app.runtime.win-x64.6.0.15.nupkg.sha512",
+    "C:\\Users\\Isaac Fisher\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\6.0.15\\microsoft.windowsdesktop.app.runtime.win-x64.6.0.15.nupkg.sha512",
+    "C:\\Users\\Isaac Fisher\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\6.0.15\\microsoft.aspnetcore.app.runtime.win-x64.6.0.15.nupkg.sha512"
+  ],
+  "logs": []
+}
