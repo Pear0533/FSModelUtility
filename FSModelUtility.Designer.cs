@@ -228,6 +228,7 @@
             modelArchivesView.Name = "modelArchivesView";
             modelArchivesView.Size = new Size(510, 342);
             modelArchivesView.TabIndex = 0;
+            modelArchivesView.NodeMouseHover += ModelArchivesView_NodeMouseHover;
             modelArchivesView.AfterSelect += ModelArchivesView_AfterSelect;
             modelArchivesView.MouseDown += NodeRightClick;
             // 

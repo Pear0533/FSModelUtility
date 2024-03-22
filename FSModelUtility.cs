@@ -4,6 +4,7 @@ using Newtonsoft.Json.Linq;
 using SharpCompress.Archives;
 using SharpCompress.Archives.Rar;
 using SharpCompress.Archives.Zip;
+using System.Reflection;
 using SearchOption = System.IO.SearchOption;
 
 namespace FSModelUtility;
@@ -297,22 +298,22 @@ public partial class FSModelUtility : Form
                 modelReplaceView.Nodes.Add(new TreeNode("Click the Restore button to specify a set to restore from backup."));
                 break;
             case { Level: 1 }:
+            {
+                string archiveModelPrefix = GetModelNamePrefix(selectedArchiveNode.Text);
+                List<Model> matchingModels = models.Where(i => i.Prefix == archiveModelPrefix).ToList();
+                if (modelReplaceRadioButton.Checked) matchingModels = matchingModels.Where(i => DoesMatchSearchQuery(i.DispName)).ToList();
+                bool wantsAvailable = filterSearchOptionsBox.SelectedIndex == 1;
+                bool wantsReplaced = filterSearchOptionsBox.SelectedIndex == 2;
+                matchingModels = matchingModels.Where(i => wantsAvailable ? i.Status == ModelStatus.Available : !wantsReplaced || i.Status == ModelStatus.Taken).ToList();
+                if (matchingModels.Count == 0)
                 {
-                    string archiveModelPrefix = GetModelNamePrefix(selectedArchiveNode.Text);
-                    List<Model> matchingModels = models.Where(i => i.Prefix == archiveModelPrefix).ToList();
-                    if (modelReplaceRadioButton.Checked) matchingModels = matchingModels.Where(i => DoesMatchSearchQuery(i.DispName)).ToList();
-                    bool wantsAvailable = filterSearchOptionsBox.SelectedIndex == 1;
-                    bool wantsReplaced = filterSearchOptionsBox.SelectedIndex == 2;
-                    matchingModels = matchingModels.Where(i => wantsAvailable ? i.Status == ModelStatus.Available : !wantsReplaced || i.Status == ModelStatus.Taken).ToList();
-                    if (matchingModels.Count == 0)
-                    {
-                        modelReplaceView.Nodes.Add(new TreeNode($"There are no model parts which match the prefix, {archiveModelPrefix}, or query."));
-                        return;
-                    }
-                    foreach (Model model in matchingModels)
-                        modelReplaceView.Nodes.Add(new TreeNode { ToolTipText = model.NodeTooltip, BackColor = model.StatusColor, Name = model.Name, Text = model.DispName });
-                    break;
+                    modelReplaceView.Nodes.Add(new TreeNode($"There are no model parts which match the prefix, {archiveModelPrefix}, or query."));
+                    return;
                 }
+                foreach (Model model in matchingModels)
+                    modelReplaceView.Nodes.Add(new TreeNode { ToolTipText = model.NodeTooltip, BackColor = model.StatusColor, Name = model.Name, Text = model.DispName });
+                break;
+            }
             default:
                 modelReplaceView.Nodes.Add(new TreeNode("Select a model part to view available parts to replace."));
                 break;
@@ -401,6 +402,55 @@ public partial class FSModelUtility : Form
         PopulateModelReplaceView(e.Node);
         ModelArchive selectedArchive = GetCurrentModelArchive();
         modelPreviewPictureBox.Image = selectedArchive.ModelPreview ?? null;
+    }
+
+    // TODO: WIP
+
+    private void ModelArchivesView_NodeMouseHover(object sender, TreeNodeMouseHoverEventArgs e)
+    {
+        if (e.Node.Parent != null)
+        {
+            ModelArchive archive = GetCurrentModelArchive();
+            if (archive == null) return;
+            Model model = archive.Entries.FirstOrDefault(m => m.Name == e.Node.Name);
+            if (model != null)
+            {
+                // Display tooltip containing replaced models
+                List<string> replacedModels = GetReplacedModels(model.Name);
+                string tooltipText = replacedModels.Any() ? string.Join("\n", replacedModels) : "No replaced models";
+
+                // Create tooltip control dynamically
+                ToolTip tooltip = new ToolTip();
+                tooltip.AutoPopDelay = 10000; // Set the tooltip to remain visible for a longer time
+                tooltip.UseAnimation = true; // Enable tooltip animation
+                tooltip.UseFading = true; // Enable tooltip fading
+                tooltip.IsBalloon = true; // Display the tooltip as a balloon
+                tooltip.SetToolTip(modelArchivesView, tooltipText);
+                tooltip.ToolTipTitle = "Replaces";
+                tooltip.ToolTipIcon = ToolTipIcon.Info;
+                tooltip.ToolTipTitle = "Replaces";
+                tooltip.ShowAlways = true;
+                tooltip.OwnerDraw = false;
+                tooltip.Show(tooltipText, modelArchivesView, e.Node.Bounds.Right + 10, e.Node.Bounds.Bottom + 10); // Show tooltip at the bottom-right of the node
+            }
+        }
+    }
+
+    private List<string> GetReplacedModels(string modelName)
+    {
+        List<string> replacedModels = new List<string>();
+        foreach (var entry in modelReplaceLog)
+        {
+            string replaceModelName = entry.Value[replaceModelPartKey]?.ToString();
+            string archiveModelName = entry.Value[archiveModelPartKey]?.ToString();
+            if (replaceModelName != null && archiveModelName != null && archiveModelName.Equals(modelName, StringComparison.OrdinalIgnoreCase))
+            {
+                // TODO: Cleanup
+                string replaceModelDispName = models.Find(i => i.Name == replaceModelName)?.DispName ?? replaceModelName;
+                replacedModels.Add(replaceModelDispName);
+            }
+        }
+        return replacedModels;
     }
 
     private static bool IsMatch(string sourceStr, string targetStr)

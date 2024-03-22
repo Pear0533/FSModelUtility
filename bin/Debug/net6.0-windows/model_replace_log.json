@@ -1,1 +1,12 @@
-{}
+{
+  "HD_M_1120": {
+    "Archive Model Part": "HD_M_2370",
+    "Replace Model Part": "HD_M_1120",
+    "Status": "Taken"
+  },
+  "HD_M_1130": {
+    "Archive Model Part": "HD_M_2370",
+    "Replace Model Part": "HD_M_1130",
+    "Status": "Taken"
+  }
+}
