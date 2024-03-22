@@ -450,6 +450,7 @@
             modelPreviewPictureBox.Location = new Point(3, 19);
             modelPreviewPictureBox.Name = "modelPreviewPictureBox";
             modelPreviewPictureBox.Size = new Size(551, 205);
+            modelPreviewPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             modelPreviewPictureBox.TabIndex = 0;
             modelPreviewPictureBox.TabStop = false;
             // 

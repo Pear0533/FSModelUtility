@@ -150,7 +150,14 @@ public partial class FSModelUtility : Form
         MessageBox.Show(message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
     }
 
-    private void ReadModels<T>(List<T> rawModelsList, ICollection<Model> outputModelsList)
+    private static bool IsImageFile(string filePath)
+    {
+        string extension = Path.GetExtension(filePath);
+        string[] imageExtensions = { ".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff" };
+        return imageExtensions.Any(imageExtension => extension.Equals(imageExtension, StringComparison.OrdinalIgnoreCase));
+    }
+
+    private void ReadModels<T>(List<T> rawModelsList, ICollection<Model> outputModelsList, ModelArchive? archive = null)
     {
         if (appRootPath == "") return;
         bool isTypeString = typeof(T) == typeof(string);
@@ -168,12 +175,35 @@ public partial class FSModelUtility : Form
             foreach (T entry in rawModelsList)
             {
                 if (entry == null) continue;
-                string modelPath = "";
-                if (isTypeString) modelPath = entry.ToString() ?? "";
-                else if (isTypeArchive) modelPath = ((IArchiveEntry)entry).Key;
-                bool foundMatch = modelPath.ToLower().Contains(rowFields.ElementAt(1).ToLower());
+                string path = "";
+                if (isTypeString) path = entry.ToString() ?? "";
+                else if (isTypeArchive) path = ((IArchiveEntry)entry).Key;
+                // TODO: Cleanup
+                if (archive is { ModelPreview: null } && IsImageFile(path))
+                {
+                    Stream? imageStream = null;
+                    if (isTypeArchive)
+                    {
+                        imageStream = ((IArchiveEntry)entry).OpenEntryStream();
+                    }
+                    if (imageStream != null)
+                    {
+                        try
+                        {
+                            using (imageStream)
+                            {
+                                archive.ModelPreview = Image.FromStream(imageStream);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($@"Error loading image: {ex.Message}");
+                        }
+                    }
+                }
+                bool foundMatch = path.ToLower().Contains(rowFields.ElementAt(1).ToLower());
                 if (!foundMatch || rowFields.ElementAt(1) == "") continue;
-                Model model = new(modelPath, modelPath, rowFields.ElementAt(2), isTypeString);
+                Model model = new(path, path, rowFields.ElementAt(2), isTypeString);
                 outputModelsList.Add(model);
                 break;
             }
@@ -201,7 +231,7 @@ public partial class FSModelUtility : Form
             }
             modelArchive = new ModelArchive(path, modelArchiveFile);
             if (modelArchiveFile == null) continue;
-            ReadModels(modelArchiveFile.Entries.ToList(), modelArchive.Entries);
+            ReadModels(modelArchiveFile.Entries.ToList(), modelArchive.Entries, modelArchive);
             modelArchives.Add(modelArchive);
         }
     }
@@ -369,6 +399,8 @@ public partial class FSModelUtility : Form
     private void ModelArchivesView_AfterSelect(object sender, TreeViewEventArgs e)
     {
         PopulateModelReplaceView(e.Node);
+        ModelArchive selectedArchive = GetCurrentModelArchive();
+        modelPreviewPictureBox.Image = selectedArchive.ModelPreview ?? null;
     }
 
     private static bool IsMatch(string sourceStr, string targetStr)
@@ -644,6 +676,7 @@ public partial class FSModelUtility : Form
         public readonly IArchive? Archive;
         public readonly List<Model> Entries = new();
         public readonly string Name;
+        public Image? ModelPreview;
 
         public ModelArchive(string archiveName = "", IArchive? archive = null)
         {
