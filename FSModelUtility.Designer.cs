@@ -59,6 +59,9 @@
             versionNumberLabel = new Label();
             gameTabs = new TabControl();
             tabPage1 = new TabPage();
+            secondarySplitContainer = new SplitContainer();
+            modelPreviewGroupBox = new GroupBox();
+            modelPreviewPictureBox = new PictureBox();
             modelArchivesFolderGroupBox.SuspendLayout();
             modelsFolderGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)mainSplitContainer).BeginInit();
@@ -74,6 +77,12 @@
             nodeRightClickMenu.SuspendLayout();
             searchGroupBox.SuspendLayout();
             gameTabs.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)secondarySplitContainer).BeginInit();
+            secondarySplitContainer.Panel1.SuspendLayout();
+            secondarySplitContainer.Panel2.SuspendLayout();
+            secondarySplitContainer.SuspendLayout();
+            modelPreviewGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)modelPreviewPictureBox).BeginInit();
             SuspendLayout();
             // 
             // copyrightInfoLabel
@@ -94,11 +103,11 @@
             modelArchivesFolderGroupBox.Controls.Add(modelArchivesFolderPathLabel);
             modelArchivesFolderGroupBox.Controls.Add(label2);
             modelArchivesFolderGroupBox.Enabled = false;
-            modelArchivesFolderGroupBox.Location = new Point(6, 131);
+            modelArchivesFolderGroupBox.Location = new Point(4, 80);
             modelArchivesFolderGroupBox.Margin = new Padding(4, 5, 4, 5);
             modelArchivesFolderGroupBox.Name = "modelArchivesFolderGroupBox";
             modelArchivesFolderGroupBox.Padding = new Padding(4, 5, 4, 5);
-            modelArchivesFolderGroupBox.Size = new Size(1094, 73);
+            modelArchivesFolderGroupBox.Size = new Size(519, 73);
             modelArchivesFolderGroupBox.TabIndex = 13;
             modelArchivesFolderGroupBox.TabStop = false;
             modelArchivesFolderGroupBox.Text = "Model Archives Folder";
@@ -109,7 +118,7 @@
             modelArchivesFolderButton.Location = new Point(9, 23);
             modelArchivesFolderButton.Margin = new Padding(4, 5, 4, 5);
             modelArchivesFolderButton.Name = "modelArchivesFolderButton";
-            modelArchivesFolderButton.Size = new Size(1076, 26);
+            modelArchivesFolderButton.Size = new Size(501, 26);
             modelArchivesFolderButton.TabIndex = 5;
             modelArchivesFolderButton.Text = "Browse";
             modelArchivesFolderButton.UseVisualStyleBackColor = true;
@@ -141,11 +150,11 @@
             modelsFolderGroupBox.Controls.Add(modelsFolderButton);
             modelsFolderGroupBox.Controls.Add(modelsFolderPathLabel);
             modelsFolderGroupBox.Controls.Add(label6);
-            modelsFolderGroupBox.Location = new Point(6, 52);
+            modelsFolderGroupBox.Location = new Point(4, 1);
             modelsFolderGroupBox.Margin = new Padding(4, 5, 4, 5);
             modelsFolderGroupBox.Name = "modelsFolderGroupBox";
             modelsFolderGroupBox.Padding = new Padding(4, 5, 4, 5);
-            modelsFolderGroupBox.Size = new Size(1094, 73);
+            modelsFolderGroupBox.Size = new Size(519, 73);
             modelsFolderGroupBox.TabIndex = 12;
             modelsFolderGroupBox.TabStop = false;
             modelsFolderGroupBox.Text = "Models Folder (parts)";
@@ -156,7 +165,7 @@
             modelsFolderButton.Location = new Point(9, 22);
             modelsFolderButton.Margin = new Padding(4, 5, 4, 5);
             modelsFolderButton.Name = "modelsFolderButton";
-            modelsFolderButton.Size = new Size(1076, 26);
+            modelsFolderButton.Size = new Size(501, 26);
             modelsFolderButton.TabIndex = 5;
             modelsFolderButton.Text = "Browse";
             modelsFolderButton.UseVisualStyleBackColor = true;
@@ -289,7 +298,7 @@
             searchBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             searchBox.Location = new Point(6, 22);
             searchBox.Name = "searchBox";
-            searchBox.Size = new Size(1082, 23);
+            searchBox.Size = new Size(507, 23);
             searchBox.TabIndex = 0;
             searchBox.TextChanged += SearchBox_TextChanged;
             // 
@@ -325,9 +334,9 @@
             searchGroupBox.Controls.Add(modelReplaceRadioButton);
             searchGroupBox.Controls.Add(searchBox);
             searchGroupBox.Enabled = false;
-            searchGroupBox.Location = new Point(6, 208);
+            searchGroupBox.Location = new Point(4, 157);
             searchGroupBox.Name = "searchGroupBox";
-            searchGroupBox.Size = new Size(1094, 73);
+            searchGroupBox.Size = new Size(519, 73);
             searchGroupBox.TabIndex = 17;
             searchGroupBox.TabStop = false;
             searchGroupBox.Text = "Search";
@@ -405,15 +414,52 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "GAME";
             // 
+            // secondarySplitContainer
+            // 
+            secondarySplitContainer.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            secondarySplitContainer.Location = new Point(6, 52);
+            secondarySplitContainer.Name = "secondarySplitContainer";
+            // 
+            // secondarySplitContainer.Panel1
+            // 
+            secondarySplitContainer.Panel1.Controls.Add(modelsFolderGroupBox);
+            secondarySplitContainer.Panel1.Controls.Add(searchGroupBox);
+            secondarySplitContainer.Panel1.Controls.Add(modelArchivesFolderGroupBox);
+            // 
+            // secondarySplitContainer.Panel2
+            // 
+            secondarySplitContainer.Panel2.Controls.Add(modelPreviewGroupBox);
+            secondarySplitContainer.Size = new Size(1094, 232);
+            secondarySplitContainer.SplitterDistance = 527;
+            secondarySplitContainer.TabIndex = 10;
+            // 
+            // modelPreviewGroupBox
+            // 
+            modelPreviewGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            modelPreviewGroupBox.Controls.Add(modelPreviewPictureBox);
+            modelPreviewGroupBox.Location = new Point(3, 3);
+            modelPreviewGroupBox.Name = "modelPreviewGroupBox";
+            modelPreviewGroupBox.Size = new Size(557, 227);
+            modelPreviewGroupBox.TabIndex = 1;
+            modelPreviewGroupBox.TabStop = false;
+            modelPreviewGroupBox.Text = "Model Preview";
+            // 
+            // modelPreviewPictureBox
+            // 
+            modelPreviewPictureBox.Dock = DockStyle.Fill;
+            modelPreviewPictureBox.Location = new Point(3, 19);
+            modelPreviewPictureBox.Name = "modelPreviewPictureBox";
+            modelPreviewPictureBox.Size = new Size(551, 205);
+            modelPreviewPictureBox.TabIndex = 0;
+            modelPreviewPictureBox.TabStop = false;
+            // 
             // FSModelUtility
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1109, 670);
-            Controls.Add(modelsFolderGroupBox);
-            Controls.Add(modelArchivesFolderGroupBox);
+            Controls.Add(secondarySplitContainer);
             Controls.Add(mainSplitContainer);
-            Controls.Add(searchGroupBox);
             Controls.Add(gameTabs);
             Controls.Add(versionNumberLabel);
             Controls.Add(statusLabel);
@@ -441,6 +487,12 @@
             searchGroupBox.ResumeLayout(false);
             searchGroupBox.PerformLayout();
             gameTabs.ResumeLayout(false);
+            secondarySplitContainer.Panel1.ResumeLayout(false);
+            secondarySplitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)secondarySplitContainer).EndInit();
+            secondarySplitContainer.ResumeLayout(false);
+            modelPreviewGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)modelPreviewPictureBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -475,5 +527,8 @@
         private RadioButton modelArchivesRadioButton;
         private TabControl gameTabs;
         private TabPage tabPage1;
+        private PictureBox modelPreviewPictureBox;
+        private GroupBox modelPreviewGroupBox;
+        private SplitContainer secondarySplitContainer;
     }
 }
