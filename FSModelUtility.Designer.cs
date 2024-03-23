@@ -61,6 +61,7 @@
             tabPage1 = new TabPage();
             secondarySplitContainer = new SplitContainer();
             modelPreviewGroupBox = new GroupBox();
+            noModelPreviewAvailableLabel = new Label();
             modelPreviewPictureBox = new PictureBox();
             modelArchivesFolderGroupBox.SuspendLayout();
             modelsFolderGroupBox.SuspendLayout();
@@ -226,9 +227,9 @@
             modelArchivesView.HideSelection = false;
             modelArchivesView.Location = new Point(5, 22);
             modelArchivesView.Name = "modelArchivesView";
+            modelArchivesView.ShowNodeToolTips = true;
             modelArchivesView.Size = new Size(510, 342);
             modelArchivesView.TabIndex = 0;
-            modelArchivesView.NodeMouseHover += ModelArchivesView_NodeMouseHover;
             modelArchivesView.AfterSelect += ModelArchivesView_AfterSelect;
             modelArchivesView.MouseDown += NodeRightClick;
             // 
@@ -437,6 +438,7 @@
             // modelPreviewGroupBox
             // 
             modelPreviewGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            modelPreviewGroupBox.Controls.Add(noModelPreviewAvailableLabel);
             modelPreviewGroupBox.Controls.Add(modelPreviewPictureBox);
             modelPreviewGroupBox.Location = new Point(3, 3);
             modelPreviewGroupBox.Name = "modelPreviewGroupBox";
@@ -444,6 +446,18 @@
             modelPreviewGroupBox.TabIndex = 1;
             modelPreviewGroupBox.TabStop = false;
             modelPreviewGroupBox.Text = "Model Preview";
+            // 
+            // noModelPreviewAvailableLabel
+            // 
+            noModelPreviewAvailableLabel.Anchor = AnchorStyles.None;
+            noModelPreviewAvailableLabel.AutoSize = true;
+            noModelPreviewAvailableLabel.ForeColor = SystemColors.ControlText;
+            noModelPreviewAvailableLabel.Location = new Point(207, 106);
+            noModelPreviewAvailableLabel.Name = "noModelPreviewAvailableLabel";
+            noModelPreviewAvailableLabel.Size = new Size(167, 15);
+            noModelPreviewAvailableLabel.TabIndex = 20;
+            noModelPreviewAvailableLabel.Text = "No model preview is available.";
+            noModelPreviewAvailableLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // modelPreviewPictureBox
             // 
@@ -494,6 +508,7 @@
             ((System.ComponentModel.ISupportInitialize)secondarySplitContainer).EndInit();
             secondarySplitContainer.ResumeLayout(false);
             modelPreviewGroupBox.ResumeLayout(false);
+            modelPreviewGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)modelPreviewPictureBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -532,5 +547,6 @@
         private PictureBox modelPreviewPictureBox;
         private GroupBox modelPreviewGroupBox;
         private SplitContainer secondarySplitContainer;
+        private Label noModelPreviewAvailableLabel;
     }
 }

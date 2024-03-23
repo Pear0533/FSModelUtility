@@ -8,5 +8,10 @@
     "Archive Model Part": "HD_M_2370",
     "Replace Model Part": "HD_M_1130",
     "Status": "Taken"
+  },
+  "LG_M_1190": {
+    "Archive Model Part": "LG_M_2360",
+    "Replace Model Part": "LG_M_1190",
+    "Status": "Taken"
   }
 }

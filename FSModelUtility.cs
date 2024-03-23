@@ -4,7 +4,6 @@ using Newtonsoft.Json.Linq;
 using SharpCompress.Archives;
 using SharpCompress.Archives.Rar;
 using SharpCompress.Archives.Zip;
-using System.Reflection;
 using SearchOption = System.IO.SearchOption;
 
 namespace FSModelUtility;
@@ -179,7 +178,6 @@ public partial class FSModelUtility : Form
                 string path = "";
                 if (isTypeString) path = entry.ToString() ?? "";
                 else if (isTypeArchive) path = ((IArchiveEntry)entry).Key;
-                // TODO: Cleanup
                 if (archive is { ModelPreview: null } && IsImageFile(path))
                 {
                     Stream? imageStream = null;
@@ -239,7 +237,11 @@ public partial class FSModelUtility : Form
 
     private static TreeNode GetModelPartNode(Model model)
     {
-        return new TreeNode { BackColor = model.StatusColor, Name = model.Name, Text = model.DispName };
+        TreeNode node = new() { BackColor = model.StatusColor, Name = model.Name, Text = model.DispName };
+        // TODO: We need to call this method later to properly account for the model display names...
+        List<string> replacedModels = GetReplacedModels(model.Name);
+        if (replacedModels.Count > 0) node.ToolTipText = "Replaces:\n" + string.Join("\n", replacedModels);
+        return node;
     }
 
     private void PopulateModelArchivesView(bool refreshData = true, bool saveTreeState = true)
@@ -402,53 +404,19 @@ public partial class FSModelUtility : Form
         PopulateModelReplaceView(e.Node);
         ModelArchive selectedArchive = GetCurrentModelArchive();
         modelPreviewPictureBox.Image = selectedArchive.ModelPreview ?? null;
+        noModelPreviewAvailableLabel.Visible = selectedArchive.ModelPreview == null;
     }
 
-    // TODO: WIP
-
-    private void ModelArchivesView_NodeMouseHover(object sender, TreeNodeMouseHoverEventArgs e)
+    private static List<string> GetReplacedModels(string modelName)
     {
-        if (e.Node.Parent != null)
+        List<string> replacedModels = new();
+        foreach (KeyValuePair<string, JToken> entry in modelReplaceLog)
         {
-            ModelArchive archive = GetCurrentModelArchive();
-            if (archive == null) return;
-            Model model = archive.Entries.FirstOrDefault(m => m.Name == e.Node.Name);
-            if (model != null)
-            {
-                // Display tooltip containing replaced models
-                List<string> replacedModels = GetReplacedModels(model.Name);
-                string tooltipText = replacedModels.Any() ? string.Join("\n", replacedModels) : "No replaced models";
-
-                // Create tooltip control dynamically
-                ToolTip tooltip = new ToolTip();
-                tooltip.AutoPopDelay = 10000; // Set the tooltip to remain visible for a longer time
-                tooltip.UseAnimation = true; // Enable tooltip animation
-                tooltip.UseFading = true; // Enable tooltip fading
-                tooltip.IsBalloon = true; // Display the tooltip as a balloon
-                tooltip.SetToolTip(modelArchivesView, tooltipText);
-                tooltip.ToolTipTitle = "Replaces";
-                tooltip.ToolTipIcon = ToolTipIcon.Info;
-                tooltip.ToolTipTitle = "Replaces";
-                tooltip.ShowAlways = true;
-                tooltip.OwnerDraw = false;
-                tooltip.Show(tooltipText, modelArchivesView, e.Node.Bounds.Right + 10, e.Node.Bounds.Bottom + 10); // Show tooltip at the bottom-right of the node
-            }
-        }
-    }
-
-    private List<string> GetReplacedModels(string modelName)
-    {
-        List<string> replacedModels = new List<string>();
-        foreach (var entry in modelReplaceLog)
-        {
-            string replaceModelName = entry.Value[replaceModelPartKey]?.ToString();
-            string archiveModelName = entry.Value[archiveModelPartKey]?.ToString();
-            if (replaceModelName != null && archiveModelName != null && archiveModelName.Equals(modelName, StringComparison.OrdinalIgnoreCase))
-            {
-                // TODO: Cleanup
-                string replaceModelDispName = models.Find(i => i.Name == replaceModelName)?.DispName ?? replaceModelName;
-                replacedModels.Add(replaceModelDispName);
-            }
+            string replaceModelName = entry.Value[replaceModelPartKey]?.ToString() ?? "";
+            string archiveModelName = entry.Value[archiveModelPartKey]?.ToString() ?? "";
+            if (!archiveModelName.Equals(modelName, StringComparison.OrdinalIgnoreCase)) continue;
+            string replaceModelDispName = models.Find(i => i.Name == replaceModelName)?.DispName ?? replaceModelName;
+            replacedModels.Add(replaceModelDispName);
         }
         return replacedModels;
     }
