@@ -237,11 +237,7 @@ public partial class FSModelUtility : Form
 
     private static TreeNode GetModelPartNode(Model model)
     {
-        TreeNode node = new() { BackColor = model.StatusColor, Name = model.Name, Text = model.DispName };
-        // TODO: We need to call this method later to properly account for the model display names...
-        List<string> replacedModels = GetReplacedModels(model.Name);
-        if (replacedModels.Count > 0) node.ToolTipText = "Replaces:\n" + string.Join("\n", replacedModels);
-        return node;
+        return new TreeNode { BackColor = model.StatusColor, Name = model.Name, Text = model.DispName };
     }
 
     private void PopulateModelArchivesView(bool refreshData = true, bool saveTreeState = true)
@@ -329,6 +325,16 @@ public partial class FSModelUtility : Form
         {
             string archiveModelDispName = models.Find(i => i.Name == model.ArchiveModelName)?.DispName ?? model.ArchiveModelName;
             model.NodeTooltip = model.Status == ModelStatus.Available ? "Available to replace" : $"{modelArchive.Name}: {archiveModelDispName} -> {model.DispName}";
+        }
+        foreach (ModelArchive archive in modelArchives)
+        {
+            foreach (Model model in archive.Entries)
+            {
+                List<string> replacedModels = GetReplacedModels(model.Name);
+                if (replacedModels.Count <= 0) continue;
+                TreeNode? modelPartNode = modelArchivesView.Nodes.Find(model.Name, true).ElementAtOrDefault(0);
+                if (modelPartNode != null) modelPartNode.ToolTipText = "Replaces:\n" + string.Join("\n", replacedModels);
+            }
         }
     }
 
