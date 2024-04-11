@@ -296,22 +296,22 @@ public partial class FSModelUtility : Form
                 modelReplaceView.Nodes.Add(new TreeNode("Click the Restore button to specify a set to restore from backup."));
                 break;
             case { Level: 1 }:
-            {
-                string archiveModelPrefix = GetModelNamePrefix(selectedArchiveNode.Text);
-                List<Model> matchingModels = models.Where(i => i.Prefix == archiveModelPrefix).ToList();
-                if (modelReplaceRadioButton.Checked) matchingModels = matchingModels.Where(i => DoesMatchSearchQuery(i.DispName)).ToList();
-                bool wantsAvailable = filterSearchOptionsBox.SelectedIndex == 1;
-                bool wantsReplaced = filterSearchOptionsBox.SelectedIndex == 2;
-                matchingModels = matchingModels.Where(i => wantsAvailable ? i.Status == ModelStatus.Available : !wantsReplaced || i.Status == ModelStatus.Taken).ToList();
-                if (matchingModels.Count == 0)
                 {
-                    modelReplaceView.Nodes.Add(new TreeNode($"There are no model parts which match the prefix, {archiveModelPrefix}, or query."));
-                    return;
+                    string archiveModelPrefix = GetModelNamePrefix(selectedArchiveNode.Text);
+                    List<Model> matchingModels = models.Where(i => i.Prefix == archiveModelPrefix).ToList();
+                    if (modelReplaceRadioButton.Checked) matchingModels = matchingModels.Where(i => DoesMatchSearchQuery(i.DispName)).ToList();
+                    bool wantsAvailable = filterSearchOptionsBox.SelectedIndex == 1;
+                    bool wantsReplaced = filterSearchOptionsBox.SelectedIndex == 2;
+                    matchingModels = matchingModels.Where(i => wantsAvailable ? i.Status == ModelStatus.Available : !wantsReplaced || i.Status == ModelStatus.Taken).ToList();
+                    if (matchingModels.Count == 0)
+                    {
+                        modelReplaceView.Nodes.Add(new TreeNode($"There are no model parts which match the prefix, {archiveModelPrefix}, or query."));
+                        return;
+                    }
+                    foreach (Model model in matchingModels)
+                        modelReplaceView.Nodes.Add(new TreeNode { ToolTipText = model.NodeTooltip, BackColor = model.StatusColor, Name = model.Name, Text = model.DispName });
+                    break;
                 }
-                foreach (Model model in matchingModels)
-                    modelReplaceView.Nodes.Add(new TreeNode { ToolTipText = model.NodeTooltip, BackColor = model.StatusColor, Name = model.Name, Text = model.DispName });
-                break;
-            }
             default:
                 modelReplaceView.Nodes.Add(new TreeNode("Select a model part to view available parts to replace."));
                 break;

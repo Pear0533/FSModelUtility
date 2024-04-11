@@ -59,7 +59,7 @@
             versionNumberLabel = new Label();
             gameTabs = new TabControl();
             tabPage1 = new TabPage();
-            secondarySplitContainer = new SplitContainer();
+            splitContainer2 = new SplitContainer();
             modelPreviewGroupBox = new GroupBox();
             noModelPreviewAvailableLabel = new Label();
             modelPreviewPictureBox = new PictureBox();
@@ -78,10 +78,10 @@
             nodeRightClickMenu.SuspendLayout();
             searchGroupBox.SuspendLayout();
             gameTabs.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)secondarySplitContainer).BeginInit();
-            secondarySplitContainer.Panel1.SuspendLayout();
-            secondarySplitContainer.Panel2.SuspendLayout();
-            secondarySplitContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer2).BeginInit();
+            splitContainer2.Panel1.SuspendLayout();
+            splitContainer2.Panel2.SuspendLayout();
+            splitContainer2.SuspendLayout();
             modelPreviewGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)modelPreviewPictureBox).BeginInit();
             SuspendLayout();
@@ -104,11 +104,11 @@
             modelArchivesFolderGroupBox.Controls.Add(modelArchivesFolderPathLabel);
             modelArchivesFolderGroupBox.Controls.Add(label2);
             modelArchivesFolderGroupBox.Enabled = false;
-            modelArchivesFolderGroupBox.Location = new Point(4, 80);
+            modelArchivesFolderGroupBox.Location = new Point(4, 82);
             modelArchivesFolderGroupBox.Margin = new Padding(4, 5, 4, 5);
             modelArchivesFolderGroupBox.Name = "modelArchivesFolderGroupBox";
             modelArchivesFolderGroupBox.Padding = new Padding(4, 5, 4, 5);
-            modelArchivesFolderGroupBox.Size = new Size(519, 73);
+            modelArchivesFolderGroupBox.Size = new Size(525, 73);
             modelArchivesFolderGroupBox.TabIndex = 13;
             modelArchivesFolderGroupBox.TabStop = false;
             modelArchivesFolderGroupBox.Text = "Model Archives Folder";
@@ -119,7 +119,7 @@
             modelArchivesFolderButton.Location = new Point(9, 23);
             modelArchivesFolderButton.Margin = new Padding(4, 5, 4, 5);
             modelArchivesFolderButton.Name = "modelArchivesFolderButton";
-            modelArchivesFolderButton.Size = new Size(501, 26);
+            modelArchivesFolderButton.Size = new Size(507, 26);
             modelArchivesFolderButton.TabIndex = 5;
             modelArchivesFolderButton.Text = "Browse";
             modelArchivesFolderButton.UseVisualStyleBackColor = true;
@@ -151,11 +151,11 @@
             modelsFolderGroupBox.Controls.Add(modelsFolderButton);
             modelsFolderGroupBox.Controls.Add(modelsFolderPathLabel);
             modelsFolderGroupBox.Controls.Add(label6);
-            modelsFolderGroupBox.Location = new Point(4, 1);
+            modelsFolderGroupBox.Location = new Point(4, 3);
             modelsFolderGroupBox.Margin = new Padding(4, 5, 4, 5);
             modelsFolderGroupBox.Name = "modelsFolderGroupBox";
             modelsFolderGroupBox.Padding = new Padding(4, 5, 4, 5);
-            modelsFolderGroupBox.Size = new Size(519, 73);
+            modelsFolderGroupBox.Size = new Size(525, 73);
             modelsFolderGroupBox.TabIndex = 12;
             modelsFolderGroupBox.TabStop = false;
             modelsFolderGroupBox.Text = "Models Folder (parts)";
@@ -166,7 +166,7 @@
             modelsFolderButton.Location = new Point(9, 22);
             modelsFolderButton.Margin = new Padding(4, 5, 4, 5);
             modelsFolderButton.Name = "modelsFolderButton";
-            modelsFolderButton.Size = new Size(501, 26);
+            modelsFolderButton.Size = new Size(507, 26);
             modelsFolderButton.TabIndex = 5;
             modelsFolderButton.Text = "Browse";
             modelsFolderButton.UseVisualStyleBackColor = true;
@@ -196,7 +196,7 @@
             // 
             mainSplitContainer.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             mainSplitContainer.Enabled = false;
-            mainSplitContainer.Location = new Point(6, 287);
+            mainSplitContainer.Location = new Point(3, 234);
             mainSplitContainer.Name = "mainSplitContainer";
             // 
             // mainSplitContainer.Panel1
@@ -206,8 +206,8 @@
             // mainSplitContainer.Panel2
             // 
             mainSplitContainer.Panel2.Controls.Add(modelReplaceGroupBox);
-            mainSplitContainer.Size = new Size(1094, 377);
-            mainSplitContainer.SplitterDistance = 527;
+            mainSplitContainer.Size = new Size(526, 378);
+            mainSplitContainer.SplitterDistance = 253;
             mainSplitContainer.TabIndex = 15;
             // 
             // modelArchivesGroupBox
@@ -216,7 +216,7 @@
             modelArchivesGroupBox.Controls.Add(modelArchivesView);
             modelArchivesGroupBox.Location = new Point(3, 3);
             modelArchivesGroupBox.Name = "modelArchivesGroupBox";
-            modelArchivesGroupBox.Size = new Size(521, 371);
+            modelArchivesGroupBox.Size = new Size(247, 372);
             modelArchivesGroupBox.TabIndex = 16;
             modelArchivesGroupBox.TabStop = false;
             modelArchivesGroupBox.Text = "Model Archives";
@@ -228,7 +228,7 @@
             modelArchivesView.Location = new Point(5, 22);
             modelArchivesView.Name = "modelArchivesView";
             modelArchivesView.ShowNodeToolTips = true;
-            modelArchivesView.Size = new Size(510, 342);
+            modelArchivesView.Size = new Size(236, 343);
             modelArchivesView.TabIndex = 0;
             modelArchivesView.AfterSelect += ModelArchivesView_AfterSelect;
             modelArchivesView.MouseDown += NodeRightClick;
@@ -240,7 +240,7 @@
             modelReplaceGroupBox.Controls.Add(modelReplaceView);
             modelReplaceGroupBox.Location = new Point(3, 3);
             modelReplaceGroupBox.Name = "modelReplaceGroupBox";
-            modelReplaceGroupBox.Size = new Size(557, 371);
+            modelReplaceGroupBox.Size = new Size(263, 372);
             modelReplaceGroupBox.TabIndex = 15;
             modelReplaceGroupBox.TabStop = false;
             modelReplaceGroupBox.Text = "Model Replacement";
@@ -248,7 +248,7 @@
             // splitContainer1
             // 
             splitContainer1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            splitContainer1.Location = new Point(2, 330);
+            splitContainer1.Location = new Point(2, 331);
             splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -258,8 +258,8 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(modelRestoreButton);
-            splitContainer1.Size = new Size(552, 37);
-            splitContainer1.SplitterDistance = 274;
+            splitContainer1.Size = new Size(258, 37);
+            splitContainer1.SplitterDistance = 128;
             splitContainer1.TabIndex = 2;
             // 
             // modelReplaceButton
@@ -267,7 +267,7 @@
             modelReplaceButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             modelReplaceButton.Location = new Point(3, 3);
             modelReplaceButton.Name = "modelReplaceButton";
-            modelReplaceButton.Size = new Size(268, 31);
+            modelReplaceButton.Size = new Size(122, 31);
             modelReplaceButton.TabIndex = 0;
             modelReplaceButton.Text = "Replace!";
             modelReplaceButton.UseVisualStyleBackColor = true;
@@ -278,7 +278,7 @@
             modelRestoreButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             modelRestoreButton.Location = new Point(3, 3);
             modelRestoreButton.Name = "modelRestoreButton";
-            modelRestoreButton.Size = new Size(269, 31);
+            modelRestoreButton.Size = new Size(121, 31);
             modelRestoreButton.TabIndex = 1;
             modelRestoreButton.Text = "Restore!";
             modelRestoreButton.UseVisualStyleBackColor = true;
@@ -290,7 +290,7 @@
             modelReplaceView.Location = new Point(6, 22);
             modelReplaceView.Name = "modelReplaceView";
             modelReplaceView.ShowNodeToolTips = true;
-            modelReplaceView.Size = new Size(545, 306);
+            modelReplaceView.Size = new Size(251, 307);
             modelReplaceView.TabIndex = 1;
             modelReplaceView.AfterSelect += ModelReplaceView_AfterSelect;
             modelReplaceView.MouseDown += NodeRightClick;
@@ -300,7 +300,7 @@
             searchBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             searchBox.Location = new Point(6, 22);
             searchBox.Name = "searchBox";
-            searchBox.Size = new Size(507, 23);
+            searchBox.Size = new Size(513, 23);
             searchBox.TabIndex = 0;
             searchBox.TextChanged += SearchBox_TextChanged;
             // 
@@ -336,9 +336,9 @@
             searchGroupBox.Controls.Add(modelReplaceRadioButton);
             searchGroupBox.Controls.Add(searchBox);
             searchGroupBox.Enabled = false;
-            searchGroupBox.Location = new Point(4, 157);
+            searchGroupBox.Location = new Point(4, 159);
             searchGroupBox.Name = "searchGroupBox";
-            searchGroupBox.Size = new Size(519, 73);
+            searchGroupBox.Size = new Size(525, 73);
             searchGroupBox.TabIndex = 17;
             searchGroupBox.TabStop = false;
             searchGroupBox.Text = "Search";
@@ -416,33 +416,34 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "GAME";
             // 
-            // secondarySplitContainer
+            // splitContainer2
             // 
-            secondarySplitContainer.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            secondarySplitContainer.Location = new Point(6, 52);
-            secondarySplitContainer.Name = "secondarySplitContainer";
+            splitContainer2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            splitContainer2.Location = new Point(4, 51);
+            splitContainer2.Name = "splitContainer2";
             // 
-            // secondarySplitContainer.Panel1
+            // splitContainer2.Panel1
             // 
-            secondarySplitContainer.Panel1.Controls.Add(modelsFolderGroupBox);
-            secondarySplitContainer.Panel1.Controls.Add(searchGroupBox);
-            secondarySplitContainer.Panel1.Controls.Add(modelArchivesFolderGroupBox);
+            splitContainer2.Panel1.Controls.Add(modelsFolderGroupBox);
+            splitContainer2.Panel1.Controls.Add(mainSplitContainer);
+            splitContainer2.Panel1.Controls.Add(searchGroupBox);
+            splitContainer2.Panel1.Controls.Add(modelArchivesFolderGroupBox);
             // 
-            // secondarySplitContainer.Panel2
+            // splitContainer2.Panel2
             // 
-            secondarySplitContainer.Panel2.Controls.Add(modelPreviewGroupBox);
-            secondarySplitContainer.Size = new Size(1094, 232);
-            secondarySplitContainer.SplitterDistance = 527;
-            secondarySplitContainer.TabIndex = 10;
+            splitContainer2.Panel2.Controls.Add(modelPreviewGroupBox);
+            splitContainer2.Size = new Size(1100, 615);
+            splitContainer2.SplitterDistance = 533;
+            splitContainer2.TabIndex = 20;
             // 
             // modelPreviewGroupBox
             // 
-            modelPreviewGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            modelPreviewGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             modelPreviewGroupBox.Controls.Add(noModelPreviewAvailableLabel);
             modelPreviewGroupBox.Controls.Add(modelPreviewPictureBox);
             modelPreviewGroupBox.Location = new Point(3, 3);
             modelPreviewGroupBox.Name = "modelPreviewGroupBox";
-            modelPreviewGroupBox.Size = new Size(557, 227);
+            modelPreviewGroupBox.Size = new Size(557, 609);
             modelPreviewGroupBox.TabIndex = 1;
             modelPreviewGroupBox.TabStop = false;
             modelPreviewGroupBox.Text = "Model Preview";
@@ -452,7 +453,7 @@
             noModelPreviewAvailableLabel.Anchor = AnchorStyles.None;
             noModelPreviewAvailableLabel.AutoSize = true;
             noModelPreviewAvailableLabel.ForeColor = SystemColors.ControlText;
-            noModelPreviewAvailableLabel.Location = new Point(207, 106);
+            noModelPreviewAvailableLabel.Location = new Point(207, 297);
             noModelPreviewAvailableLabel.Name = "noModelPreviewAvailableLabel";
             noModelPreviewAvailableLabel.Size = new Size(167, 15);
             noModelPreviewAvailableLabel.TabIndex = 20;
@@ -464,7 +465,7 @@
             modelPreviewPictureBox.Dock = DockStyle.Fill;
             modelPreviewPictureBox.Location = new Point(3, 19);
             modelPreviewPictureBox.Name = "modelPreviewPictureBox";
-            modelPreviewPictureBox.Size = new Size(551, 205);
+            modelPreviewPictureBox.Size = new Size(551, 587);
             modelPreviewPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             modelPreviewPictureBox.TabIndex = 0;
             modelPreviewPictureBox.TabStop = false;
@@ -474,8 +475,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1109, 670);
-            Controls.Add(secondarySplitContainer);
-            Controls.Add(mainSplitContainer);
+            Controls.Add(splitContainer2);
             Controls.Add(gameTabs);
             Controls.Add(versionNumberLabel);
             Controls.Add(statusLabel);
@@ -503,10 +503,10 @@
             searchGroupBox.ResumeLayout(false);
             searchGroupBox.PerformLayout();
             gameTabs.ResumeLayout(false);
-            secondarySplitContainer.Panel1.ResumeLayout(false);
-            secondarySplitContainer.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)secondarySplitContainer).EndInit();
-            secondarySplitContainer.ResumeLayout(false);
+            splitContainer2.Panel1.ResumeLayout(false);
+            splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
+            splitContainer2.ResumeLayout(false);
             modelPreviewGroupBox.ResumeLayout(false);
             modelPreviewGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)modelPreviewPictureBox).EndInit();
@@ -546,7 +546,7 @@
         private TabPage tabPage1;
         private PictureBox modelPreviewPictureBox;
         private GroupBox modelPreviewGroupBox;
-        private SplitContainer secondarySplitContainer;
         private Label noModelPreviewAvailableLabel;
+        private SplitContainer splitContainer2;
     }
 }
